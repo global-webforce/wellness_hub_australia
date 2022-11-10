@@ -1,7 +1,7 @@
 import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app_service.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/dashboards/admin_dashboard/viewmodels/admin_scaffold_page_viewmodel.dart';
+
 import 'package:wellness_hub_australia/dashboards/client_dashboard/viewmodels/client_home_page_viewmodel.dart';
 import 'package:wellness_hub_australia/dashboards/client_dashboard/viewmodels/client_scaffold_page_viewmodel.dart';
 import 'package:wellness_hub_australia/dashboards/service_provider_dashboard/viewmodels/service_provider_home_page_viewmodel.dart';
@@ -55,8 +55,6 @@ import 'package:wellness_hub_australia/features/task_alarm/viewmodels/task_alarm
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
 import 'package:wellness_hub_australia/features/tasks/services/task_service_laravel.dart';
 import 'package:wellness_hub_australia/features/tasks/viewmodels/tasks_viewmodel.dart';
-import 'package:wellness_hub_australia/features_core/local_notification_service/local_notification_service.dart';
-import 'package:wellness_hub_australia/features_core/local_notification_service/local_notification_service_awesome.dart';
 import 'package:wellness_hub_australia/features_core/local_storage_service/local_storage_service.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -107,10 +105,6 @@ import 'package:stacked_themes/stacked_themes.dart';
     LazySingleton(
       classType: PushNotificationsServiceLaravel,
       asType: PushNotificationsService,
-    ),
-    LazySingleton(
-      classType: LocalNotificationServiceAwesome,
-      asType: LocalNotificationService,
     ),
     LazySingleton(
       classType: ChatServiceLaravel,
@@ -164,7 +158,6 @@ import 'package:stacked_themes/stacked_themes.dart';
     Factory(classType: ClientHomePageViewModel),
     Factory(classType: ServiceProviderScaffoldPageViewModel),
     Factory(classType: ServiceProviderHomePageViewModel),
-    Factory(classType: AdminScaffoldPageViewModel),
   ],
 )
 class AppSetup {}

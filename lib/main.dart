@@ -80,9 +80,6 @@ class MyApp extends StatelessWidget {
                           if (viewModel.user?.role == "service_provider") {
                             return [const ServiceProviderScaffoldRoute()];
                           }
-                          if (viewModel.user?.role == "admin") {
-                            return [const AdminScaffoldRoute()];
-                          }
                         }
 
                         return [AuthRoute(key: UniqueKey())];
@@ -97,9 +94,6 @@ class MyApp extends StatelessWidget {
                           }
                           if (viewModel.user?.role == "service_provider") {
                             return [const ServiceProviderScaffoldRoute()];
-                          }
-                          if (viewModel.user?.role == "admin") {
-                            return [const AdminScaffoldRoute()];
                           }
                         }
 

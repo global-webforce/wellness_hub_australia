@@ -5,15 +5,13 @@ import 'package:wellness_hub_australia/features/appointments/book_appointment/pa
 import 'package:wellness_hub_australia/features/authentication/pages/loading_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/onboarding_page.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_page.dart';
-import 'package:wellness_hub_australia/features/companies/pages/companies_page.dart';
 import 'package:wellness_hub_australia/features/profile/client_profile_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/auth_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/login_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/register_client_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/register_service_provider_page.dart';
 import 'package:wellness_hub_australia/features/authentication/pages/welcome_page.dart';
-import 'package:wellness_hub_australia/dashboards/admin_dashboard/pages/admin_scaffold_page.dart';
-import 'package:wellness_hub_australia/features/settings/pages/admin_settings_page.dart';
+
 import 'package:wellness_hub_australia/dashboards/client_dashboard/pages/client_home_page.dart';
 import 'package:wellness_hub_australia/dashboards/client_dashboard/pages/client_scaffold_page.dart';
 import 'package:wellness_hub_australia/features/settings/pages/client_settings_page.dart';
@@ -21,7 +19,6 @@ import 'package:wellness_hub_australia/dashboards/service_provider_dashboard/pag
 import 'package:wellness_hub_australia/features/profile/service_provider_profile_page.dart';
 import 'package:wellness_hub_australia/dashboards/service_provider_dashboard/pages/service_provider_scaffold_page.dart';
 import 'package:wellness_hub_australia/features/settings/pages/service_provider_settings_page.dart';
-import 'package:wellness_hub_australia/features/profile/basic_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../features/push_notifications/pages/push_notifications_page.dart';
@@ -197,53 +194,6 @@ class HeroEmptyRouterPage extends StatelessWidget {
           CustomRoute(
             path: "",
             page: ServiceProviderSettingsPage,
-            meta: {
-              'prefixPath': 'settings',
-            },
-            transitionsBuilder: TransitionsBuilders.fadeIn,
-          ),
-        ],
-      ),
-      RedirectRoute(path: '*', redirectTo: ''),
-    ],
-  ),
-  CustomRoute(
-    path: "/",
-    page: AdminScaffoldPage,
-    children: [
-      CustomRoute(
-        path: "",
-        name: "AdminHomeRouter",
-        page: EmptyRouterPage,
-        children: [
-          CustomRoute(
-            path: "",
-            maintainState: false,
-            page: CompaniesPage,
-            meta: {
-              'prefixPath': 'home',
-            },
-          ),
-          CustomRoute(
-            initial: true,
-            path: "",
-            page: PushNotificationsPage,
-            meta: {
-              'prefixPath': 'notifications',
-            },
-            transitionsBuilder: TransitionsBuilders.fadeIn,
-          ),
-          CustomRoute(
-            path: "",
-            page: BasicProfilePage,
-            meta: {
-              'prefixPath': 'profile',
-            },
-            transitionsBuilder: TransitionsBuilders.fadeIn,
-          ),
-          CustomRoute(
-            path: "",
-            page: AdminSettingsPage,
             meta: {
               'prefixPath': 'settings',
             },
