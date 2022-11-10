@@ -1,0 +1,19 @@
+{
+  "__className": "Client.model",
+  "__path": "/lib/models/",
+  "r@id": 1,
+  "r@first_name": "Morton",
+  "r@last_name": "Schmeler",
+  "r@email": "howell.braxtoner@dibbert.name",
+  "email_verified_at": null,
+  "r@mobile_number": "09238988128",
+  "role": null,
+  "profile_pic": null,
+  "company_id":null, 
+  "gender":null,
+  "age":null,
+  "height":null,
+  "weight":null,
+  "birth_date":null,
+  "address.address": null
+}

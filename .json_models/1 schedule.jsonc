@@ -1,0 +1,9 @@
+{
+  "__className": "Schedule.model",
+  "__path": "/lib/models/",
+  "id": 5,
+  "task_id": 1,
+  "weekdays": "1,2,3,4,5,6",
+  "timeSlots": "3:00pm",
+  "d@enabled": 0
+}

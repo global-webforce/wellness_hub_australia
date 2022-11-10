@@ -1,0 +1,9 @@
+{
+  "__className": "ServiceSchedule.model",
+  "__path": "/lib/models/",
+  "id": 13,
+  "day": "Monday",
+  "start_date": "2022-03-22T18:18:39.000000Z",
+  "end_date": "2022-03-22T18:18:39.000000Z",
+  "status": "pending"
+}

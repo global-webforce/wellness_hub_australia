@@ -1,0 +1,20 @@
+{
+  "__className": "ServiceProvider.model",
+  "__path": "/lib/models/",
+  "r@id": 1,
+  "r@first_name": "Dionee",
+  "r@last_name": "Bulingit",
+  "r@email": "dionnie@gwf.com",
+  "r@mobile_number": "0935123123122",
+  "profile_pic": null,
+  "birth_date": null,
+  "gender": null,
+  "short_bio": null,
+  "d@rating": 0.01,
+  "d@verified": 0,
+  "address.address": {},
+  "d@credentials": [{}],
+  "d@reviews": [{}],
+  "d@offered_services": [{}],
+  "d@schedules.service_schedule": [{}]
+}

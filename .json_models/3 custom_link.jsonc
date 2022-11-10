@@ -1,0 +1,12 @@
+{
+  "__className": "CustomLink.model",
+  "__path": "/lib/models/",
+  "id": 1,
+  "link_icon": "mjd-homes-favicon-310x310.jpg",
+  "company_name": "",
+  "title": "Sample Title",
+  "description": "description",
+  "url": "URL",
+  "created_at": "2022-03-22T18:18:39.000000Z",
+  "updated_at": "2022-04-20T06:55:55.000000Z"
+}

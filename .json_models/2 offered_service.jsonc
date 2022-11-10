@@ -1,0 +1,12 @@
+{
+  "__className": "OfferedService.model",
+  "__path": "/lib/models/",
+  "id": 1,
+  "pillar_id": 1,
+  "title": "Nutritionists",
+  "description": "Nutritionists typically work with individuals or populations to teach them more about general nutrition, food and health",
+  "service_provider_id": 2,
+  "field_id": 2,
+  "rate_per_hour": 9.99,
+  "verified": 0
+}

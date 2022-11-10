@@ -1,0 +1,11 @@
+{
+  "__className": "Badge.model",
+  "__path": "/lib/models/",
+  "id": 1,
+  "badge_name": "Rising Star",
+  "description": "You got this badge because you completed all your tasks last month",
+  "img_path": "https://i.ibb.co/V254Kdx/icons8-spotify-500px.png",
+  "created_at": "2022-03-08T18:26:04.000000Z",
+  "updated_at": "2022-03-08T18:26:04.000000Z",
+  "d@acquired": false
+}
