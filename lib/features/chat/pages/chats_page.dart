@@ -1,4 +1,3 @@
-import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/chat/viewmodels/chat_viewmodel.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
@@ -21,9 +20,8 @@ class ChatsPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                leading: ezDrawerToggle(context),
-                title: const Text("Chats"),
                 automaticallyImplyLeading: false,
+                title: const Text("Chats"),
               ),
               body: ListGridViewWrapper(
                 isBusy: viewModel.isBusy,

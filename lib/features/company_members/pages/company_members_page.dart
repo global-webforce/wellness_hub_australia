@@ -1,7 +1,6 @@
 import 'package:wellness_hub_australia/features/company_members/viewmodels/company_members_viewmodel.dart';
 import 'package:wellness_hub_australia/features/company_members/widgets/company_members_datawidget.dart';
 import 'package:flutter/material.dart';
-import 'package:ez_ui/ez_ui.dart';
 import 'package:stacked/stacked.dart';
 
 class CompanyMembersPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class CompanyMembersPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                leading: ezDrawerToggle(context),
+                automaticallyImplyLeading: false,
                 title: const Text("Company Details"),
               ),
               body: Padding(

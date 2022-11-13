@@ -20,7 +20,6 @@ class ClientProfilePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          leading: ezDrawerToggle(context),
           title: const Text("Profile"),
         ),
         body: ScaffoldBodyWrapper(

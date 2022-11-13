@@ -37,7 +37,7 @@ class OnboardItem extends StatelessWidget {
                     ),
                     child: Image.asset(
                       imagePath,
-                      width: 250,
+                      width: 230,
                     ),
                   ),
                 ),

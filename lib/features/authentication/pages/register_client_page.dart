@@ -179,7 +179,6 @@ class _RegisterForm extends StatelessWidget {
     Widget emailField() {
       return FormBuilderTextField(
         name: "email",
-        autofocus: true,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.emailAddress,

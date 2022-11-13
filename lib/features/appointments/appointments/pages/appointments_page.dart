@@ -1,7 +1,6 @@
 // ignore: implementation_imports
 import 'dart:math';
 import 'package:ez_core/ez_core.dart';
-import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/widgets/sf_calendar_widget.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/book_appointment_page.dart';
@@ -76,9 +75,8 @@ class AppointmentsPage extends StatelessWidget {
                       : desktopButton()
                   : const SizedBox.shrink(),
               appBar: AppBar(
-                title: const Text("Appointments"),
-                leading: ezDrawerToggle(context),
                 automaticallyImplyLeading: false,
+                title: const Text("Appointments"),
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(48),
                   child: ColoredBox(
@@ -153,14 +151,11 @@ class _Tab1State extends State<Tab1> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     final viewModel = getParentViewModel<AppointmentViewModel>(context);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 80),
-      child: SfCalendarTemplateWidget(
-          controller: viewModel.controller1,
-          dataSource: MeetingDataSource(viewModel.clientAppointments),
-          onViewChanged: viewModel.viewChanged,
-          onTap: viewModel.calendarTapped),
-    );
+    return SfCalendarTemplateWidget(
+        controller: viewModel.controller1,
+        dataSource: MeetingDataSource(viewModel.clientAppointments),
+        onViewChanged: viewModel.viewChanged,
+        onTap: viewModel.calendarTapped);
   }
 }
 

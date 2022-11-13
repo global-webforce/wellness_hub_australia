@@ -117,7 +117,6 @@ class _LoginForm extends StatelessWidget {
       return FormBuilderTextField(
         name: "email",
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        autofocus: true,
         keyboardType: TextInputType.emailAddress,
         autofillHints: const [AutofillHints.email],
         textInputAction: TextInputAction.next,

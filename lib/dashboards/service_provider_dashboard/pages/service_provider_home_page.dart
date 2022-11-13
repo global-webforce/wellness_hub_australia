@@ -3,7 +3,6 @@ import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:ez_ui/ez_ui.dart';
 import 'package:provider/provider.dart';
 
 class ServiceProviderHomePage extends StatelessWidget {
@@ -14,7 +13,6 @@ class ServiceProviderHomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          leading: ezDrawerToggle(context),
           title: const Text("Dashboard"),
           actions: [
             IconButton(

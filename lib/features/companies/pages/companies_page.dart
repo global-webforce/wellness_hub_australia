@@ -1,7 +1,6 @@
 import 'package:wellness_hub_australia/features/companies/viewmodels/companies_viewmodel.dart';
 import 'package:wellness_hub_australia/features/companies/widgets/company_datagrid.dart';
 import 'package:flutter/material.dart';
-import 'package:ez_ui/ez_ui.dart';
 import 'package:stacked/stacked.dart';
 
 class CompaniesPage extends StatelessWidget {
@@ -17,7 +16,7 @@ class CompaniesPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                leading: ezDrawerToggle(context),
+                automaticallyImplyLeading: false,
                 title: const Text("Companies"),
               ),
               body: Padding(

@@ -12,7 +12,7 @@ export 'src/widgets/ez_text.dart';
 export 'src/widgets/ez_refresh_indicator.dart';
 export 'src/widgets/ez_avatar.dart';
 export 'src/widgets/ez_pill.dart';
-export 'src/widgets/ez_drawer_toggle.dart';
+
 export 'src/widgets/ez_scaffold_body.dart';
 
 

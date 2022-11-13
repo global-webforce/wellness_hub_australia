@@ -1,4 +1,3 @@
-import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/push_notifications/viewmodels/push_notifications_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
@@ -20,7 +19,6 @@ class PushNotificationsPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                leading: ezDrawerToggle(context),
                 title: const Text("Notifications"),
                 automaticallyImplyLeading: false,
               ),

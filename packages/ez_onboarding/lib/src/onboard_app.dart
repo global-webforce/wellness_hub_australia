@@ -48,6 +48,7 @@ class _OnboardAppState extends State<OnboardApp> {
         duration: _kTransitionDuration,
         curve: _kCurve,
       );
+      print("GOO!!");
     });
   }
 
