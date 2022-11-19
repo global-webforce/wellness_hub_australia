@@ -23,7 +23,7 @@ class OnboardItem extends StatelessWidget {
         child: SizedBox(
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(
-                horizontal: (MediaQuery.of(context).size.width * 0.1) / 2),
+                horizontal: (MediaQuery.of(context).size.width * 0.15) / 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -46,14 +46,15 @@ class OnboardItem extends StatelessWidget {
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Text(
                   subtitle,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.justify,
                   style: const TextStyle(fontSize: 14, color: Colors.white),
                 ),
                 const SizedBox(

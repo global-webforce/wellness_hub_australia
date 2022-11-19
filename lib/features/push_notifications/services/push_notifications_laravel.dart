@@ -19,16 +19,23 @@ class PushNotificationsServiceLaravel
   }
 
   final ReactiveValue<List<PushNotification>> _notifications =
-      ReactiveValue<List<PushNotification>>([]);
+      ReactiveValue<List<PushNotification>>(<PushNotification>[]);
 
   @override
   Future<void> delete(int? id) async {
+    final index = _notifications.value.indexWhere((e) => e.id == id);
+    final temp = _notifications.value.firstWhere((e) => e.id == id);
+
+    _notifications.value.removeWhere((e) => e.id == id);
+    notifyListeners();
+
     await _apiService.delete(
       ApiEndpoints.instance.notificationDelete(id),
-      onSuccess: (res) async {
-        // await getAll();
+      onSuccess: (res) {},
+      onError: (_) {
+        _notifications.value.insert(index, temp);
+        notifyListeners();
       },
-      onError: (_) {},
     );
   }
 

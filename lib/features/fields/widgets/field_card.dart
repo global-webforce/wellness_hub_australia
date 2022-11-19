@@ -14,7 +14,7 @@ class FieldCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _title() {
+    Widget title() {
       return Text(
         "${field.title}",
         maxLines: 2,
@@ -27,7 +27,7 @@ class FieldCard extends StatelessWidget {
       );
     }
 
-    Widget _description() {
+    Widget description() {
       return Text(
         "${field.description}",
         maxLines: 2,
@@ -72,9 +72,9 @@ class FieldCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  _title(),
+                                  title(),
                                   vSpaceTiny,
-                                  Expanded(child: _description()),
+                                  Expanded(child: description()),
                                 ],
                               ),
                             ),

@@ -28,8 +28,6 @@ class FieldSearchDropdown extends StatelessWidget {
             },
             decoration:
                 const InputDecoration(prefixIcon: Icon(Icons.search_rounded)),
-            allowClear: true,
-            hint: const Text('Choose a Service'),
             dropdownColor: Colors.red,
             items: viewModel.fields
                 .map((field) => DropdownMenuItem(

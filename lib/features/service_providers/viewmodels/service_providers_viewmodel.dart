@@ -14,7 +14,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ServiceProvidersViewModel extends ReactiveViewModel {
   final log = getLogger('ServiceProvidersViewModel');
-  final _navigationService = locator<NavigationService>();
+
   final _dialogService = locator<DialogService>();
 
   final _serviceProviderService = locator<ServiceProvidersService>();

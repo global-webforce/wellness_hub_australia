@@ -46,7 +46,7 @@ class _ServiceProviderDetailPageState extends State<ServiceProviderDetailPage> {
       );
     }
 
-    Widget services() {
+/*     Widget services() {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class _ServiceProviderDetailPageState extends State<ServiceProviderDetailPage> {
               ],
             )
           : const SizedBox.shrink();
-    }
+    } */
 
     Widget location() {
       var latL = serviceProvider?.address?.latitude ?? 0;
@@ -158,7 +158,7 @@ class _ServiceProviderDetailPageState extends State<ServiceProviderDetailPage> {
             );
     }
 
-    Widget _total_earnings() {
+/*     Widget _total_earnings() {
       return Text(
         1239.70.moneyFormat(),
         maxLines: 1,
@@ -168,7 +168,7 @@ class _ServiceProviderDetailPageState extends State<ServiceProviderDetailPage> {
           fontWeight: FontWeight.w400,
         ),
       );
-    }
+    } */
 
     Widget availability() {
       return serviceProvider!.schedules.isNotEmpty

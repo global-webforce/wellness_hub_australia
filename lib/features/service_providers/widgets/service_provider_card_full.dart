@@ -15,14 +15,14 @@ class ServiceProviderCardFull extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _avatar() {
+    Widget avatar() {
       return EzAvatar(
         firstName: "${serviceProvider!.firstName} ${serviceProvider!.lastName}",
         imgUrl: serviceProvider?.profilePic,
       );
     }
 
-    Widget _name() {
+    Widget name() {
       return Text(
         "${serviceProvider!.firstName} ${serviceProvider!.lastName}",
         maxLines: 2,
@@ -31,7 +31,7 @@ class ServiceProviderCardFull extends StatelessWidget {
       );
     }
 
-    Widget _services() {
+/*     Widget services() {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class ServiceProviderCardFull extends StatelessWidget {
       );
     }
 
-    Widget _shortBio() {
+    Widget shortBio() {
       return Text(
         serviceProvider!.shortBio != null
             ? "${serviceProvider!.shortBio}"
@@ -56,7 +56,7 @@ class ServiceProviderCardFull extends StatelessWidget {
       );
     }
 
-    Widget _rating() {
+    Widget rating() {
       return serviceProvider!.rating > 0
           ? Wrap(
               alignment: WrapAlignment.end,
@@ -67,9 +67,9 @@ class ServiceProviderCardFull extends StatelessWidget {
               ],
             )
           : const SizedBox.shrink();
-    }
+    } */
 
-    Widget _location() {
+    Widget location() {
       var latL = serviceProvider?.address?.latitude ?? 0;
       var lonL = serviceProvider?.address?.longitude ?? 0;
       return serviceProvider?.address != null
@@ -145,7 +145,7 @@ class ServiceProviderCardFull extends StatelessWidget {
             );
     }
 
-    Widget _total_earnings() {
+/*     Widget total_earnings() {
       return Text(
         1239.70.moneyFormat(),
         maxLines: 1,
@@ -155,7 +155,7 @@ class ServiceProviderCardFull extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
       );
-    }
+    } */
 
     Widget availability() {
       return serviceProvider!.schedules.isNotEmpty
@@ -339,7 +339,7 @@ class ServiceProviderCardFull extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 60),
-                  _name(),
+                  name(),
                   vSpaceRegular,
                   Row(
                     children: [
@@ -428,7 +428,7 @@ class ServiceProviderCardFull extends StatelessWidget {
                                     fontSize: 18, fontWeight: FontWeight.w600),
                               ),
                               vSpaceSmall,
-                              _location(),
+                              location(),
                             ],
                           ),
                         ),
@@ -440,7 +440,7 @@ class ServiceProviderCardFull extends StatelessWidget {
           ),
         ),
       ),
-      Align(alignment: Alignment.topCenter, child: _avatar()),
+      Align(alignment: Alignment.topCenter, child: avatar()),
     ]);
   }
 }

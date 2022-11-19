@@ -1,17 +1,15 @@
-import 'package:ez_dashboard/src/widgets/ez_appbar.dart';
 import 'package:ez_dashboard/src/widgets/ez_bottom_navbar.dart';
 import 'package:ez_dashboard/src/widgets/ez_drawer.dart';
 import 'package:flutter/material.dart';
 
 class EZDashboard extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  final EZAppBar appBar;
+
   final EZDrawer drawer;
   final Widget mainContent;
   final EZBottomNavbar bottomNavBar;
   const EZDashboard(
       {Key? key,
-      required this.appBar,
       required this.scaffoldKey,
       required this.drawer,
       required this.bottomNavBar,
@@ -41,7 +39,6 @@ class _EZDashboardState extends State<EZDashboard> {
     return Scaffold(
         key: widget.scaffoldKey,
         drawer: widget.drawer,
-        appBar: widget.appBar,
         drawerEnableOpenDragGesture: true,
         bottomNavigationBar: !(MediaQuery.of(context).size.width > 1062)
             ? widget.bottomNavBar

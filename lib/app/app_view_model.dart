@@ -25,6 +25,8 @@ class AppViewModel extends ReactiveViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _snackbarService = locator<SnackbarService>();
 
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
   @override
   void onFutureError(error, Object? key) {
     log.e(error);

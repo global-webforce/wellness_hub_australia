@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wellness_hub_australia/models/custom_link.model.dart';
 import 'package:flutter/material.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class CustomLinksCard extends StatelessWidget {
   final CustomLink customLink;
@@ -12,7 +11,7 @@ class CustomLinksCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _image() {
+    Widget image() {
       return Container(
         color: Colors.white,
         child: CachedNetworkImage(
@@ -31,7 +30,7 @@ class CustomLinksCard extends StatelessWidget {
       );
     }
 
-    Widget _companyName() {
+/*     Widget companyName() {
       return Text(
         "${customLink.companyName} • ",
         maxLines: 1,
@@ -40,16 +39,16 @@ class CustomLinksCard extends StatelessWidget {
       );
     }
 
-    Widget _date() {
+    Widget date() {
       return Text(
         timeago.format(DateTime.parse("${customLink.createdAt}")),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(fontSize: 13, height: 1.3),
       );
-    }
+    } */
 
-    Widget _title() {
+    Widget title() {
       return Text(
         "${customLink.title}",
         maxLines: 3,
@@ -59,7 +58,7 @@ class CustomLinksCard extends StatelessWidget {
       );
     }
 
-    Widget _description() {
+    Widget description() {
       return Text(
         "${customLink.description}",
         style: const TextStyle(
@@ -79,16 +78,16 @@ class CustomLinksCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _image(),
+                image(),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      _title(),
+                      title(),
                       const SizedBox(height: 8),
-                      _description(),
+                      description(),
                     ],
                   ),
                 )

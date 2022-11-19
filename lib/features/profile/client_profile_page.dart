@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
@@ -19,6 +20,7 @@ class ClientProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: ezDrawerButton(context),
           automaticallyImplyLeading: false,
           title: const Text("Profile"),
         ),

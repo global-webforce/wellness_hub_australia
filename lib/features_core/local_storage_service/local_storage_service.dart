@@ -71,23 +71,22 @@ class LocalStorageService {
   void deleteUser() {
     _preferences!.remove(userKey);
     _preferences!.remove(tokenKey);
-    print('LocalStorageService:deleteUser. userKey & tokenKey removed');
+    log.w("LocalStorageService:deleteUser() $userKey & $tokenKey removed");
   }
 
   dynamic _getFromDisk(String key) {
     try {
       var value = _preferences!.get(key);
-      print('Get from disk | key: $key value: $value');
+      log.i("LocalStorageService:_getFromDisk() | key: $key value: $value");
       return value;
     } catch (e) {
-      log.w("_getFromDisk failed");
+      log.e("LocalStorageService:_getFromDisk() failed");
     }
   }
 
-// updated _saveToDisk function that handles all types
   void _saveToDisk<T>(String key, T content) {
     try {
-      print('Save to dsik | key: $key value: $content');
+      log.i("LocalStorageService:_saveToDisk() | key: $key value: $content");
       if (content is String) {
         _preferences!.setString(key, content);
       }
@@ -104,7 +103,7 @@ class LocalStorageService {
         _preferences!.setStringList(key, content);
       }
     } catch (e) {
-      log.w("_saveToDisk failed");
+      log.e("LocalStorageService:_saveToDisk() failed");
     }
   }
 }

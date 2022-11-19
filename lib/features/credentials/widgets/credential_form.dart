@@ -55,9 +55,7 @@ class CredentialForm extends StatelessWidget {
         valueTransformer: (value) {
           return value?.toIso8601String();
         },
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         decoration: const InputDecoration(
             labelText: "Date Issued (If Available)",
             prefixIcon: Icon(Icons.calendar_month)),

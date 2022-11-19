@@ -18,7 +18,6 @@ class ChoosePillarPage extends StatefulWidget {
 class ChoosePillarPageState extends State<ChoosePillarPage> {
   @override
   Widget build(BuildContext context) {
-    print("PILLAR PAGE");
     final viewModel =
         Provider.of<BookAppointmentViewModel>(context, listen: false);
     return Scaffold(body: LayoutBuilder(builder: (context, constraints) {

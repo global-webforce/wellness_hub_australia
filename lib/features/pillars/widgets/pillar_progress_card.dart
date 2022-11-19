@@ -15,7 +15,7 @@ class PillarProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _icon(double width) {
+    Widget icon(double width) {
       return Card(
         color: HexColor("${pillar.colorTheme}"),
         child: Padding(
@@ -39,7 +39,7 @@ class PillarProgressCard extends StatelessWidget {
       );
     }
 
-    Widget _title() {
+    Widget title() {
       return Text(
         "${pillar.title}",
         maxLines: 1,
@@ -52,7 +52,7 @@ class PillarProgressCard extends StatelessWidget {
       );
     }
 
-    Widget _percentIndicator() => LinearPercentIndicator(
+    Widget percentIndicator() => LinearPercentIndicator(
           padding: const EdgeInsets.all(0),
           animateFromLastPercent: true,
           animation: true,
@@ -63,7 +63,7 @@ class PillarProgressCard extends StatelessWidget {
           progressColor: HexColor("${pillar.colorTheme}"),
         );
 
-    Widget _percentageText() => Text(
+    Widget percentageText() => Text(
           "${pillar.progress()}%",
           style: const TextStyle(
             fontSize: 14,
@@ -71,7 +71,7 @@ class PillarProgressCard extends StatelessWidget {
           ),
         );
 
-    Widget _progressRatioText() => Text(
+    Widget progressRatioText() => Text(
           "${pillar.completed!} / ${pillar.total}",
           style: const TextStyle(
             fontSize: 14,
@@ -90,26 +90,26 @@ class PillarProgressCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _icon(constraints.maxWidth),
+                  icon(constraints.maxWidth),
                   hSpaceRegular,
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        _title(),
+                        title(),
                         const SizedBox(
                           height: 8,
                         ),
-                        _percentIndicator(),
+                        percentIndicator(),
                         const SizedBox(
                           height: 8,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _progressRatioText(),
-                            _percentageText(),
+                            progressRatioText(),
+                            percentageText(),
                           ],
                         )
                       ],

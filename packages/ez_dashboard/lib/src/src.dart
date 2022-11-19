@@ -1,2 +1,2 @@
-export 'ez_dashboard.dart';
+export 'dashboard.dart';
 export 'widgets/widgets.dart';

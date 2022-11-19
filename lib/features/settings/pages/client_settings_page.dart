@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/ez_dashboard.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
 
@@ -16,9 +17,9 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-           automaticallyImplyLeading: false,
+          leading: ezDrawerButton(context),
+          automaticallyImplyLeading: false,
           title: const Text("Settings"),
-         
           actions: [
             IconButton(
                 tooltip: "Change Theme",

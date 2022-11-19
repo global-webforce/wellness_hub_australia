@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/push_notifications/viewmodels/push_notifications_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
@@ -19,8 +20,9 @@ class PushNotificationsPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                title: const Text("Notifications"),
+                leading: ezDrawerButton(context),
                 automaticallyImplyLeading: false,
+                title: const Text("Notifications"),
               ),
               body: ListGridViewWrapper(
                 emptyIndicatorWidget: const EmptyDisplay(
@@ -44,7 +46,7 @@ class PushNotificationsPage extends StatelessWidget {
                           viewModel.goToNotifDetail(
                               viewModel.pushNotifications[index].id);
                         },
-                        push_notification: viewModel.pushNotifications[index],
+                        pushNotification: viewModel.pushNotifications[index],
                       );
                     },
                   );

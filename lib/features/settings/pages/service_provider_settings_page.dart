@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
 
@@ -18,6 +19,7 @@ class _ServiceProviderSettingsPageState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: ezDrawerButton(context),
           automaticallyImplyLeading: false,
           title: const Text("Settings"),
           centerTitle: true,

@@ -172,7 +172,7 @@ class ApiService {
     required Function(String errorMessage) onError,
   }) async {
     try {
-      await client
+      return await client
           .delete(
         Uri.parse(url),
         body: (requestBody != null) ? jsonEncode(requestBody) : null,
@@ -185,6 +185,7 @@ class ApiService {
         }
       });
     } catch (e) {
+      onError("");
       final String error = "$e";
 
       if (error.isEmpty) {

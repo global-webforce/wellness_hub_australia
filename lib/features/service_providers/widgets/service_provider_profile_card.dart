@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
@@ -16,7 +15,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _avatar(double width) {
+    Widget avatar(double width) {
       return EzAvatar(
           badge: serviceProvider.verified == 1
               ? Image.asset(
@@ -30,7 +29,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
           imgUrl: "${serviceProvider.profilePic}");
     }
 
-    Widget _name() {
+    Widget name() {
       return Text(
         "${serviceProvider.firstName} ${serviceProvider.lastName[0]}.",
         maxLines: 2,
@@ -39,7 +38,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
       );
     }
 
-    Widget _services() {
+    Widget services() {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         decoration: BoxDecoration(
@@ -55,14 +54,14 @@ class ServiceProviderProfileCard extends StatelessWidget {
       );
     }
 
-    Widget _shortBio() {
+    Widget shortBio() {
       return Text(
         "${serviceProvider.shortBio}",
         style: const TextStyle(fontSize: 13, height: 1.3),
       );
     }
 
-    Widget _rating() {
+    Widget rating() {
       return serviceProvider.rating > 0
           ? Wrap(
               alignment: WrapAlignment.end,
@@ -74,7 +73,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
           : const SizedBox.shrink();
     }
 
-    Widget _location() {
+    Widget location() {
       return Wrap(
         alignment: WrapAlignment.end,
         children: [
@@ -84,7 +83,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
       );
     }
 
-    Widget _title(String text) {
+    Widget title(String text) {
       return Text(
         text,
         maxLines: 2,
@@ -96,7 +95,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
       );
     }
 
-    Widget _total_earnings() {
+    Widget totalEarnings() {
       return Text(
         1239.70.moneyFormat(),
         maxLines: 1,
@@ -108,14 +107,14 @@ class ServiceProviderProfileCard extends StatelessWidget {
       );
     }
 
-    Widget _saveAsFavoriteButton() {
+    /*  Widget saveAsFavoriteButton() {
       return IconButton(
           onPressed: () {},
           icon: const Icon(
             EvaIcons.heart,
             color: Colors.purple,
           ));
-    }
+    } */
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -134,7 +133,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            _avatar(constraints.maxWidth),
+                            avatar(constraints.maxWidth),
                           ],
                         ),
                         hSpaceRegular,
@@ -143,9 +142,9 @@ class ServiceProviderProfileCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _name(),
+                              name(),
                               const SizedBox(height: 3),
-                              _services(),
+                              services(),
                               vSpaceSmall,
                             ],
                           ),
@@ -160,9 +159,9 @@ class ServiceProviderProfileCard extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                _rating(),
+                                rating(),
                                 vSpaceTiny,
-                                _location(),
+                                location(),
                               ],
                             ),
                           ],
@@ -174,7 +173,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
                   Row(
                     children: [
                       vSpaceSmall,
-                      Expanded(child: _shortBio()),
+                      Expanded(child: shortBio()),
                     ],
                   ),
                   vSpaceRegular,
@@ -189,8 +188,8 @@ class ServiceProviderProfileCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                _title("Total Earnings"),
-                                _total_earnings()
+                                title("Total Earnings"),
+                                totalEarnings()
                               ],
                             ),
                             hSpaceLarge,
@@ -198,8 +197,8 @@ class ServiceProviderProfileCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                _title("Pending  Receivables"),
-                                _total_earnings()
+                                title("Pending  Receivables"),
+                                totalEarnings()
                               ],
                             )
                           ],

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:ez_onboarding/src/onboard_item.dart';
 import 'package:flutter/material.dart';
 import 'package:page_view_indicators/page_view_indicators.dart';
@@ -15,13 +13,10 @@ class OnboardApp extends StatefulWidget {
 }
 
 class _OnboardAppState extends State<OnboardApp> {
-  Timer? _timer;
-
   final PageController _pageController = PageController(
     initialPage: 0,
   );
 
-  static const _kAutoPlayInterval = Duration(seconds: 8);
   static const _kTransitionDuration = Duration(milliseconds: 350);
   static const _kCurve = Curves.ease;
 
@@ -42,20 +37,6 @@ class _OnboardAppState extends State<OnboardApp> {
         isLastPage = false;
       });
     }
-
-    _timer = Timer.periodic(_kAutoPlayInterval, (Timer timer) {
-      _pageController.nextPage(
-        duration: _kTransitionDuration,
-        curve: _kCurve,
-      );
-      print("GOO!!");
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer?.cancel();
   }
 
   _buildCircleIndicator() {
@@ -134,42 +115,25 @@ class _OnboardAppState extends State<OnboardApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (e) {
-        setState(() {
-          _timer?.cancel();
-        });
-      },
-      onExit: (e) {
-        setState(() {
-          _timer = Timer.periodic(_kAutoPlayInterval, (Timer timer) {
-            _pageController.nextPage(
-              duration: _kTransitionDuration,
-              curve: _kCurve,
-            );
-          });
-        });
-      },
-      child: Scaffold(
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            _loopPageView(),
-            Container(
-              padding: const EdgeInsets.all(15),
-              color: Colors.black.withOpacity(0.4),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _prevButton(),
-                  _buildCircleIndicator(),
-                  _nextButton()
-                ],
-              ),
-            )
-          ],
-        ),
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          _loopPageView(),
+          Container(
+            padding: const EdgeInsets.all(15),
+            color: Colors.black.withOpacity(0.4),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _prevButton(),
+                _buildCircleIndicator(),
+                _nextButton()
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

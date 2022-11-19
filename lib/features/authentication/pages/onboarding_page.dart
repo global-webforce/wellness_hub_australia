@@ -17,20 +17,18 @@ class OnboardingPage extends StatelessWidget {
             onDone: () {},
             pages: [
               OnboardItem(
-                title:
-                    "It’s these networks that enable us to feel connected and engaged. \nThey enrich us and fulfill our lives.",
-                subtitle:
-                    "The ability to communicate and develop meaningful relationships with family, friends, colleagues, and co-workers throughout our lives is vital to our wellbeing.",
-                imagePath: "assets/images/onboard/img1.png",
-                pageColor: HexColor("#C86556").darken(),
-              ),
+                  title:
+                      "It’s these networks that enable us to feel connected and engaged.\nThey enrich us and fulfill our lives.",
+                  subtitle:
+                      "The ability to communicate and develop meaningful relationships with family, friends, colleagues, and co-workers throughout our lives is vital to our wellbeing.",
+                  imagePath: "assets/images/onboard/img1.png",
+                  pageColor: HexColor("#C86556")),
               OnboardItem(
-                title: "Provides affordable program and activities",
-                subtitle:
-                    "Physical and Mental health work together. Physical wellbeing is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without physical stress.",
-                imagePath: "assets/images/onboard/img2.png",
-                pageColor: HexColor("#EFBF5C").darken(),
-              ),
+                  title: "Provides affordable program and activities",
+                  subtitle:
+                      "Physical and Mental health work together. Physical wellbeing is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without physical stress.",
+                  imagePath: "assets/images/onboard/img2.png",
+                  pageColor: HexColor("#EFBF5C")),
               OnboardItem(
                 title: "Increases social and community health.",
                 subtitle:

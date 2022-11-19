@@ -27,12 +27,6 @@ import '../features/badges/viewmodels/badges_viewmodel.dart';
 import '../features/chat/services/chat_service.dart';
 import '../features/chat/services/chat_service_laravel.dart';
 import '../features/chat/viewmodels/chat_viewmodel.dart';
-import '../features/companies/services/company_service.dart';
-import '../features/companies/services/company_service_laravel.dart';
-import '../features/companies/viewmodels/companies_viewmodel.dart';
-import '../features/company_members/services/company_members_service.dart';
-import '../features/company_members/services/company_members_service_laravel.dart';
-import '../features/company_members/viewmodels/company_members_viewmodel.dart';
 import '../features/credentials/services/credentials_service.dart';
 import '../features/credentials/services/credentials_service_laravel.dart';
 import '../features/credentials/viewmodels/credentials_viewmodel.dart';
@@ -108,9 +102,6 @@ Future<void> setupLocator(
       () => ServiceSchedulesServiceLaravel());
   locator.registerLazySingleton<AppointmentsService>(
       () => AppointmentsServiceLaravel());
-  locator.registerLazySingleton<CompanyService>(() => CompanyServiceLaravel());
-  locator.registerLazySingleton<CompanyMembersService>(
-      () => CompanyMembersServiceLaravel());
   locator.registerFactory(() => AppViewModel());
   locator.registerFactory(() => PillarsViewModel());
   locator.registerFactory(() => TasksViewModel());
@@ -125,8 +116,6 @@ Future<void> setupLocator(
   locator.registerFactory(() => BadgesViewModel());
   locator.registerFactory(() => ChatViewModel());
   locator.registerFactory(() => PushNotificationsViewModel());
-  locator.registerFactory(() => CompaniesViewModel());
-  locator.registerFactory(() => CompanyMembersViewModel());
   locator.registerFactory(() => FieldsViewModel());
   locator.registerFactory(() => ClientScaffoldPageViewModel());
   locator.registerFactory(() => ClientHomePageViewModel());

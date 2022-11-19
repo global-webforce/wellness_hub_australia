@@ -3,17 +3,17 @@ import 'package:wellness_hub_australia/models/push_notification.model.dart';
 import 'package:flutter/material.dart';
 
 class PushNotificationCard extends StatelessWidget {
-  final PushNotification push_notification;
+  final PushNotification pushNotification;
   final Function onTap;
   const PushNotificationCard(
-      {Key? key, required this.push_notification, required this.onTap})
+      {Key? key, required this.pushNotification, required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget date() {
       return Text(
-        "${push_notification.createdAt}".toDateNotification(),
+        "${pushNotification.createdAt}".toDateNotification(),
         style: const TextStyle(
           fontSize: 13,
         ),
@@ -22,7 +22,7 @@ class PushNotificationCard extends StatelessWidget {
 
     Widget title() {
       return Text(
-        "${push_notification.notification}",
+        "${pushNotification.notification}",
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
@@ -34,7 +34,7 @@ class PushNotificationCard extends StatelessWidget {
 
     Widget body() {
       return Text(
-        "${push_notification.notification}",
+        "${pushNotification.notification}",
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(

@@ -1,6 +1,5 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,16 +11,9 @@ class ServiceProviderHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: ezDrawerButton(context),
           automaticallyImplyLeading: false,
           title: const Text("Dashboard"),
-          actions: [
-            IconButton(
-              onPressed: () {
-                context.router.navigate(const PushNotificationsRoute());
-              },
-              icon: const Icon(Icons.notifications),
-            ),
-          ],
         ),
         body: ScaffoldBodyWrapper(
           isFullWidth: true,

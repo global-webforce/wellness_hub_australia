@@ -1,4 +1,3 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
@@ -25,7 +24,7 @@ class ServiceProviderCard extends StatelessWidget {
     final viewModel =
         Provider.of<BookAppointmentViewModel>(context, listen: false);
 
-    Widget _avatar(double width) {
+    Widget avatar(double width) {
       return EzAvatar(
           badge: serviceProvider.verified == 1
               ? Image.asset(
@@ -39,7 +38,7 @@ class ServiceProviderCard extends StatelessWidget {
           imgUrl: "${serviceProvider.profilePic}");
     }
 
-    Widget _name() {
+    Widget name() {
       return Text(
         "${serviceProvider.firstName} ${serviceProvider.lastName[0]}.",
         maxLines: 2,
@@ -48,7 +47,7 @@ class ServiceProviderCard extends StatelessWidget {
       );
     }
 
-    Widget _serviceSelected() {
+    Widget serviceSelected() {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         decoration: BoxDecoration(
@@ -64,7 +63,7 @@ class ServiceProviderCard extends StatelessWidget {
       );
     }
 
-    Widget _serviceSelectedAmount() {
+    Widget serviceSelectedAmount() {
       return Text(
         "${serviceProvider.offeredServices.firstWhere((e) => e.fieldId == viewModel.selectedFieldId).ratePerHour?.moneyFormat()} / hr",
         maxLines: 2,
@@ -73,7 +72,7 @@ class ServiceProviderCard extends StatelessWidget {
       );
     }
 
-    Widget _services() {
+    /*    Widget services() {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         decoration: BoxDecoration(
@@ -87,9 +86,9 @@ class ServiceProviderCard extends StatelessWidget {
           style: const TextStyle(color: Colors.white, fontSize: 14),
         ),
       );
-    }
+    } */
 
-    Widget _shortBio() {
+    Widget shortBio() {
       return Text(
         "${serviceProvider.shortBio}",
         maxLines: 4,
@@ -98,7 +97,7 @@ class ServiceProviderCard extends StatelessWidget {
       );
     }
 
-    Widget _rating() {
+    Widget rating() {
       return serviceProvider.rating >= 1
           ? Wrap(
               alignment: WrapAlignment.end,
@@ -114,7 +113,7 @@ class ServiceProviderCard extends StatelessWidget {
           : const SizedBox.shrink();
     }
 
-    Widget _location() {
+    Widget location() {
       return Wrap(
         alignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.center,
@@ -137,14 +136,14 @@ class ServiceProviderCard extends StatelessWidget {
       );
     }
 
-    Widget _saveAsFavoriteButton() {
+/*     Widget saveAsFavoriteButton() {
       return IconButton(
           onPressed: () {},
           icon: const Icon(
             EvaIcons.heart,
             color: Colors.purple,
           ));
-    }
+    } */
 
     return SizedBox(
         width: 360,
@@ -170,7 +169,7 @@ class ServiceProviderCard extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                _avatar(constraints.maxWidth),
+                                avatar(constraints.maxWidth),
                               ],
                             ),
                             hSpaceRegular,
@@ -183,17 +182,17 @@ class ServiceProviderCard extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      _name(),
+                                      name(),
                                       vSpaceSmall,
-                                      _rating(),
+                                      rating(),
                                     ],
                                   ),
                                   const SizedBox(height: 3),
                                   if (serviceProvider
                                       .offeredServices.isNotEmpty)
-                                    _serviceSelected(),
+                                    serviceSelected(),
                                   vSpaceSmall,
-                                  _shortBio(),
+                                  shortBio(),
                                 ],
                               ),
                             ),
@@ -204,9 +203,9 @@ class ServiceProviderCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(child: _location()),
+                          Expanded(child: location()),
                           vSpaceRegular,
-                          _serviceSelectedAmount(),
+                          serviceSelectedAmount(),
                         ],
                       ),
                     ],

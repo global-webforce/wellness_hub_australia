@@ -20,18 +20,21 @@ class EZBottomNavbar extends StatelessWidget {
       activeIndex = 0;
     }
 
-    return BottomNavigationBar(
-      currentIndex: activeIndex,
-      items: items
-          .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.title))
-          .toList(),
-      unselectedItemColor: Theme.of(context).disabledColor,
-      selectedItemColor: Theme.of(context).primaryColor,
-      type: BottomNavigationBarType.fixed,
-      showUnselectedLabels: true,
-      onTap: (i) {
-        context.replaceRoute(items[i].route);
-      },
+    return Wrap(
+      children: [
+        BottomNavigationBar(
+          currentIndex: activeIndex,
+          items: items
+              .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.title))
+              .toList(),
+          unselectedItemColor: Theme.of(context).disabledColor,
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+          onTap: (i) {
+            context.replaceRoute(items[i].route);
+          },
+        ),
+      ],
     );
   }
 }

@@ -23,7 +23,6 @@ class EZDrawerHeader extends StatelessWidget {
         ),
       ),
       accountEmail: Text(userEmail),
-      currentAccountPictureSize: const Size.square(62),
       currentAccountPicture: CachedNetworkImage(
         imageUrl: "$userNetworkImage",
         imageBuilder: (context, imageProvider) {
@@ -39,6 +38,7 @@ class EZDrawerHeader extends StatelessWidget {
             child: Icon(
               Icons.person,
               color: Colors.white,
+              size: 48,
             ),
           );
         },

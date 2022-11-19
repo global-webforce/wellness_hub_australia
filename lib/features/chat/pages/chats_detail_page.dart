@@ -81,7 +81,6 @@ class ChatsDetailPage extends StatelessWidget {
                 id: "$userId",
               ),
               onSend: (ChatMessage m) async {
-                print("${m.text} ${m.createdAt} ${m.user.id}");
                 await viewModel.create(id, m);
               },
               inputOptions: const InputOptions(

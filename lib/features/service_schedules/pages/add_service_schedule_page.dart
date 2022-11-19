@@ -75,9 +75,7 @@ class _ServiceScheduleForm extends StatelessWidget {
         valueTransformer: (value) {
           return value?.toIso8601String();
         },
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: const InputDecoration(
             labelText: "Start Time",
@@ -92,9 +90,7 @@ class _ServiceScheduleForm extends StatelessWidget {
         valueTransformer: (value) {
           return value?.toIso8601String();
         },
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: const InputDecoration(
             labelText: "End Time", prefixIcon: Icon(Icons.punch_clock_rounded)),

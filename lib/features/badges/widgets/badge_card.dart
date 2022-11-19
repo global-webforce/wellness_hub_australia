@@ -16,7 +16,7 @@ class BadgeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _badgeIcon() {
+    Widget badgeIcon() {
       return CachedNetworkImage(
         imageUrl: "${badge.imgPath}",
         width: 100,
@@ -31,7 +31,7 @@ class BadgeCard extends StatelessWidget {
       );
     }
 
-    Widget _title() {
+    Widget title() {
       return Text(
         "${badge.badgeName} ",
         maxLines: 2,
@@ -44,7 +44,7 @@ class BadgeCard extends StatelessWidget {
       );
     }
 
-    Widget _description() {
+    Widget description() {
       return Text(
         "${badge.description}",
         style: const TextStyle(
@@ -74,7 +74,7 @@ class BadgeCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
-                              children: [_badgeIcon()],
+                              children: [badgeIcon()],
                             ),
                             hSpaceRegular,
                             Expanded(
@@ -82,9 +82,9 @@ class BadgeCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  _title(),
+                                  title(),
                                   vSpaceTiny,
-                                  _description(),
+                                  description(),
                                 ],
                               ),
                             ),

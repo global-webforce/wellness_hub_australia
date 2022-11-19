@@ -29,7 +29,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
           viewModel.loadPlacesInAustralia();
         },
         builder: (context, viewModel, child) {
-          Widget _closeButton() {
+          Widget closeButton() {
             return InkWell(
               borderRadius: BorderRadius.circular(8),
               onTap: () => context.pushRoute(const LoginRoute()),
@@ -108,7 +108,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
               child: Scaffold(
                   floatingActionButton: Padding(
                     padding: const EdgeInsets.only(top: 15),
-                    child: _closeButton(),
+                    child: closeButton(),
                   ),
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.startTop,
@@ -329,7 +329,6 @@ class _RegisterForm extends StatelessWidget {
     }
 
     return FormBuilder(
-      autoFocusOnValidationFailure: true,
       skipDisabled: true,
       key: viewModel.registerFormKey,
       child: Column(

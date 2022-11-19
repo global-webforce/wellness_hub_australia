@@ -238,8 +238,7 @@ class BookAppointmentViewModel extends ReactiveViewModel {
 
   @override
   void onFutureError(error, Object? key) {
-    print(busyAppintmentBookingKey == key);
-    log.w(error);
+    log.e(error);
     _dialogService.showCustomDialog(
         variant: DialogType.error,
         barrierDismissible: true,

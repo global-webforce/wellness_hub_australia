@@ -73,7 +73,7 @@ class PushNotificationDetailPage extends StatelessWidget {
                     icon: const Icon(Icons.delete_outlined))
               ],
             ),
-            bottomNavigationBar: const ViewLinkButton(),
+            //bottomNavigationBar: const ViewLinkButton(),
             body: ScaffoldBodyWrapper(
                 onRefresh: () async {},
                 builder: (context, constraints) {

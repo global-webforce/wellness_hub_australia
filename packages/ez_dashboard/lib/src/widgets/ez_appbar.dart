@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class EZAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  final String appName;
+  final Widget appName;
   final List<EZAppBarIcon> iconBadges;
   final EzAppBarAvatar? userAvatar;
   final String? leadingImageAsset;
@@ -21,20 +21,19 @@ class EZAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     final List<Widget> actionButtons = [
       ...iconBadges,
-      const SizedBox(width: 5),
+      const SizedBox(width: 10),
       userAvatar ?? const SizedBox.shrink()
     ];
     return AppBar(
-        automaticallyImplyLeading: !(MediaQuery.of(context).size.width > 1062),
-        title: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            alignment: WrapAlignment.center,
-            runAlignment: WrapAlignment.center,
-            spacing: 10,
-            children: [
-              Image.asset("$leadingImageAsset", width: 30, color: Colors.white),
-              Text(appName)
-            ]),
+        elevation: 5,
+        automaticallyImplyLeading: false,
+        title: Row(children: [
+          Image.asset("$leadingImageAsset", width: 30, color: Colors.white),
+          const SizedBox(
+            width: 10,
+          ),
+          appName
+        ]),
         actions: actionButtons);
   }
 }

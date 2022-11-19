@@ -54,7 +54,6 @@ class AppService with ReactiveServiceMixin {
       "${ApiEndpoints.baseUrl}/register",
       requestBody: formData,
       onSuccess: (res) {
-        print("User is now registered but no membership code");
         _user.value = User.fromJson(jsonDecode(res.body)["user"]);
         _localStorageService.user = _user.value;
         _localStorageService.token = jsonDecode(res.body)["token"];

@@ -21,7 +21,6 @@ class ViewCredentialsPage extends StatelessWidget {
         },
         builder: (context, viewModel, child) {
           final credentials = viewModel.credentials;
-          print("AM I BUSY ${viewModel.isBusy}");
 
           Widget addButton() {
             return Container(

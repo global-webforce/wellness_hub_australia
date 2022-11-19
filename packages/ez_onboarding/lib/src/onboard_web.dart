@@ -21,10 +21,6 @@ class _OnboardWebState extends State<OnboardWeb> {
     initialPage: 0,
   );
 
-  final PageController _pageControllerApp = PageController(
-    initialPage: 0,
-  );
-
   static const _kAutoPlayInterval = Duration(seconds: 8);
   static const _kTransitionDuration = Duration(milliseconds: 350);
   static const _kCurve = Curves.ease;
@@ -70,46 +66,6 @@ class _OnboardWebState extends State<OnboardWeb> {
         itemCount: widget.pages.length,
         currentPageNotifier: _currentPageNotifier,
       ),
-    );
-  }
-
-  _prevButton() {
-    return isLastPage
-        ? TextButton(
-            onPressed: () {
-              _pageControllerWeb.previousPage(
-                duration: _kTransitionDuration,
-                curve: _kCurve,
-              );
-            },
-            child: const Text(
-              'BACK',
-              style: TextStyle(color: Colors.white),
-            ),
-          )
-        : TextButton(
-            child: const Text(
-              'SKIP',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {
-              _pageControllerWeb.jumpToPage(widget.pages.length - 1);
-            },
-          );
-  }
-
-  _nextButton() {
-    return TextButton(
-      child: Text(
-        isLastPage ? "DONE" : "NEXT",
-        style: const TextStyle(color: Colors.white),
-      ),
-      onPressed: () {
-        isLastPage
-            ? widget.onDone()
-            : _pageControllerWeb.nextPage(
-                duration: _kTransitionDuration, curve: _kCurve);
-      },
     );
   }
 

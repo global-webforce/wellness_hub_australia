@@ -50,7 +50,7 @@ class ChatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('en', MyCustomMessages());
 
-    Widget _avatar() {
+    Widget avatar() {
       return EzAvatar(
         firstName: "${chatUser.firstName} ${chatUser.lastName}",
         imgUrl: "${chatUser.profileImage}",
@@ -58,25 +58,25 @@ class ChatTile extends StatelessWidget {
       );
     }
 
-    Widget _name() {
+    Widget name() {
       return Text(
         "${chatUser.firstName} ${chatUser.lastName} #${chatUser.customProperties?["thread_id"]}",
         style: const TextStyle(fontWeight: FontWeight.bold),
       );
     }
 
-    Widget _date() {
+    Widget date() {
       final DateTime date =
           DateTime.parse(chatUser.customProperties?["created_at"]);
       return Tooltip(
         message: "${date.toDateTime()}",
         child: Text(
-          date != null ? timeago.format(date) : "",
+          timeago.format(date),
         ),
       );
     }
 
-    Widget _body() {
+    Widget body() {
       return Text(
         "${chatUser.customProperties?["text"]}",
         maxLines: 1,
@@ -86,12 +86,12 @@ class ChatTile extends StatelessWidget {
 
     return ListTile(
       onTap: () => onTap(),
-      leading: _avatar(),
-      title: _name(),
+      leading: avatar(),
+      title: name(),
       dense: false,
       visualDensity: VisualDensity.comfortable,
-      subtitle: _body(),
-      trailing: _date(),
+      subtitle: body(),
+      trailing: date(),
     );
   }
 }

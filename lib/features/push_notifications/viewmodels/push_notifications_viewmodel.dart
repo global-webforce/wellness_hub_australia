@@ -1,7 +1,6 @@
 import 'package:ez_core/ez_core.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
-import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
 import 'package:wellness_hub_australia/features/push_notifications/pages/push_notification_detail_page.dart';
 import 'package:wellness_hub_australia/features/push_notifications/services/push_notifications_service.dart';
 import 'package:stacked/stacked.dart';
@@ -30,7 +29,8 @@ class PushNotificationsViewModel extends ReactiveViewModel {
 
   void goToNotifDetail(int? id) {
     selectedNotificationId = id;
-    _navigationService.navigateToView(PushNotificationDetailPage(id: id));
+    _navigationService.navigateToView(PushNotificationDetailPage(id: id),
+        transitionStyle: Transition.rightToLeftWithFade);
     notifyListeners();
   }
 
@@ -49,13 +49,10 @@ class PushNotificationsViewModel extends ReactiveViewModel {
   }
 
   Future<void> delete(int? id) async {
-    _navigationService.popRepeated(1);
-    await runBusyFuture(_notificationService.delete(id), throwException: true);
-    _snackbarService.closeSnackbar();
-    _snackbarService.showCustomSnackBar(
-      message: "Notification deleted",
-      duration: const Duration(seconds: 2),
-      variant: SnackbarType.error,
+    _navigationService.popRepeated(
+      1,
     );
+    await Future.delayed(const Duration(seconds: 1));
+    await runBusyFuture(_notificationService.delete(id), throwException: true);
   }
 }

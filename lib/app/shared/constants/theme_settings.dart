@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ThemeSettings {
@@ -24,11 +25,39 @@ class ThemeSettings {
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.blue)),
   ];
 
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData baseTheme = ThemeData(
     fontFamily: "Poppins",
-    disabledColor: Colors.grey,
     colorSchemeSeed: HexColor("#8A58B2"),
+    primaryColorLight: HexColor("#8A58B2").withOpacity(0.3),
     scaffoldBackgroundColor: HexColor("#EBEDFA"),
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(selectedItemColor: HexColor("#8A58B2")),
+    dividerTheme: DividerThemeData(
+      color: HexColor("#EBEDFA"),
+      thickness: 1,
+      space: 0,
+    ),
+    cardTheme: CardTheme(
+      margin: const EdgeInsets.all(0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      isDense: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  );
+
+  static ThemeData lightTheme = ThemeData(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    colorSchemeSeed: HexColor("#8A58B2"),
+    primaryColorLight: HexColor("#8A58B2").withOpacity(0.3),
+    scaffoldBackgroundColor: HexColor("#EBEDFA"),
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(selectedItemColor: HexColor("#8A58B2")),
     dividerTheme: DividerThemeData(
       color: HexColor("#EBEDFA"),
       thickness: 1,
@@ -52,8 +81,12 @@ class ThemeSettings {
   );
 
   static ThemeData darkTheme = ThemeData(
-    fontFamily: "Poppins",
+    fontFamily: GoogleFonts.poppins().fontFamily,
     colorSchemeSeed: HexColor("#8A58B2"),
+    primaryColorLight: HexColor("#8A58B2").withOpacity(0.3),
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(selectedItemColor: HexColor("#8A58B2")),
+    scaffoldBackgroundColor: HexColor("#131214"),
     dividerTheme: DividerThemeData(
       color: HexColor("#EBEDFA"),
       thickness: 1,

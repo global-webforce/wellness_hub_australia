@@ -19,7 +19,7 @@ class ChooseFieldCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _icon() {
+    Widget icon() {
       return Card(
         color: color ?? Theme.of(context).colorScheme.primary,
         child: const Padding(
@@ -32,7 +32,7 @@ class ChooseFieldCard extends StatelessWidget {
       );
     }
 
-    Widget _title() {
+    Widget title() {
       return Text(
         "${field.title}",
         maxLines: 3,
@@ -57,9 +57,9 @@ class ChooseFieldCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _icon(),
+                icon(),
                 hSpaceSmall,
-                Expanded(child: _title()),
+                Expanded(child: title()),
                 if (selected) Icon(Icons.check, color: HexColor("#8A58B2"))
               ],
             );

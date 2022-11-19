@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+
+import 'package:ez_dashboard/src/widgets/ez_appbar.dart';
 import 'package:flutter/material.dart';
 
 class EZDrawerMenuItem {
@@ -18,6 +20,7 @@ class EZDrawerMenuItem {
 //DRAWER HERE!!!
 class EZDrawer extends StatefulWidget {
   final Widget? drawerHeader;
+  final EZAppBar appBar;
   final GlobalKey<ScaffoldState> scaffoldKey;
   final List<EZDrawerMenuItem> items;
   final int currentIndex;
@@ -26,7 +29,8 @@ class EZDrawer extends StatefulWidget {
       this.drawerHeader,
       required this.items,
       required this.scaffoldKey,
-      this.currentIndex = 0})
+      this.currentIndex = 0,
+      required this.appBar})
       : super(key: key);
 
   @override
@@ -44,17 +48,15 @@ class _EZDrawerState extends State<EZDrawer> {
         elevation: 0,
         clipBehavior: Clip.hardEdge,
         color: autoRouter.isRouteActive(menu.route.routeName)
-            ? Theme.of(context).primaryColor.withOpacity(0.5)
+            ? Theme.of(context).primaryColorLight
             : Colors.transparent,
         child: ListTile(
           leading: menu.icon,
           title: Text(
             menu.title,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: autoRouter.isRouteActive(menu.route.routeName)
-                    ? Colors.white
-                    : null),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
           onTap: () {
             context.replaceRoute(menu.route);
@@ -94,6 +96,7 @@ class _EZDrawerState extends State<EZDrawer> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
+                if (MediaQuery.of(context).size.width > 1062) widget.appBar,
                 widget.drawerHeader ?? const SizedBox.shrink(),
                 ListView(
                     padding: const EdgeInsets.all(5),

@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_grid.dart';
 import 'package:wellness_hub_australia/features/pillars/widgets/pillar_stats.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
@@ -17,6 +18,10 @@ class ClientHomePage extends StatelessWidget {
           await viewModel.init();
         },
         builder: (context, viewModel, child) => Scaffold(
+              appBar: AppBar(
+                title: const Text("Dashboard"),
+                leading: ezDrawerButton(context),
+              ),
               body: ScaffoldBodyWrapper(
                 isBusy: viewModel.isBusy,
                 isFullWidth: true,

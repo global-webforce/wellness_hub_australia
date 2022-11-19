@@ -31,7 +31,7 @@ class CredentialsServiceLaravel
   Future create(Map<String, dynamic> formData) async {
     var dio = Dio();
     final String? token = _localStorageService.token;
-    print(token);
+
     dio.options.headers['content-Type'] = 'application/json';
     dio.options.headers["authorization"] = "Bearer $token";
 

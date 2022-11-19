@@ -20,7 +20,6 @@ class ChooseFieldPage extends StatefulWidget {
 class _ChooseFieldPageState extends State<ChooseFieldPage> {
   @override
   Widget build(BuildContext context) {
-    print("FIELD PAGE");
     final viewModel =
         Provider.of<BookAppointmentViewModel>(context, listen: false);
 

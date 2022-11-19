@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/chat/viewmodels/chat_viewmodel.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
@@ -20,6 +21,7 @@ class ChatsPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
+                leading: ezDrawerButton(context),
                 automaticallyImplyLeading: false,
                 title: const Text("Chats"),
               ),

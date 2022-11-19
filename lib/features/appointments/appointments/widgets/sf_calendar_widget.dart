@@ -1,4 +1,5 @@
 import 'package:ez_core/ez_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/app_service.dart';
 import 'package:wellness_hub_australia/models/appointment.model.dart' as appt;
@@ -22,7 +23,7 @@ class SfCalendarTemplateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final calendarTextStyle = TextStyle(
-        fontFamily: 'Poppins',
+        fontFamily: GoogleFonts.poppins().fontFamily,
         color: Theme.of(context).textTheme.bodyText1!.color);
 
     return SfCalendar(
@@ -36,47 +37,37 @@ class SfCalendarTemplateWidget extends StatelessWidget {
       firstDayOfWeek: 1, // Monday
       showNavigationArrow: true,
       showCurrentTimeIndicator: true,
-      scheduleViewSettings: ScheduleViewSettings(
-        hideEmptyScheduleWeek: true,
-        appointmentItemHeight: 70,
-        appointmentTextStyle: calendarTextStyle,
-        dayHeaderSettings: DayHeaderSettings(
-            dateTextStyle: calendarTextStyle, dayTextStyle: calendarTextStyle),
-        monthHeaderSettings: MonthHeaderSettings(
-          monthTextStyle: calendarTextStyle,
-        ),
-        weekHeaderSettings:
-            WeekHeaderSettings(weekTextStyle: calendarTextStyle),
-      ),
       monthViewSettings: MonthViewSettings(
           showAgenda: true,
           monthCellStyle: MonthCellStyle(
               textStyle: calendarTextStyle,
-              leadingDatesTextStyle: calendarTextStyle,
-              trailingDatesTextStyle: calendarTextStyle),
+              leadingDatesTextStyle: TextStyle(
+                  fontFamily: GoogleFonts.poppins().fontFamily,
+                  color: Colors.grey),
+              trailingDatesTextStyle: TextStyle(
+                  fontFamily: GoogleFonts.poppins().fontFamily,
+                  color: Colors.grey)),
           agendaStyle: AgendaStyle(
-            dayTextStyle: calendarTextStyle,
-            dateTextStyle: calendarTextStyle,
-            appointmentTextStyle: calendarTextStyle,
-          )),
-      headerStyle: CalendarHeaderStyle(
-        // backgroundColor: Colors.orange,
-        textStyle: calendarTextStyle,
-      ),
+              dayTextStyle: calendarTextStyle,
+              dateTextStyle: calendarTextStyle,
+              appointmentTextStyle: calendarTextStyle)),
+      headerStyle: CalendarHeaderStyle(textStyle: calendarTextStyle),
       viewHeaderStyle: ViewHeaderStyle(
-        // backgroundColor: Colors.purple,
-        dayTextStyle: calendarTextStyle,
-        dateTextStyle: calendarTextStyle,
-      ),
+          dayTextStyle: calendarTextStyle, dateTextStyle: calendarTextStyle),
       timeSlotViewSettings: TimeSlotViewSettings(
-        //allDayPanelColor: Colors.pink,
         timelineAppointmentHeight: 40,
         timeTextStyle: calendarTextStyle,
       ),
-
-      appointmentTextStyle: const TextStyle(
-        fontFamily: 'Poppins',
+      scheduleViewSettings: ScheduleViewSettings(
+        appointmentTextStyle: calendarTextStyle,
+        dayHeaderSettings: DayHeaderSettings(
+            dateTextStyle: calendarTextStyle, dayTextStyle: calendarTextStyle),
+        monthHeaderSettings:
+            MonthHeaderSettings(monthTextStyle: calendarTextStyle),
+        weekHeaderSettings:
+            WeekHeaderSettings(weekTextStyle: calendarTextStyle),
       ),
+      appointmentTextStyle: calendarTextStyle,
     );
   }
 }
@@ -95,7 +86,7 @@ class MeetingDataSource extends CalendarDataSource<appt.Appointment> {
   @override
   Color getColor(int index) {
     final String? status = appointments![index].status;
-    final DateTime? startDate = appointments![index].startDate;
+    //final DateTime? startDate = appointments![index].startDate;
 
     switch (status) {
       case "Confirmed":

@@ -134,9 +134,7 @@ class _TaskAlarmForm extends StatelessWidget {
         },
         inputType: InputType.time,
         format: DateFormat("h:mm a"),
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         name: "timeSlots",
       );
     }

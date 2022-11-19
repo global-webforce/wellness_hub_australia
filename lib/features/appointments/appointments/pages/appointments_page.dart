@@ -1,6 +1,7 @@
 // ignore: implementation_imports
 import 'dart:math';
 import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/widgets/sf_calendar_widget.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/book_appointment_page.dart';
@@ -75,7 +76,7 @@ class AppointmentsPage extends StatelessWidget {
                       : desktopButton()
                   : const SizedBox.shrink(),
               appBar: AppBar(
-                automaticallyImplyLeading: false,
+                leading: ezDrawerButton(context),
                 title: const Text("Appointments"),
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(48),

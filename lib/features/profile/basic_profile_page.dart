@@ -1,11 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
-import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
-
-import 'package:wellness_hub_australia/models/address.model.dart';
-import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -14,6 +9,10 @@ import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wellness_hub_australia/app/app_view_model.dart';
+import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
+import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/models/address.model.dart';
 
 class BasicProfilePage extends StatelessWidget {
   const BasicProfilePage({Key? key}) : super(key: key);
@@ -213,9 +212,7 @@ class _BasicProfileForm extends StatelessWidget {
         itemAsString: (address) {
           return address.displaySafe();
         },
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         compareFn: (a, b) {
           return a == b;
         },
