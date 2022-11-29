@@ -1,3 +1,4 @@
+import 'package:ez_dashboard/src/helpers/screen_size.dart';
 import 'package:ez_dashboard/src/widgets/ez_bottom_navbar.dart';
 import 'package:ez_dashboard/src/widgets/ez_drawer.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,7 @@ class _EZDashboardState extends State<EZDashboard> {
       if (widget.scaffoldKey.currentState!.isDrawerOpen) {
         widget.scaffoldKey.currentState!.closeDrawer();
       }
-      if (MediaQuery.of(context).size.width > 1062) {
-        widget.scaffoldKey.currentState!.closeDrawer();
-      }
+      if (isDesktop(context)) widget.scaffoldKey.currentState!.closeDrawer();
     });
     super.didChangeDependencies();
   }
@@ -45,7 +44,7 @@ class _EZDashboardState extends State<EZDashboard> {
             : null,
         body: Row(
           children: [
-            if (MediaQuery.of(context).size.width > 1062) widget.drawer,
+            if (isDesktop(context)) widget.drawer,
             Expanded(child: widget.mainContent),
           ],
         ));

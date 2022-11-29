@@ -1,4 +1,4 @@
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:flutter/material.dart';
 
 class OrientationSwitcher extends StatelessWidget {

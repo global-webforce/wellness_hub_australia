@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:ez_ui/ez_ui.dart';
+import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/features/credentials/pages/view_credentials_page.dart';
@@ -12,7 +13,61 @@ import 'package:wellness_hub_australia/features/service_schedules/pages/service_
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+class _Profile extends ViewModelWidget<AppViewModel> {
+  @override
+  Widget build(BuildContext context, AppViewModel viewModel) {
+    Widget name() {
+      return Text(
+        "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      );
+    }
+
+    Widget address() {
+      return Text(
+        "${viewModel.user?.address?.displaySafe()}",
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 14,
+        ),
+      );
+    }
+
+    return Stack(children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 60),
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: SizedBox(
+              child: Column(
+                children: [
+                  const SizedBox(height: 60),
+                  name(),
+                  vSpaceTiny,
+                  address(),
+                  vSpaceRegular,
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.topCenter,
+        child: EzAvatar(
+          firstName: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+          imgUrl: "${viewModel.user?.profilePic}",
+        ),
+      ),
+    ]);
+  }
+}
 
 class ServiceProviderProfilePage extends StatelessWidget {
   const ServiceProviderProfilePage({Key? key}) : super(key: key);
@@ -30,59 +85,7 @@ class ServiceProviderProfilePage extends StatelessWidget {
             builder: (context, constraints) {
               return Column(
                 children: [
-                  Consumer<AppViewModel>(builder: (context, auth, child) {
-                    Widget name() {
-                      return Text(
-                        "${auth.user?.firstName} ${auth.user?.lastName}",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      );
-                    }
-
-                    Widget address() {
-                      return Text(
-                        "${auth.user?.address?.displaySafe()}",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                        ),
-                      );
-                    }
-
-                    return Stack(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 60),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            child: SizedBox(
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 60),
-                                  name(),
-                                  vSpaceTiny,
-                                  address(),
-                                  vSpaceRegular,
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: EzAvatar(
-                          firstName:
-                              "${auth.user?.firstName} ${auth.user?.lastName}",
-                          imgUrl: "${auth.user?.profilePic}",
-                        ),
-                      ),
-                    ]);
-                  }),
+                  _Profile(),
                   vSpaceRegular,
                   SettingsList(sections: [
                     SettingsSection(title: "MY ACCOUNT", tiles: [
@@ -97,8 +100,8 @@ class ServiceProviderProfilePage extends StatelessWidget {
                         title: "Basic Profile",
                         onTap: () {
                           context.router.root.pushWidget(
-                              const BasicProfilePage(),
-                              transitionBuilder: TransitionsBuilders.fadeIn);
+                            const BasicProfilePage(),
+                          );
                         },
                       ),
                     ])
@@ -119,8 +122,8 @@ class ServiceProviderProfilePage extends StatelessWidget {
                             "Add or update your credentials to get more clients",
                         onTap: () {
                           context.router.root.pushWidget(
-                              const ViewCredentialsPage(),
-                              transitionBuilder: TransitionsBuilders.fadeIn);
+                            const ViewCredentialsPage(),
+                          );
                         },
                       ),
                       SettingsTile(
@@ -136,8 +139,8 @@ class ServiceProviderProfilePage extends StatelessWidget {
                             "Add or update the services you offer for the clients ",
                         onTap: () async {
                           context.router.root.pushWidget(
-                              const ViewOfferedServicesPage(),
-                              transitionBuilder: TransitionsBuilders.fadeIn);
+                            const ViewOfferedServicesPage(),
+                          );
                         },
                       ),
                       SettingsTile(
@@ -153,8 +156,8 @@ class ServiceProviderProfilePage extends StatelessWidget {
                             "Add or update your schedules of service you offer ",
                         onTap: () async {
                           context.router.root.pushWidget(
-                              const ServiceSchedulesPage(),
-                              transitionBuilder: TransitionsBuilders.fadeIn);
+                            const ServiceSchedulesPage(),
+                          );
                         },
                       )
                     ])

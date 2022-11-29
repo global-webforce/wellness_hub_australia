@@ -30,10 +30,12 @@ class AppViewModel extends ReactiveViewModel {
   @override
   void onFutureError(error, Object? key) {
     log.e(error);
-    _dialogService.showCustomDialog(
-        variant: DialogType.error,
-        barrierDismissible: true,
-        description: error.toString());
+    {
+      _dialogService.showCustomDialog(
+          variant: DialogType.error,
+          barrierDismissible: true,
+          description: error.toString());
+    }
     super.onFutureError(error, key);
   }
 
@@ -47,6 +49,14 @@ class AppViewModel extends ReactiveViewModel {
 
   Future<void> init() async {
     await runBusyFuture(_appService.fetchUser(), throwException: true);
+  }
+
+  bool isMember() {
+    return user?.role == "member";
+  }
+
+  bool isServiceProvider() {
+    return user?.role == "service_provider";
   }
 
   void setTheme(int index) {

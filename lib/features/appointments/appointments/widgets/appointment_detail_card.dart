@@ -1,4 +1,5 @@
 import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
@@ -8,6 +9,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
 
 class AppointmentDetailCard extends StatelessWidget {
   const AppointmentDetailCard({
@@ -16,8 +18,8 @@ class AppointmentDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appointment = getParentViewModel<AppointmentViewModel>(context)
-        .getSelectedAppointment;
+    final viewModel = getParentViewModel<AppointmentViewModel>(context);
+    final appointment = viewModel.getSelectedAppointment;
 
     Widget spAvatar() {
       return EzAvatar(
@@ -190,8 +192,8 @@ class AppointmentDetailCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (getParentViewModel<AppViewModel>(context).user?.role ==
-                      "member")
+                  if (getParentViewModel<AppViewModel>(context, listen: false)
+                      .isMember())
                     StaggeredGridTile.fit(
                       crossAxisCellCount: 1,
                       child: Column(
@@ -211,12 +213,37 @@ class AppointmentDetailCard extends StatelessWidget {
                               spAvatar(),
                               hSpaceRegular,
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: Row(
                                   children: [
-                                    spName(),
-                                    vSpaceTiny,
-                                    spService(),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        spName(),
+                                        vSpaceTiny,
+                                        spService(),
+                                      ],
+                                    ),
+                                    hSpaceSmall,
+                                    IconButton(
+                                        onPressed: () {
+                                          viewModel.navigationService
+                                              .navigateToView(ChatsDetailPage(
+                                                  recipientId: getParentViewModel<
+                                                                  AppViewModel>(
+                                                              context,
+                                                              listen: false)
+                                                          .isServiceProvider()
+                                                      ? appointment.member?.id
+                                                      : appointment
+                                                          .serviceProvider
+                                                          ?.id));
+                                        },
+                                        icon: const Icon(Icons.email_rounded)),
+                                    hSpaceSmall,
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.phone))
                                   ],
                                 ),
                               ),
@@ -225,8 +252,8 @@ class AppointmentDetailCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (getParentViewModel<AppViewModel>(context).user?.role ==
-                      "service_provider")
+                  if (getParentViewModel<AppViewModel>(context, listen: false)
+                      .isServiceProvider())
                     StaggeredGridTile.fit(
                       crossAxisCellCount: 1,
                       child: Column(
@@ -255,6 +282,25 @@ class AppointmentDetailCard extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                              hSpaceSmall,
+                              IconButton(
+                                  onPressed: () {
+                                    viewModel.navigationService.navigateToView(
+                                        ChatsDetailPage(
+                                            recipientId: getParentViewModel<
+                                                            AppViewModel>(
+                                                        context,
+                                                        listen: false)
+                                                    .isServiceProvider()
+                                                ? appointment.member?.id
+                                                : appointment
+                                                    .serviceProvider?.id));
+                                  },
+                                  icon: const Icon(Icons.email_rounded)),
+                              hSpaceSmall,
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.phone))
                             ],
                           ),
                         ],

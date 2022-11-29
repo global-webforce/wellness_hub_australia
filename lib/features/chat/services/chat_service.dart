@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 
 abstract class ChatService with ReactiveServiceMixin {
   List<ChatUser> get chats;
-  Future findOne(int? id);
-  Future create(int? threadId, ChatMessage? m);
+  Future findOne(int? threadId, int? recipientId);
+  Future create(int? threadId, int? recipientId, ChatMessage? m);
   Future getAll();
 }

@@ -1,9 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ez_dashboard/ez_dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
+
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
+
+class _DrawerHeader extends ViewModelWidget<AppViewModel> {
+  const _DrawerHeader();
+
+  @override
+  Widget build(BuildContext context, AppViewModel viewModel) {
+    return EZDrawerHeader(
+      userNetworkImage: "${viewModel.user?.profilePic}",
+      userEmail: "${viewModel.user?.email}",
+      userName:
+          "${viewModel.user?.firstName} ${viewModel.user?.lastName}  #${viewModel.user?.id}",
+    );
+  }
+}
 
 class ServiceProviderScaffoldPage extends StatelessWidget {
   const ServiceProviderScaffoldPage({Key? key}) : super(key: key);
@@ -52,15 +67,7 @@ class ServiceProviderScaffoldPage extends StatelessWidget {
                       "Wellness Hub Australia",
                       style: TextStyle(fontSize: 18),
                     )),
-                drawerHeader:
-                    Consumer<AppViewModel>(builder: (context, auth, child) {
-                  return EZDrawerHeader(
-                    userNetworkImage: "${auth.user?.profilePic}",
-                    userEmail: "${auth.user?.email}",
-                    userName:
-                        "${auth.user?.firstName} ${auth.user?.lastName}  #${auth.user?.id}",
-                  );
-                }),
+                drawerHeader: const _DrawerHeader(),
                 items: [
                   EZDrawerMenuItem(
                     icon: const Icon(Icons.home_rounded),

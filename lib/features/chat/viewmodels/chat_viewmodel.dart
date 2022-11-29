@@ -30,10 +30,12 @@ class ChatViewModel extends ReactiveViewModel {
   @override
   void onFutureError(error, Object? key) {
     log.e(error);
-    _dialogService.showCustomDialog(
-        variant: DialogType.error,
-        barrierDismissible: true,
-        description: error.toString());
+    {
+      _dialogService.showCustomDialog(
+          variant: DialogType.error,
+          barrierDismissible: true,
+          description: error.toString());
+    }
     super.onFutureError(error, key);
   }
 
@@ -41,18 +43,19 @@ class ChatViewModel extends ReactiveViewModel {
     await runBusyFuture(_chatService.getAll(), throwException: true);
   }
 
-  Future<void> create(int? threadId, ChatMessage? m) async {
+  Future<void> create(int? threadId, int? recipientId, ChatMessage? m) async {
     _chatThread?.messages.add(m!);
-    await runBusyFuture(_chatService.create(threadId, m), throwException: true)
+    await runBusyFuture(_chatService.create(threadId, recipientId, m),
+            throwException: true)
         .onError((error, stackTrace) {
       _chatThread?.messages
           .removeWhere((e) => e.text == m?.text && e.createdAt == m?.createdAt);
     });
   }
 
-  Future findOne(int? id) async {
+  Future findOne(int? threadId, int? recipientId) async {
     await runBusyFuture(
-      _chatService.findOne(id),
+      _chatService.findOne(threadId, recipientId),
       throwException: true,
     ).then((value) {
       _chatThread = value;

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:ez_core/ez_core.dart';
+
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';

@@ -1,6 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+Color _darken(Color color, [double amount = .1]) {
+  assert(amount >= 0 && amount <= 1);
+
+  final hsl = HSLColor.fromColor(color);
+  final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+  return hslDark.toColor();
+}
+
 class EZDrawerHeader extends StatelessWidget {
   final String? userNetworkImage;
   final String userName;
@@ -54,7 +63,7 @@ class EZDrawerHeader extends StatelessWidget {
         },
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: _darken(Theme.of(context).primaryColor),
       ),
     );
   }

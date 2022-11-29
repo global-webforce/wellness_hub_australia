@@ -1,12 +1,11 @@
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
+import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
 import 'package:wellness_hub_australia/features/fields/widgets/choose_field_card.dart';
 import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
-
 import 'package:wellness_hub_australia/app/shared/ui/sliver_grid_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:provider/provider.dart';
 
 class ChooseFieldPage extends StatefulWidget {
   const ChooseFieldPage({
@@ -21,7 +20,7 @@ class _ChooseFieldPageState extends State<ChooseFieldPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel =
-        Provider.of<BookAppointmentViewModel>(context, listen: false);
+        getParentViewModel<BookAppointmentViewModel>(context, listen: false);
 
     return Scaffold(body: LayoutBuilder(builder: (context, constraints) {
       return Center(

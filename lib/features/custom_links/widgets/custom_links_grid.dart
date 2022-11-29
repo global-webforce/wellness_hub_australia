@@ -1,4 +1,4 @@
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_card.dart';
 import 'package:wellness_hub_australia/models/custom_link.model.dart';
 import 'package:flutter/material.dart';

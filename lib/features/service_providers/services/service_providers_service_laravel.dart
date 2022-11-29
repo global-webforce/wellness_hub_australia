@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:wellness_hub_australia/app/api/api_service.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/service_providers/services/service_providers_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/models/service_provider.model.dart';
 import 'package:stacked/stacked.dart';
 

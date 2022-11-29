@@ -2,6 +2,7 @@
 import 'dart:math';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_dashboard/ez_drawer_button.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/widgets/sf_calendar_widget.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/book_appointment_page.dart';

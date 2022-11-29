@@ -1,12 +1,12 @@
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
+import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
 import 'package:wellness_hub_australia/models/service_provider.model.dart';
 import 'package:flutter/material.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:provider/provider.dart';
 
 class ServiceProviderCard extends StatelessWidget {
   final ServiceProvider serviceProvider;
@@ -22,7 +22,7 @@ class ServiceProviderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel =
-        Provider.of<BookAppointmentViewModel>(context, listen: false);
+        getParentViewModel<BookAppointmentViewModel>(context, listen: false);
 
     Widget avatar(double width) {
       return EzAvatar(
@@ -121,11 +121,11 @@ class ServiceProviderCard extends StatelessWidget {
           Icon(Icons.location_pin, color: Colors.red.shade400),
           Text(
             " ${serviceProvider.address?.distanceFrom(
-              lat: Provider.of<AppViewModel>(context, listen: false)
+              lat: getParentViewModel<AppViewModel>(context, listen: false)
                   .user
                   ?.address
                   ?.latitude,
-              long: Provider.of<AppViewModel>(context, listen: false)
+              long: getParentViewModel<AppViewModel>(context, listen: false)
                   .user
                   ?.address
                   ?.longitude,

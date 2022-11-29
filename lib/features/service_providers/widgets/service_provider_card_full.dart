@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/models/service_provider.model.dart';

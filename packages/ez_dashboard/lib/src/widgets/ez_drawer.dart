@@ -3,6 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ez_dashboard/src/widgets/ez_appbar.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/screen_size.dart';
+
 class EZDrawerMenuItem {
   final String title;
   final Widget icon;
@@ -96,7 +98,7 @@ class _EZDrawerState extends State<EZDrawer> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                if (MediaQuery.of(context).size.width > 1062) widget.appBar,
+                if (isDesktop(context)) widget.appBar,
                 widget.drawerHeader ?? const SizedBox.shrink(),
                 ListView(
                     padding: const EdgeInsets.all(5),

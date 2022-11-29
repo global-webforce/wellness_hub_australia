@@ -1,9 +1,9 @@
 import 'package:ez_dashboard/ez_dashboard.dart';
+import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ClientSettingsPage extends StatefulWidget {
   const ClientSettingsPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
                 tooltip: "Change Theme",
                 icon: const Icon(Icons.light_mode),
                 onPressed: () {
-                  Provider.of<AppViewModel>(context, listen: false)
+                  getParentViewModel<AppViewModel>(context, listen: false)
                       .toggleDarkLightTheme();
                 })
           ],
@@ -83,7 +83,7 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
                 title: "Logout",
                 onTap: () async {
                   ScaffoldMessenger.of(context).clearSnackBars();
-                  await Provider.of<AppViewModel>(context, listen: false)
+                  await getParentViewModel<AppViewModel>(context, listen: false)
                       .signOut();
                 },
               )

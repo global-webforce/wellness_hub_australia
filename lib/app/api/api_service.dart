@@ -11,9 +11,34 @@ extension IsOk on http.Response {
 }
 
 class ApiService {
-  http.Client client = InterceptedClient.build(interceptors: [
-    ApiInterceptor(),
-  ]);
+  http.Client client = InterceptedClient.build(
+    interceptors: [
+      ApiInterceptor(),
+    ],
+  );
+
+  errorMessage(String? message) {
+    final String error = "$message";
+    if (error.isEmpty) {
+      return Future.error("Unknown error");
+    }
+    if (error.contains("XMLHttpRequest error")) {
+      return Future.error("Network request failed");
+    }
+    if (error.contains("Invalid Credentials")) {
+      return Future.error("Invalid Credentials");
+    }
+    if (error.contains("Failed host lookup")) {
+      return Future.error("Check your internet connection");
+    }
+    if (error.contains("The email has already been taken")) {
+      return Future.error("The email has already been taken");
+    }
+    if (error.contains("Unauthenticated")) {
+      return Future.error("Session expired");
+    }
+    return Future.error(error);
+  }
 
   Future get(
     String url, {
@@ -25,26 +50,12 @@ class ApiService {
         if (res.ok) {
           return onSuccess(res);
         } else {
-          return Future.error("HTTP request failed: ${res.body.toString()}");
+          return Future.error(res.body.toString());
         }
       });
     } catch (e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
+      onError("");
+      return errorMessage("$e");
     }
   }
 
@@ -68,22 +79,8 @@ class ApiService {
         }
       });
     } catch (e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
+      onError("");
+      return errorMessage("$e");
     }
   }
 
@@ -107,22 +104,8 @@ class ApiService {
         }
       });
     } catch (e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
+      onError("");
+      return errorMessage("$e");
     }
   }
 
@@ -146,22 +129,8 @@ class ApiService {
         }
       });
     } catch (e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
+      onError("");
+      return errorMessage("$e");
     }
   }
 
@@ -186,22 +155,7 @@ class ApiService {
       });
     } catch (e) {
       onError("");
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
+      return errorMessage("$e");
     }
   }
 }

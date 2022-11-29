@@ -17,14 +17,3 @@ bool isDesktop(BuildContext context) {
   final screenWidth = MediaQuery.of(context).size.width;
   return screenWidth > 1062 ? true : false;
 }
-
-bool isBigDesktop(BuildContext context) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  return screenWidth >= 1920 ? true : false;
-}
-
-double screenHeightPercentage(BuildContext context, {double percentage = 1}) =>
-    screenHeight(context) * percentage;
-
-double screenWidthPercentage(BuildContext context, {double percentage = 1}) =>
-    screenWidth(context) * percentage;

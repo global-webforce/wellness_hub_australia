@@ -145,7 +145,7 @@ class _ConfirmDeleteDialog extends StatelessWidget {
 
 SHOW GENERAL ERROR
 
- _dialogService.showCustomDialog(
+    _dialogService.showCustomDialog(
           variant: DialogType.error,
           barrierDismissible: true,
           description: e.toString()); 
@@ -153,7 +153,7 @@ SHOW GENERAL ERROR
 
 CONFIRM DELETE
 
-      _dialogService.showCustomDialog(
+         _dialogService.showCustomDialog(
           variant: DialogType.confirmDelete,
           barrierDismissible: true,
           description: "Are you sure you want to delete item #1?"); 

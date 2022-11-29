@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
+
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 
 class AppointmentUpdateCard extends StatelessWidget {
@@ -13,9 +14,11 @@ class AppointmentUpdateCard extends StatelessWidget {
   }) : super(key: key);
 
   final textStyle = const TextStyle(fontWeight: FontWeight.w500);
+
   @override
   Widget build(BuildContext context) {
-    final viewModel = getParentViewModel<AppointmentViewModel>(context);
+    final viewModel =
+        getParentViewModel<AppointmentViewModel>(context, listen: false);
 
     Widget paidField() {
       return FormBuilderDropdown(

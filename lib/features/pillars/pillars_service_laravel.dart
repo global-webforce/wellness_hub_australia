@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
+import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
 import 'package:wellness_hub_australia/models/pillar.model.dart';
 import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:stacked/stacked.dart';

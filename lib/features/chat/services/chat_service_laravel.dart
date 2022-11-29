@@ -21,9 +21,11 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
   }
 
   @override
-  Future findOne(int? id) async {
+  Future findOne(int? threadId, int? recipientId) async {
     return await _apiService.get(
-      ApiEndpoints.instance.messageThread(id),
+      (threadId != null)
+          ? ApiEndpoints.instance.messageThreadViaThreadId(threadId)
+          : ApiEndpoints.instance.messageThreadViaRecipientId(recipientId),
       onSuccess: (res) {
         List<dynamic> messagesJson = jsonDecode(res.body)["messages"];
         List<dynamic> participantsJson = jsonDecode(res.body)["participants"];
@@ -60,9 +62,9 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
   }
 
   @override
-  Future create(int? threadId, ChatMessage? m) async {
+  Future create(int? threadId, int? recipientId, ChatMessage? m) async {
     await _apiService.post(
-      ApiEndpoints.instance.messageSend(threadId),
+      ApiEndpoints.instance.messageSend(threadId, recipientId),
       requestBody: {
         "text": m?.text,
         "recipient": m?.user.id,

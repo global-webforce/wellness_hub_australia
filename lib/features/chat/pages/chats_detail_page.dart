@@ -8,8 +8,10 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 
 class ChatsDetailPage extends StatelessWidget {
-  final int? id;
-  const ChatsDetailPage({Key? key, this.id}) : super(key: key);
+  final int? threadId;
+  final int? recipientId;
+  const ChatsDetailPage({Key? key, this.threadId, this.recipientId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ChatsDetailPage extends StatelessWidget {
     return ViewModelBuilder<ChatViewModel>.reactive(
         viewModelBuilder: () => ChatViewModel(),
         onModelReady: (viewModel) async {
-          await viewModel.findOne(id);
+          await viewModel.findOne(threadId, recipientId);
         },
         disposeViewModel: true,
         builder: (context, viewModel, child) {
@@ -61,6 +63,7 @@ class ChatsDetailPage extends StatelessWidget {
                           child:
                               Text("${person.firstName} ${person.lastName}")),
                   hSpaceSmall,
+                  Text("ThreadID $threadId RecipientId $recipientId")
                 ],
               ),
             ),
@@ -81,7 +84,7 @@ class ChatsDetailPage extends StatelessWidget {
                 id: "$userId",
               ),
               onSend: (ChatMessage m) async {
-                await viewModel.create(id, m);
+                await viewModel.create(threadId, recipientId, m);
               },
               inputOptions: const InputOptions(
                 sendOnEnter: true,

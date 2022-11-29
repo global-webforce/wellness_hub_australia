@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:flutter/material.dart';
 
 class ListGridViewWrapper extends StatelessWidget {

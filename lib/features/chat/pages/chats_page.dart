@@ -43,7 +43,7 @@ class ChatsPage extends StatelessWidget {
                           onTap: () {
                             viewModel.navigationService
                                 .navigateToView(ChatsDetailPage(
-                              id: viewModel
+                              threadId: viewModel
                                   .chats[index].customProperties?["thread_id"],
                             ));
                           },

@@ -76,25 +76,24 @@ class MyApp extends StatelessWidget {
                       if (kIsWeb) {
                         // running on the web!
                         if (viewModel.user != null) {
-                          if (viewModel.user?.role == "member") {
+                          if (viewModel.isMember()) {
                             return [const ClientScaffoldRoute()];
                           }
-                          if (viewModel.user?.role == "service_provider") {
+                          if (viewModel.isServiceProvider()) {
                             return [const ServiceProviderScaffoldRoute()];
                           }
                         }
 
                         return [AuthRoute(key: UniqueKey())];
                       } else {
-                        // NOT running on the web! You can check for additional platforms here.
                         if (viewModel.isOnboarded != true) {
                           return [const OnboardingRoute()];
                         }
                         if (viewModel.user != null) {
-                          if (viewModel.user?.role == "member") {
+                          if (viewModel.isMember()) {
                             return [const ClientScaffoldRoute()];
                           }
-                          if (viewModel.user?.role == "service_provider") {
+                          if (viewModel.isServiceProvider()) {
                             return [const ServiceProviderScaffoldRoute()];
                           }
                         }

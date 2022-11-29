@@ -1,5 +1,6 @@
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
+import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
 import 'package:wellness_hub_australia/features/service_providers/widgets/day_and_time_slot_picker.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class ChooseAppointmentPage extends StatefulWidget {
   const ChooseAppointmentPage({
@@ -23,10 +23,9 @@ class ChooseAppointmentPage extends StatefulWidget {
 class _ChooseAppointmentPageState extends State<ChooseAppointmentPage> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<BookAppointmentViewModel>(
-      context,
-      listen: false,
-    );
+    final viewModel =
+        getParentViewModel<BookAppointmentViewModel>(context, listen: false);
+
     final serviceProvider = viewModel.selectedServiceProvider;
 
     Widget avatar() {

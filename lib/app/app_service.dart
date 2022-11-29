@@ -10,9 +10,6 @@ import 'package:http_parser/http_parser.dart' as http_parser;
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
 import 'package:stacked/stacked.dart';
 
-// ignore: constant_identifier_names
-enum UserType { member, service_provider, admin }
-
 class AppService with ReactiveServiceMixin {
   final _apiService = locator<ApiService>();
   final _localStorageService = locator<LocalStorageService>();
@@ -36,45 +33,39 @@ class AppService with ReactiveServiceMixin {
 
   Future login(Map<String, dynamic> formData) async {
     await _apiService.post(
-      "${ApiEndpoints.baseUrl}/login",
+      ApiEndpoints.login,
       requestBody: formData,
       onSuccess: (res) {
         _user.value = User.fromJson(jsonDecode(res.body)["user"]);
-        _localStorageService.user = _user.value;
+        _localStorageService.user = User.fromJson(jsonDecode(res.body)["user"]);
         _localStorageService.token = jsonDecode(res.body)["token"];
       },
-      onError: (e) {
-        return Future.error(e.toString());
-      },
+      onError: (e) {},
     );
   }
 
   Future register(Map<String, dynamic> formData) async {
     await _apiService.post(
-      "${ApiEndpoints.baseUrl}/register",
+      ApiEndpoints.register,
       requestBody: formData,
       onSuccess: (res) {
         _user.value = User.fromJson(jsonDecode(res.body)["user"]);
-        _localStorageService.user = _user.value;
+        _localStorageService.user = User.fromJson(jsonDecode(res.body)["user"]);
         _localStorageService.token = jsonDecode(res.body)["token"];
       },
-      onError: (e) {
-        return Future.error(e.toString());
-      },
+      onError: (e) {},
     );
   }
 
   Future verifyCode(Map<String, dynamic> formData) async {
     await _apiService.post(
-      "${ApiEndpoints.baseUrl}/update-company-code/${_user.value!.id}",
+      ApiEndpoints.instance.verifyUserByCode(),
       requestBody: formData,
       onSuccess: (res) {
         _user.value = User.fromJson(jsonDecode(res.body));
         _localStorageService.user = _user.value;
       },
-      onError: (e) {
-        return Future.error(e.toString());
-      },
+      onError: (e) {},
     );
   }
 
@@ -98,6 +89,9 @@ class AppService with ReactiveServiceMixin {
 
   Future updateProfile(Map<String, dynamic> formData) async {
     var dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    dio.options.headers["authorization"] =
+        'Bearer ${_localStorageService.token}';
     Map<String, dynamic> rawFormData = Map.of(formData);
     rawFormData.remove("profile_pic");
     var requestBody = FormData.fromMap(rawFormData);
@@ -114,11 +108,10 @@ class AppService with ReactiveServiceMixin {
 
         requestBody.files.add(MapEntry(
           'profile-pic',
-          MultipartFile.fromBytes(
-            await xFileImageList[0].file.readAsBytes(),
-            filename: xFileImageList[0].file.name,
-            contentType: http_parser.MediaType("image", "*"),
-          ),
+          MultipartFile.fromBytes(await xFileImageList[0].file.readAsBytes(),
+              filename: xFileImageList[0].file.name,
+              contentType: http_parser.MediaType("image", "*"),
+              headers: {}),
         ));
       }
     } catch (e) {
@@ -126,11 +119,11 @@ class AppService with ReactiveServiceMixin {
     }
 
     await dio
-        .post("${ApiEndpoints.baseUrl}/user/${_user.value!.id}",
-            data: requestBody)
+        .post(ApiEndpoints.instance.userProfile(), data: requestBody)
         .then((res) async {
       if (res.statusCode! >= 200 && res.statusCode! <= 299) {
         _user.value = User.fromJson(res.data);
+        _localStorageService.user = User.fromJson(res.data);
       } else {
         return Future.error(res.data.toString());
       }

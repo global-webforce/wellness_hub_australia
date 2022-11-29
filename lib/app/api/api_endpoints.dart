@@ -10,6 +10,13 @@ class ApiEndpoints {
   }
 
   static const String baseUrl = "https://app.wellnesshubaustralia.com/api";
+
+  static const String login = "$baseUrl/login";
+  static const String register = "$baseUrl/register";
+  String verifyUserByCode() =>
+      "$baseUrl/update-company-code/${_appService.user?.id}";
+  String userProfile() => "$baseUrl/user/${_appService.user?.id}";
+
   String pillarsProgressEndpoint() =>
       "$baseUrl/progress/${_appService.user?.id}";
 
@@ -28,10 +35,12 @@ class ApiEndpoints {
 
   String messages() =>
       "$baseUrl/user/${_appService.user?.id}/messages/get-threads";
-  String messageThread(int? threadId) =>
+  String messageThreadViaThreadId(int? threadId) =>
       "$baseUrl/user/${_appService.user?.id}/messages/$threadId";
-  String messageSend(int? threadId) =>
-      "$baseUrl/send-message/${_appService.user?.id}/$threadId";
+  String messageThreadViaRecipientId(int? recipientId) =>
+      "$baseUrl/user/${_appService.user?.id}/get-thread/$recipientId";
+  String messageSend(int? threadId, int? recipientId) =>
+      "$baseUrl/send-message/${_appService.user?.id}/$threadId/$recipientId";
 
   String companies() => "$baseUrl/custom-links";
   static const String companyMembers = "$baseUrl/custom-links";

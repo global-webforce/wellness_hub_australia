@@ -21,6 +21,7 @@ class AppointmentViewModel extends ReactiveViewModel {
   @override
   void onFutureError(error, Object? key) {
     log.e(error);
+
     _dialogService.showCustomDialog(
         variant: DialogType.error,
         barrierDismissible: true,

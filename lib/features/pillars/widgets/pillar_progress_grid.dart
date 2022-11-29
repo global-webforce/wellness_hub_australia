@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/app/shared/ui/sliver_grid_delegate.dart';
 import 'package:wellness_hub_australia/features/pillars/widgets/pillar_progress_card.dart';
 import 'package:wellness_hub_australia/features/tasks/pages/tasks_page.dart';

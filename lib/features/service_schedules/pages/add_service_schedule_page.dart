@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 class AddServiceSchedulePage extends StatelessWidget {
@@ -39,7 +38,8 @@ class _ServiceScheduleForm extends StatelessWidget {
   final textStyle = const TextStyle(fontWeight: FontWeight.w500);
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<ServiceSchedulesViewModel>(context);
+    final viewModel =
+        getParentViewModel<ServiceSchedulesViewModel>(context, listen: false);
 
     Widget dayField() {
       final days = [

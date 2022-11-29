@@ -1,5 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/badges/viewmodels/badges_viewmodel.dart';
 import 'package:wellness_hub_australia/features/badges/widgets/badge_card.dart';

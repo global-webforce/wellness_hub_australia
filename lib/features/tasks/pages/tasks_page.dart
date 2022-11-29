@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:ez_core/ez_core.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/features/tasks/widgets/empty_tasks.dart';
 import 'package:wellness_hub_australia/features/tasks/widgets/task_card.dart';
 import 'package:wellness_hub_australia/features/tasks/viewmodels/tasks_viewmodel.dart';

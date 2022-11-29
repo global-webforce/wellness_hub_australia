@@ -14,7 +14,6 @@ class PushNotificationsViewModel extends ReactiveViewModel {
   final _dialogService = locator<DialogService>();
 
   final _notificationService = locator<PushNotificationsService>();
-  final _snackbarService = locator<SnackbarService>();
 
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_notificationService];
@@ -37,10 +36,12 @@ class PushNotificationsViewModel extends ReactiveViewModel {
   @override
   void onFutureError(error, Object? key) {
     log.e(error);
-    _dialogService.showCustomDialog(
-        variant: DialogType.error,
-        barrierDismissible: true,
-        description: error.toString());
+    {
+      _dialogService.showCustomDialog(
+          variant: DialogType.error,
+          barrierDismissible: true,
+          description: error.toString());
+    }
     super.onFutureError(error, key);
   }
 

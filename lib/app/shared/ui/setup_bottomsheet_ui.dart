@@ -100,7 +100,7 @@ class _MembershipCodeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = getParentViewModel<AppViewModel>(context);
+    final viewModel = getParentViewModel<AppViewModel>(context, listen: false);
     Widget inviteCodeField() {
       return FormBuilderTextField(
         name: "code",

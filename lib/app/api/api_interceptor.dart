@@ -6,6 +6,7 @@ import 'package:wellness_hub_australia/features_core/local_storage_service/local
 
 class ApiInterceptor implements InterceptorContract {
   final _localStorageService = locator<LocalStorageService>();
+
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
     try {
