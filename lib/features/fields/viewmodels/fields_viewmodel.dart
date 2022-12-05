@@ -3,7 +3,7 @@ import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/features/fields/services/fields_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:stacked_services/stacked_services.dart';

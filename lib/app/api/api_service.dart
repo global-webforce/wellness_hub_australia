@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:http/http.dart';
 import 'package:wellness_hub_australia/app/api/api_interceptor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http/intercepted_client.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
+import 'package:wellness_hub_australia/app/core/local_storage/local_storage_service.dart';
 
 extension IsOk on http.Response {
   bool get ok {
@@ -17,12 +20,16 @@ class ApiService {
     ],
   );
 
+  final _localStorageService = locator<LocalStorageService>();
+
   errorMessage(String? message) {
     final String error = "$message";
     if (error.isEmpty) {
       return Future.error("Unknown error");
     }
     if (error.contains("XMLHttpRequest error")) {
+      //  x.signOut();
+
       return Future.error("Network request failed");
     }
     if (error.contains("Invalid Credentials")) {
@@ -50,8 +57,47 @@ class ApiService {
         if (res.ok) {
           return onSuccess(res);
         } else {
-          return Future.error(res.body.toString());
+          return Future.error(
+              "${res.body.toString()} ${res.statusCode.toString()}");
         }
+      });
+    } catch (e) {
+      onError("");
+      return errorMessage("$e");
+    }
+  }
+
+  Future postFile(
+    String url, {
+    Map<String, dynamic> requestBody = const {},
+    List<MultipartFile> files = const [],
+    required Function(Response res) onSuccess,
+    required Function(String errorMessage) onError,
+  }) async {
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll({
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${_localStorageService.token}'
+      });
+      Map<String, String> s = <String, String>{};
+      requestBody.forEach((key, value) => s[key] = value.toString());
+
+      request.fields.addAll(s);
+
+      for (var element in files) {
+        request.files.add(element);
+        print(element);
+      }
+      return await request.send().then((res) async {
+        http.Response.fromStream(res).then((response) {
+          if ((res.statusCode ~/ 100) == 2) {
+            onSuccess(response);
+          } else {
+            return Future.error(res.toString());
+          }
+        });
       });
     } catch (e) {
       onError("");
@@ -116,7 +162,7 @@ class ApiService {
     required Function(String errorMessage) onError,
   }) async {
     try {
-      await client
+      return await client
           .put(
         Uri.parse(url),
         body: (requestBody != null) ? jsonEncode(requestBody) : null,

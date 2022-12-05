@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:wellness_hub_australia/features/pillars/pillar_progress_extension.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -21,17 +21,23 @@ class PillarProgressCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CachedNetworkImage(
-            color: Colors.white,
             imageUrl: "${pillar.pillarIcon}",
             width: 50,
             height: 50,
+            fit: BoxFit.contain,
+            color: Colors.white,
+            placeholder: (context, url) {
+              return Image.asset(
+                "assets/images/logo_basic.png",
+                fit: BoxFit.contain,
+                color: Colors.white,
+              );
+            },
             errorWidget: (context, url, error) {
-              return Card(
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(
-                  "/images/placeholder.png",
-                  fit: BoxFit.cover,
-                ),
+              return Image.asset(
+                "assets/images/logo_basic.png",
+                fit: BoxFit.contain,
+                color: Colors.white,
               );
             },
           ),

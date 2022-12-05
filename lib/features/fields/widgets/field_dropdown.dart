@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-import 'package:wellness_hub_australia/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
 
 class FieldDropdown extends StatelessWidget {
   final List<Field?> fields;

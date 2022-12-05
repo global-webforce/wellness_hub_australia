@@ -3,9 +3,9 @@ import 'package:ez_ui/ez_ui.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 import 'package:flutter/material.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ServiceProviderCard extends StatelessWidget {
@@ -33,8 +33,7 @@ class ServiceProviderCard extends StatelessWidget {
                 )
               : null,
           radius: (width * 0.2).roundToDouble() / 2,
-          firstName:
-              "${serviceProvider.firstName} ${serviceProvider.lastName} ",
+          name: "${serviceProvider.firstName} ${serviceProvider.lastName} ",
           imgUrl: "${serviceProvider.profilePic}");
     }
 

@@ -1,4 +1,5 @@
 import 'package:ez_dashboard/ez_drawer_button.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/chat/viewmodels/chat_viewmodel.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
@@ -13,11 +14,12 @@ class ChatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChatViewModel>.reactive(
-        viewModelBuilder: () => ChatViewModel(),
+        viewModelBuilder: () => locator<ChatViewModel>(),
+        disposeViewModel: false,
+        fireOnModelReadyOnce: true,
         onModelReady: (viewModel) async {
           await viewModel.getAll();
         },
-        disposeViewModel: true,
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
@@ -29,7 +31,7 @@ class ChatsPage extends StatelessWidget {
                 isBusy: viewModel.isBusy,
                 emptyIndicatorWidget: const EmptyDisplay(
                   icon: Icons.chat_rounded,
-                  title: "You have no chats",
+                  title: "No chats",
                 ),
                 onRefresh: () async {
                   await viewModel.getAll();

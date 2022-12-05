@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/appointment.model.dart';
+import 'package:wellness_hub_australia/app/models/appointment.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class AppointmentsService with ReactiveServiceMixin {

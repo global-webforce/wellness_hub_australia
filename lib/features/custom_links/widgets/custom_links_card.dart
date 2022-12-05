@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:wellness_hub_australia/models/custom_link.model.dart';
+import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 import 'package:flutter/material.dart';
 
 class CustomLinksCard extends StatelessWidget {
@@ -18,8 +18,14 @@ class CustomLinksCard extends StatelessWidget {
           imageUrl:
               "https://gwf-cors-anywhere.herokuapp.com/${customLink.linkIcon}",
           width: double.infinity,
-          height: 136,
+          height: 140,
           fit: BoxFit.fitWidth,
+          placeholder: (context, url) {
+            return Image.asset(
+              "/images/placeholder.png",
+              fit: BoxFit.cover,
+            );
+          },
           errorWidget: (context, url, error) {
             return Image.asset(
               "/images/placeholder.png",

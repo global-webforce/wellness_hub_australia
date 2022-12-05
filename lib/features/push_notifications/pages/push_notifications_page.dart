@@ -1,4 +1,5 @@
 import 'package:ez_dashboard/ez_drawer_button.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/push_notifications/viewmodels/push_notifications_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
@@ -13,7 +14,9 @@ class PushNotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PushNotificationsViewModel>.reactive(
-        viewModelBuilder: () => PushNotificationsViewModel(),
+        viewModelBuilder: () => locator<PushNotificationsViewModel>(),
+        disposeViewModel: false,
+        fireOnModelReadyOnce: true,
         onModelReady: (viewModel) async {
           await viewModel.getAll();
         },
@@ -26,8 +29,7 @@ class PushNotificationsPage extends StatelessWidget {
               ),
               body: ListGridViewWrapper(
                 emptyIndicatorWidget: const EmptyDisplay(
-                    icon: Icons.notifications,
-                    title: "You have 0 notifications"),
+                    icon: Icons.notifications, title: "No notifications"),
                 isBusy: viewModel.isBusy,
                 onRefresh: () async {
                   viewModel.getAll();

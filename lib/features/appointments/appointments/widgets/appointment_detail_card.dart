@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
 
 class AppointmentDetailCard extends StatelessWidget {
@@ -30,7 +30,7 @@ class AppointmentDetailCard extends StatelessWidget {
                 )
               : null,
           radius: 30,
-          firstName:
+          name:
               "${appointment.serviceProvider?.firstName} ${appointment.serviceProvider?.lastName} ",
           imgUrl:
               "https://gwf-cors-anywhere.herokuapp.com/${appointment.serviceProvider?.profilePic}");
@@ -39,7 +39,7 @@ class AppointmentDetailCard extends StatelessWidget {
     Widget clientAvatar() {
       return EzAvatar(
           radius: 30,
-          firstName:
+          name:
               "${appointment?.member?.firstName} ${appointment?.member?.lastName} ",
           imgUrl:
               "https://gwf-cors-anywhere.herokuapp.com/${appointment?.member?.profilePic}");

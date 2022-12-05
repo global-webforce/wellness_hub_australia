@@ -5,7 +5,7 @@ import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/offered_services/services/offered_services_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/models/offered_service.model.dart';
+import 'package:wellness_hub_australia/app/models/offered_service.model.dart';
 import 'package:stacked/stacked.dart';
 
 class OfferedServicesServiceLaravel

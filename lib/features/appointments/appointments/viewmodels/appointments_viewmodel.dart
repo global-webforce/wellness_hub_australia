@@ -12,7 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart' as calendar;
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/services/appointments_service.dart';
-import 'package:wellness_hub_australia/models/appointment.model.dart';
+import 'package:wellness_hub_australia/app/models/appointment.model.dart';
 
 class AppointmentViewModel extends ReactiveViewModel {
   final _appointmentFormKey = GlobalKey<FormBuilderState>();
@@ -21,7 +21,6 @@ class AppointmentViewModel extends ReactiveViewModel {
   @override
   void onFutureError(error, Object? key) {
     log.e(error);
-
     _dialogService.showCustomDialog(
         variant: DialogType.error,
         barrierDismissible: true,
@@ -30,10 +29,11 @@ class AppointmentViewModel extends ReactiveViewModel {
   }
 
   final log = getLogger('AppointmentViewModel');
-  final _dialogService = locator<DialogService>();
+
   final navigationService = locator<NavigationService>();
   final _appointmentService = locator<AppointmentsService>();
   final _snackbarService = locator<SnackbarService>();
+  final _dialogService = locator<DialogService>();
   final _appService = locator<AppService>();
 
   bool _editMode = false;
@@ -110,18 +110,11 @@ class AppointmentViewModel extends ReactiveViewModel {
   }
 
   Future getAll() async {
-    setBusy(true);
-
-    await _appointmentService.getAll().catchError((e) {
-      log.e(e);
-
-      _dialogService.showCustomDialog(
-          variant: DialogType.error,
-          barrierDismissible: true,
-          description: e.toString());
-    });
-
-    setBusy(false);
+    runBusyFuture(
+      Future.wait([
+        _appointmentService.getAll(),
+      ], eagerError: true),
+    );
   }
 
   int? _selectedAppointmentId;

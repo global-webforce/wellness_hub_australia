@@ -2,7 +2,8 @@ import 'package:ez_core/ez_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/app_service.dart';
-import 'package:wellness_hub_australia/models/appointment.model.dart' as appt;
+import 'package:wellness_hub_australia/app/models/appointment.model.dart'
+    as appt;
 import 'package:flutter/material.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';

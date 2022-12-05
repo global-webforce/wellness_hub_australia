@@ -5,7 +5,7 @@ import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/features/badges/pages/view_badge_page.dart';
 import 'package:wellness_hub_australia/features/profile/basic_profile_page.dart';
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
@@ -59,7 +59,7 @@ class _Profile extends ViewModelWidget<AppViewModel> {
       Align(
         alignment: Alignment.topCenter,
         child: EzAvatar(
-          firstName: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+          name: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
           imgUrl: "${viewModel.user?.profilePic}",
         ),
       ),

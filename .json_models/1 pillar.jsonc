@@ -1,6 +1,6 @@
 {
   "__className": "Pillar.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "title": "Physical",
   "color_theme": "#cb2d3e",

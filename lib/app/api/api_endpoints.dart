@@ -85,10 +85,4 @@ class ApiEndpoints {
   String addAlarm() => "$baseUrl/alarm";
   String updateAlarm(int? id) => "$baseUrl/alarm/$id";
   String deleteAlarm(int? id) => "$baseUrl/alarm/$id";
-
-  static const Map<String, String> headers = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': 'my_url'
-  };
 }

@@ -4,7 +4,7 @@ import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -31,7 +31,7 @@ class _ServiceProviderDetailPageState extends State<ServiceProviderDetailPage> {
 
     Widget avatar() {
       return EzAvatar(
-        firstName: "${serviceProvider?.firstName} ${serviceProvider?.lastName}",
+        name: "${serviceProvider?.firstName} ${serviceProvider?.lastName}",
         imgUrl: serviceProvider?.profilePic,
       );
     }

@@ -1,4 +1,5 @@
 import 'package:ez_dashboard/ez_drawer_button.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_grid.dart';
 import 'package:wellness_hub_australia/features/pillars/widgets/pillar_stats.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
@@ -13,7 +14,7 @@ class ClientHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ClientHomePageViewModel>.reactive(
-        viewModelBuilder: () => ClientHomePageViewModel(),
+        viewModelBuilder: () => locator<ClientHomePageViewModel>(),
         onModelReady: (viewModel) async {
           await viewModel.init();
         },
@@ -37,12 +38,12 @@ class ClientHomePage extends StatelessWidget {
                         style: MyTextStyle.display2,
                       ),
                       PillarStatsWidget(),
-                      SizedBox(height: 16),
+                      SizedBox(height: 15),
                       Text(
                         "Our Partners",
                         style: MyTextStyle.display2,
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 15),
                       CustomLinksGridWidget(),
                     ],
                   );
@@ -57,7 +58,9 @@ class PillarStatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = getParentViewModel<ClientHomePageViewModel>(context);
+    final viewModel = getParentViewModel<ClientHomePageViewModel>(
+      context,
+    );
     return PillarStats(pillarsProgress: viewModel.pillarsProgress);
   }
 }
@@ -67,7 +70,8 @@ class CustomLinksGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = getParentViewModel<ClientHomePageViewModel>(context);
+    final viewModel =
+        getParentViewModel<ClientHomePageViewModel>(context, listen: false);
     return CustomLinksGrid(customLinks: viewModel.customLinks);
   }
 }

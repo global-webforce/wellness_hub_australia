@@ -1,6 +1,6 @@
 {
   "__className": "ClientReport.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "first_name": "Dionnie",
   "last_name": "Bulingit",

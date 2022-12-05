@@ -9,8 +9,8 @@ import 'package:wellness_hub_australia/features/tasks/pages/task_detail_page.dar
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
-import 'package:wellness_hub_australia/models/task.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/task.model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TasksViewModel extends ReactiveViewModel {

@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class ServiceProvidersService with ReactiveServiceMixin {

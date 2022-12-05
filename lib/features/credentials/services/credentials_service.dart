@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/credential.model.dart';
+import 'package:wellness_hub_australia/app/models/credential.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class CredentialsService with ReactiveServiceMixin {

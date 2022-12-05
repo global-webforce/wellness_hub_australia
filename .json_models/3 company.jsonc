@@ -1,6 +1,6 @@
 {
   "__className": "Company.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "name": "Global WebForce",
   "description": "",

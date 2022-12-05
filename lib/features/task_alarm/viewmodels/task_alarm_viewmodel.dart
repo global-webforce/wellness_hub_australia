@@ -1,4 +1,5 @@
 import 'package:ez_core/ez_core.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
@@ -6,13 +7,10 @@ import 'package:wellness_hub_australia/features/task_alarm/services/task_alarm_s
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/task.model.dart';
+import 'package:wellness_hub_australia/app/models/task.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-const String busyTaskAlarmUpdate = 'busy-task-alarm-update';
-const String busyTaskAlarmDelete = 'busy-task-alarm-delete';
 
 class TaskAlarmViewModel extends ReactiveViewModel {
   final log = getLogger('TaskAlarmViewModel');
@@ -54,7 +52,7 @@ class TaskAlarmViewModel extends ReactiveViewModel {
             "enabled": true,
           });
         }),
-        busyObject: busyTaskAlarmDelete,
+        busyObject: ViewModelBusyKeys.taskAlarmDelete,
         throwException: true);
 
     _snackbarService.showCustomSnackBar(
@@ -90,7 +88,7 @@ class TaskAlarmViewModel extends ReactiveViewModel {
         'task_id': task!.id,
       });
       await runBusyFuture(_taskAlarmService.update(rawFormData),
-          busyObject: busyTaskAlarmUpdate, throwException: true);
+          busyObject: ViewModelBusyKeys.taskAlarmUpdate, throwException: true);
 
       _snackbarService.showCustomSnackBar(
           message: "Alarm updated",

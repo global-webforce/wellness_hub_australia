@@ -5,7 +5,7 @@ import 'package:wellness_hub_australia/features/push_notifications/pages/push_no
 import 'package:wellness_hub_australia/features/push_notifications/services/push_notifications_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/push_notification.model.dart';
+import 'package:wellness_hub_australia/app/models/push_notification.model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PushNotificationsViewModel extends ReactiveViewModel {

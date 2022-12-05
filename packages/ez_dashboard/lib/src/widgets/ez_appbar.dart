@@ -32,7 +32,7 @@ class EZAppBar extends StatelessWidget with PreferredSizeWidget {
           const SizedBox(
             width: 10,
           ),
-          appName
+          Expanded(child: appName)
         ]),
         actions: actionButtons);
   }

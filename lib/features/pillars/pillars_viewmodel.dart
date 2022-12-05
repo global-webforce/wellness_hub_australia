@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:wellness_hub_australia/features/pillars/pillars_service.dart';
 
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/pillar.model.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 import 'package:stacked/stacked.dart';
 
 class T {}

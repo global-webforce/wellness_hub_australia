@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/task.model.dart';
+import 'package:wellness_hub_australia/app/models/task.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class TaskService with ReactiveServiceMixin {

@@ -18,7 +18,7 @@ class EmptyNotifications extends StatelessWidget {
           ),
         ),
         vSpaceRegular,
-        const EzText.title2("You have no Notifications")
+        const EzText.title2("No Notifications")
       ],
     );
   }

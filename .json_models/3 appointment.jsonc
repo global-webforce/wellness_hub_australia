@@ -1,6 +1,6 @@
 {
   "__className": "Appointment.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 15,
   "user_id": 1,
   "start_date": "2022-03-08T18:26:04.000000Z",

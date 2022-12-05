@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:ez_core/ez_core.dart';
+import 'package:ez_ui/ez_ui.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/features/chat/viewmodels/chat_viewmodel.dart';
@@ -29,33 +29,10 @@ class ChatsDetailPage extends StatelessWidget {
                 children: [
                   for (var person in viewModel.chatThread!.participants)
                     if (person.id != "$userId")
-                      CachedNetworkImage(
-                        imageUrl: "${person.profileImage}",
-                        imageBuilder: (context, imageProvider) {
-                          return CircleAvatar(
-                            backgroundImage: imageProvider,
-                            backgroundColor: Colors.white,
-                          );
-                        },
-                        placeholder: (context, url) {
-                          return const CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.white,
-                            ),
-                          );
-                        },
-                        errorWidget: (context, url, error) {
-                          return const CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.white,
-                            ),
-                          );
-                        },
-                      ),
+                      EzAvatar(
+                          radius: 20,
+                          imgUrl: "${person.profileImage}",
+                          name: "${person.firstName} ${person.lastName}"),
                   hSpaceSmall,
                   for (var person in viewModel.chatThread!.participants)
                     if (person.id != "$userId")
@@ -63,7 +40,7 @@ class ChatsDetailPage extends StatelessWidget {
                           child:
                               Text("${person.firstName} ${person.lastName}")),
                   hSpaceSmall,
-                  Text("ThreadID $threadId RecipientId $recipientId")
+                  Text("Thread ID: $threadId | Recipient ID: $recipientId")
                 ],
               ),
             ),
@@ -73,6 +50,15 @@ class ChatsDetailPage extends StatelessWidget {
                 textColor: Colors.white,
                 currentUserContainerColor: Colors.grey,
                 currentUserTextColor: Colors.black,
+                avatarBuilder: ((user, onPressAvatar, onLongPressAvatar) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: EzAvatar(
+                        radius: 20,
+                        imgUrl: "${user.profileImage}",
+                        name: "${user.firstName} ${user.lastName}"),
+                  );
+                }),
                 messageTextBuilder: (message, previousMessage, nextMessage) {
                   return Text(
                     message.text,

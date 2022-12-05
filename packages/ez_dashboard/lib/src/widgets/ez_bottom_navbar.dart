@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 
 class EZBottomNavbar extends StatelessWidget {
@@ -25,13 +26,20 @@ class EZBottomNavbar extends StatelessWidget {
         BottomNavigationBar(
           currentIndex: activeIndex,
           items: items
-              .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.title))
+              .map((e) =>
+                  BottomNavigationBarItem(icon: Icon(e.icon), label: e.title))
               .toList(),
           unselectedItemColor: Theme.of(context).disabledColor,
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           onTap: (i) {
-            context.replaceRoute(items[i].route);
+            EasyDebounce.debounce(
+                'bottom-navigate', // <-- An ID for this particular debouncer
+                const Duration(milliseconds: 100), // <-- The debounce duration
+                () {
+              context.replaceRoute(items[i].route);
+            } // <-- The target method
+                );
           },
         ),
       ],
@@ -41,7 +49,7 @@ class EZBottomNavbar extends StatelessWidget {
 
 class EZBottomNavbarItem {
   final String title;
-  final Widget icon;
+  final IconData icon;
   final PageRouteInfo route;
 
   EZBottomNavbarItem({

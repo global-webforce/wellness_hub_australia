@@ -1,6 +1,6 @@
 {
   "__className": "Address.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "postcode": 200,
   "place_name": "Australian National University",
   "state_name": "Australian Capital Territory",

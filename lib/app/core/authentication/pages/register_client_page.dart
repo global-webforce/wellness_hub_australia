@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
-import 'package:wellness_hub_australia/models/address.model.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/models/address.model.dart';
 import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
-
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,14 +13,14 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:stacked/stacked.dart';
 
-class RegisterSPPage extends StatefulWidget {
-  const RegisterSPPage({Key? key}) : super(key: key);
+class RegisterClientPage extends StatefulWidget {
+  const RegisterClientPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterSPPage> createState() => _RegisterSPPageState();
+  State<RegisterClientPage> createState() => _RegisterClientPageState();
 }
 
-class _RegisterSPPageState extends State<RegisterSPPage> {
+class _RegisterClientPageState extends State<RegisterClientPage> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AppViewModel>.reactive(
@@ -54,7 +53,7 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
 
           Widget formHeader() {
             return const Text(
-              "Register as \nService Provider",
+              "Register as \nCompany Member",
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
             );
@@ -79,12 +78,12 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
                 dividerLine(),
                 TextButton(
                   child: const Text(
-                    "SIGN-UP AS CLIENT",
+                    "SIGN-UP AS SERVICE PROVIDER",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                   onPressed: () {
                     context.replaceRoute(
-                      const RegisterClientRoute(),
+                      const RegisterSPRoute(),
                     );
                   },
                 ),
@@ -147,20 +146,6 @@ class _RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = getParentViewModel<AppViewModel>(context);
 
-    Widget applicantStatusField() {
-      return FormBuilderField(
-        name: "sp_applicant",
-        enabled: false,
-        initialValue: 1,
-        validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(),
-        ]),
-        builder: (FormFieldState<dynamic> field) {
-          return const SizedBox.shrink();
-        },
-      );
-    }
-
     Widget addressDropdownField() {
       return FormBuilderSearchableDropdown<Address>(
         name: 'address2',
@@ -185,9 +170,9 @@ class _RegisterForm extends StatelessWidget {
           hintText: 'Search',
           labelText: 'Search',
         ),
-        items: viewModel.placesInAustralia,
         clearButtonProps: const ClearButtonProps(isVisible: true),
         decoration: const InputDecoration(labelText: "Suburb/state/postcode"),
+        items: viewModel.placesInAustralia,
       );
     }
 
@@ -317,6 +302,21 @@ class _RegisterForm extends StatelessWidget {
       );
     }
 
+    Widget inviteCodeField() {
+      return FormBuilderTextField(
+        name: "code",
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.text,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.door_sliding_outlined),
+          labelText: "Membership Code",
+        ),
+        obscureText: true,
+        obscuringCharacter: "X",
+      );
+    }
+
     Widget submitButton() {
       return EzButton.elevated(
         rounded: true,
@@ -329,12 +329,10 @@ class _RegisterForm extends StatelessWidget {
     }
 
     return FormBuilder(
-      autoFocusOnValidationFailure: true,
       skipDisabled: true,
       key: viewModel.registerFormKey,
       child: Column(
         children: [
-          applicantStatusField(),
           emailField(),
           vSpaceSmall,
           firstNameField(),
@@ -348,6 +346,8 @@ class _RegisterForm extends StatelessWidget {
           passwordField(),
           vSpaceSmall,
           passwordConfirmationField(),
+          vSpaceSmall,
+          inviteCodeField(),
           vSpaceSmall,
           submitButton(),
         ],

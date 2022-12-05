@@ -26,6 +26,7 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
                 icon: const Icon(Icons.light_mode),
                 onPressed: () {
                   getParentViewModel<AppViewModel>(context, listen: false)
+                      .themeService
                       .toggleDarkLightTheme();
                 })
           ],

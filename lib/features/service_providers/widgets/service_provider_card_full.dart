@@ -2,8 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -18,7 +18,7 @@ class ServiceProviderCardFull extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget avatar() {
       return EzAvatar(
-        firstName: "${serviceProvider!.firstName} ${serviceProvider!.lastName}",
+        name: "${serviceProvider!.firstName} ${serviceProvider!.lastName}",
         imgUrl: serviceProvider?.profilePic,
       );
     }

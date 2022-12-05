@@ -1,6 +1,6 @@
 {
   "__className": "OfferedService.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "pillar_id": 1,
   "title": "Nutritionists",

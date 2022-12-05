@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 import 'package:flutter/material.dart';
 
 class ServiceProviderProfileCard extends StatelessWidget {
@@ -24,8 +24,7 @@ class ServiceProviderProfileCard extends StatelessWidget {
                 )
               : null,
           radius: max((width * 0.2).roundToDouble() / 2, 20),
-          firstName:
-              "${serviceProvider.firstName} ${serviceProvider.lastName} ",
+          name: "${serviceProvider.firstName} ${serviceProvider.lastName} ",
           imgUrl: "${serviceProvider.profilePic}");
     }
 

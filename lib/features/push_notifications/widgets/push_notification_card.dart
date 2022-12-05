@@ -1,5 +1,5 @@
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/push_notification.model.dart';
+import 'package:wellness_hub_australia/app/models/push_notification.model.dart';
 import 'package:flutter/material.dart';
 
 class PushNotificationCard extends StatelessWidget {

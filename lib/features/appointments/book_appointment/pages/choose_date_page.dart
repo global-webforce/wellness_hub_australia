@@ -30,7 +30,7 @@ class _ChooseAppointmentPageState extends State<ChooseAppointmentPage> {
 
     Widget avatar() {
       return EzAvatar(
-        firstName: "${serviceProvider?.firstName} ${serviceProvider?.lastName}",
+        name: "${serviceProvider?.firstName} ${serviceProvider?.lastName}",
         imgUrl: serviceProvider?.profilePic,
       );
     }

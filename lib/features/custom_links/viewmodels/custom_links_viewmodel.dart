@@ -3,7 +3,7 @@ import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/features/custom_links/services/custom_link_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/custom_link.model.dart';
+import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class CustomLinksViewModel extends BaseViewModel {

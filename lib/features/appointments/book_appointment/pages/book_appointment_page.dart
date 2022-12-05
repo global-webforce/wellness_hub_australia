@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ez_core/ez_core.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/book_appointment_viewmodel.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/choose_field_page.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/choose_pillar_page.dart';
@@ -83,7 +84,7 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            viewModel.busy(busyAppintmentBookingKey)
+                            viewModel.busy(ViewModelBusyKeys.appointmentBooking)
                                 ? const CircularProgressIndicator(
                                     color: Colors.white,
                                   )

@@ -6,7 +6,7 @@ import 'package:wellness_hub_australia/app/app_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/services/appointments_service.dart';
-import 'package:wellness_hub_australia/models/appointment.model.dart';
+import 'package:wellness_hub_australia/app/models/appointment.model.dart';
 import 'package:stacked/stacked.dart';
 
 class AppointmentsServiceLaravel

@@ -5,8 +5,8 @@ import 'package:wellness_hub_australia/features/fields/services/fields_service.d
 import 'package:wellness_hub_australia/features/service_providers/services/service_providers_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/field.model.dart';
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';

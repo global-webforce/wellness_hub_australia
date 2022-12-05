@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/address.model.dart';
+import 'package:wellness_hub_australia/app/models/address.model.dart';
 import 'package:latlong2/latlong.dart';
 
 extension AddressHelper on Address? {

@@ -1,6 +1,6 @@
 {
   "__className": "PaymentStatus.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "type": "Paypal|Mastercard|PayOnVisit",
   "amount": 9.9,
   "payment_date": null,

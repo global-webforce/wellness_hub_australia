@@ -1,6 +1,6 @@
 import 'package:ez_core/ez_core.dart';
 
-import 'package:wellness_hub_australia/models/offered_service.model.dart';
+import 'package:wellness_hub_australia/app/models/offered_service.model.dart';
 import 'package:flutter/material.dart';
 
 class OfferedServiceCard extends StatelessWidget {

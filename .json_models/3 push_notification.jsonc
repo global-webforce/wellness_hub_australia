@@ -1,6 +1,6 @@
 {
   "__className": "PushNotification.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1217,
   "user_id": 1498,
   "notification": "Welcome to Ezo Wellness, You can contact us for support on this App",

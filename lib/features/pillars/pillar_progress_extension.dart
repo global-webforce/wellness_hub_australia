@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 
 extension PillarHelper on PillarProgress {
   //returns rounded e.g 93%, 22%

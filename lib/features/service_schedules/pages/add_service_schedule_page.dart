@@ -38,8 +38,7 @@ class _ServiceScheduleForm extends StatelessWidget {
   final textStyle = const TextStyle(fontWeight: FontWeight.w500);
   @override
   Widget build(BuildContext context) {
-    final viewModel =
-        getParentViewModel<ServiceSchedulesViewModel>(context, listen: false);
+    final viewModel = getParentViewModel<ServiceSchedulesViewModel>(context);
 
     Widget dayField() {
       final days = [

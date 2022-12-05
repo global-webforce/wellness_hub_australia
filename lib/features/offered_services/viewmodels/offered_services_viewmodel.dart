@@ -1,20 +1,19 @@
 import 'dart:async';
 
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
 import 'package:wellness_hub_australia/features/fields/services/fields_service.dart';
 import 'package:wellness_hub_australia/features/offered_services/pages/add_offered_services_page.dart';
 import 'package:wellness_hub_australia/features/offered_services/services/offered_services_service.dart';
-import 'package:wellness_hub_australia/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/offered_service.model.dart';
+import 'package:wellness_hub_australia/app/models/offered_service.model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-const String busyOfferedServiceDelete = 'busy-offered-service-delete';
 
 class OfferedServicesViewModel extends ReactiveViewModel {
   final log = getLogger('CredentialsViewModel');
@@ -67,7 +66,7 @@ class OfferedServicesViewModel extends ReactiveViewModel {
   Future delete(int? id) async {
     await runBusyFuture(
       _offeredServicesService.delete(id),
-      busyObject: busyOfferedServiceDelete,
+      busyObject: ViewModelBusyKeys.offeredServiceDelete,
       throwException: true,
     );
 

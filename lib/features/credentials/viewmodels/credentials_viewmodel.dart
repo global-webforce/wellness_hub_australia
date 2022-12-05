@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
@@ -7,13 +8,11 @@ import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
 import 'package:wellness_hub_australia/features/credentials/pages/add_credential_page.dart';
 import 'package:wellness_hub_australia/features/credentials/services/credentials_service.dart';
 import 'package:stacked/stacked.dart';
-import 'package:wellness_hub_australia/models/credential.model.dart';
+import 'package:wellness_hub_australia/app/models/credential.model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-const String busyCredentialDelete = 'busy-credential-delete';
 
 class CredentialsViewModel extends ReactiveViewModel {
   final log = getLogger('CredentialsViewModel');
@@ -67,7 +66,7 @@ class CredentialsViewModel extends ReactiveViewModel {
 
   Future delete(int? id) async {
     await runBusyFuture(_credentialsService.delete(id),
-        busyObject: busyCredentialDelete, throwException: true);
+        busyObject: ViewModelBusyKeys.credentialDelete, throwException: true);
 
     _snackbarService.showCustomSnackBar(
       message: "Credential #$id deleted",

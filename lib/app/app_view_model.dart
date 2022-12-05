@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/app_service.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_bottomsheet_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
-import 'package:wellness_hub_australia/features_core/local_storage_service/local_storage_service.dart';
-import 'package:wellness_hub_australia/models/address.model.dart';
-import 'package:wellness_hub_australia/models/user.model.dart';
+import 'package:wellness_hub_australia/app/core/local_storage/local_storage_service.dart';
+import 'package:wellness_hub_australia/app/models/address.model.dart';
+import 'package:wellness_hub_australia/app/models/user.model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import 'package:faker/faker.dart' as fkr;
 
-const String busyUserProfileUpdateKey = "busy-user-profile-update-key";
-
 class AppViewModel extends ReactiveViewModel {
   final log = getLogger('AppViewModel');
   final _dialogService = locator<DialogService>();
-  final _themeService = locator<ThemeService>();
+  final themeService = locator<ThemeService>();
   final _appService = locator<AppService>();
   final _storageService = locator<LocalStorageService>();
   final _bottomSheetService = locator<BottomSheetService>();
@@ -57,14 +56,6 @@ class AppViewModel extends ReactiveViewModel {
 
   bool isServiceProvider() {
     return user?.role == "service_provider";
-  }
-
-  void setTheme(int index) {
-    _themeService.selectThemeAtIndex(index);
-  }
-
-  void toggleDarkLightTheme() {
-    _themeService.toggleDarkLightTheme();
   }
 
   Future signOut() async {
@@ -174,7 +165,8 @@ class AppViewModel extends ReactiveViewModel {
       rawFormData.remove('address2');
 
       await runBusyFuture(_appService.updateProfile(rawFormData),
-          busyObject: busyUserProfileUpdateKey, throwException: true);
+          busyObject: ViewModelBusyKeys.userProfileUpdate,
+          throwException: true);
 
       _snackbarService.showCustomSnackBar(
           message: "Profile Update Successful",

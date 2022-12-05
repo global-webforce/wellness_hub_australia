@@ -1,18 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/features_core/local_storage_service/local_storage_service.dart';
-import 'package:wellness_hub_australia/models/user.model.dart';
-import 'package:form_builder_image_picker/form_builder_image_picker.dart';
-import 'package:http_parser/http_parser.dart' as http_parser;
+import 'package:wellness_hub_australia/app/core/local_storage/local_storage_service.dart';
+import 'package:wellness_hub_australia/app/models/user.model.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
 import 'package:stacked/stacked.dart';
 
+import 'package:http/http.dart' as http;
+
 class AppService with ReactiveServiceMixin {
+  final _dialogService = locator<DialogService>();
   final _apiService = locator<ApiService>();
   final _localStorageService = locator<LocalStorageService>();
+  DialogService get dialogService => _dialogService;
 
   AppService() {
     listenToReactiveValues([
@@ -71,80 +74,39 @@ class AppService with ReactiveServiceMixin {
 
   Future fetchUser({int? userId}) async {
     _user.value = _localStorageService.user;
-    //final token = _localStorageService.token;
-    /*   if (token != null) {
-      await _apiService.post(
-        "${ApiEndpoints.baseUrl}/user/${_localStorageService.user!.id}",
-        onSuccess: (res) {
-          _user.value = User.fromJson(jsonDecode(res.body));
-          _localStorageService.user = _user.value;
-          _localStorageService.token = jsonDecode(res.body)["token"];
-        },
-        onError: (e) {
-          return Future.error(e.toString());
-        },
-      );
-    } */
+  }
+
+  Future xxx(Map<String, dynamic> formData) async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse(ApiEndpoints.instance.userProfile()));
+    formData.remove('profile_pic');
+    request.fields
+        .addEntries(formData.entries as Iterable<MapEntry<String, String>>);
+    request.files.add(http.MultipartFile.fromBytes(
+        'picture', formData['profile_pic']![0].readAsBytesSync(),
+        filename: formData['profile_pic']![0].name));
+
+    await request.send();
   }
 
   Future updateProfile(Map<String, dynamic> formData) async {
-    var dio = Dio();
-    dio.options.headers['content-Type'] = 'application/json';
-    dio.options.headers["authorization"] =
-        'Bearer ${_localStorageService.token}';
-    Map<String, dynamic> rawFormData = Map.of(formData);
-    rawFormData.remove("profile_pic");
-    var requestBody = FormData.fromMap(rawFormData);
-    try {
-      List<dynamic> rawImageList = formData["profile_pic"] ?? [];
-      List<XFileImage> xFileImageList = [];
-      List<List<int>> xFileImageAsByteList = [];
-
-      if (rawImageList.isNotEmpty) {
-        for (var i = 0; i < rawImageList.length; i++) {
-          xFileImageList.add(XFileImage(file: rawImageList[i]));
-          xFileImageAsByteList.add(await xFileImageList[i].file.readAsBytes());
-        }
-
-        requestBody.files.add(MapEntry(
+    await _apiService.postFile(
+      ApiEndpoints.instance.userProfile(),
+      requestBody: formData,
+      files: [
+        http.MultipartFile.fromBytes(
           'profile-pic',
-          MultipartFile.fromBytes(await xFileImageList[0].file.readAsBytes(),
-              filename: xFileImageList[0].file.name,
-              contentType: http_parser.MediaType("image", "*"),
-              headers: {}),
-        ));
-      }
-    } catch (e) {
-      return Future.error(e.toString());
-    }
-
-    await dio
-        .post(ApiEndpoints.instance.userProfile(), data: requestBody)
-        .then((res) async {
-      if (res.statusCode! >= 200 && res.statusCode! <= 299) {
-        _user.value = User.fromJson(res.data);
-        _localStorageService.user = User.fromJson(res.data);
-      } else {
-        return Future.error(res.data.toString());
-      }
-    }).catchError((e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      if (error.contains("Invalid Credentials")) {
-        return Future.error("Invalid Credentials");
-      }
-      if (error.contains("Failed host lookup")) {
-        return Future.error("Check your internet connection");
-      }
-      return Future.error(error);
-    });
+          await formData['profile_pic']![0].readAsBytes(),
+          filename: formData['profile_pic']![0].name,
+          contentType: MediaType("image", "*"),
+        ),
+      ],
+      onSuccess: (res) {
+        _user.value = User.fromJson(jsonDecode(res.body));
+        _localStorageService.user = _user.value;
+      },
+      onError: (e) {},
+    );
   }
 
   Future<void> signOut() async {

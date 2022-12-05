@@ -1,5 +1,5 @@
 import 'package:wellness_hub_australia/features/pillars/pillar_progress_extension.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';

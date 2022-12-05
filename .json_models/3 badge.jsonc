@@ -1,6 +1,6 @@
 {
   "__className": "Badge.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "badge_name": "Rising Star",
   "description": "You got this badge because you completed all your tasks last month",

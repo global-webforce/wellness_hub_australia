@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/credentials/services/credentials_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/features_core/local_storage_service/local_storage_service.dart';
-import 'package:wellness_hub_australia/models/credential.model.dart';
-import 'package:form_builder_image_picker/form_builder_image_picker.dart';
+import 'package:wellness_hub_australia/app/core/local_storage/local_storage_service.dart';
+import 'package:wellness_hub_australia/app/models/credential.model.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:stacked/stacked.dart';
+import 'package:http/http.dart' as http;
 
 class CredentialsServiceLaravel
     with ReactiveServiceMixin
@@ -29,57 +28,22 @@ class CredentialsServiceLaravel
 
   @override
   Future create(Map<String, dynamic> formData) async {
-    var dio = Dio();
-    final String? token = _localStorageService.token;
-
-    dio.options.headers['content-Type'] = 'application/json';
-    dio.options.headers["authorization"] = "Bearer $token";
-
-    Map<String, dynamic> rawFormData = Map.of(formData);
-    rawFormData.remove("attachment");
-    var requestBody = FormData.fromMap(rawFormData);
-    try {
-      List<dynamic> rawImageList = formData["attachment"] ?? [];
-      List<XFileImage> xFileImageList = [];
-      List<List<int>> xFileImageAsByteList = [];
-
-      if (rawImageList.isNotEmpty) {
-        for (var i = 0; i < rawImageList.length; i++) {
-          xFileImageList.add(XFileImage(file: rawImageList[i]));
-          xFileImageAsByteList.add(await xFileImageList[i].file.readAsBytes());
-        }
-        requestBody.files.add(MapEntry(
+    await _apiService.postFile(
+      ApiEndpoints.instance.addCredential(),
+      requestBody: formData,
+      files: [
+        http.MultipartFile.fromBytes(
           'attachment',
-          MultipartFile.fromBytes(
-            await xFileImageList[0].file.readAsBytes(),
-            filename: xFileImageList[0].file.name,
-            contentType: MediaType("image", "*"),
-          ),
-        ));
-      }
-    } catch (e) {
-      return Future.error(e.toString());
-    }
-    await dio
-        .post(ApiEndpoints.instance.addCredential(), data: requestBody)
-        .then((res) async {
-      if (res.statusCode! >= 200 && res.statusCode! <= 299) {
+          await formData['attachment']![0].readAsBytes(),
+          filename: formData['attachment']![0].name,
+          contentType: MediaType("image", "*"),
+        ),
+      ],
+      onSuccess: (res) async {
         await getAll();
-      } else {
-        return Future.error(res.data.toString());
-      }
-    }).catchError((e) {
-      final String error = "$e";
-
-      if (error.isEmpty) {
-        return Future.error("Unknown error");
-      }
-
-      if (error.contains("XMLHttpRequest error")) {
-        return Future.error("Network request failed");
-      }
-      return Future.error(error);
-    });
+      },
+      onError: (e) {},
+    );
   }
 
   @override

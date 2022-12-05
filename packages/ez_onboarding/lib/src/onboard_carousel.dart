@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:loop_page_view/loop_page_view.dart';
 import 'package:page_view_indicators/page_view_indicators.dart';
 
-class OnboardWeb extends StatefulWidget {
+class OnBoardCarousel extends StatefulWidget {
   final Function onDone;
   final List<OnboardItem> pages;
-  const OnboardWeb({Key? key, required this.pages, required this.onDone})
+  const OnBoardCarousel({Key? key, required this.pages, required this.onDone})
       : super(key: key);
 
   @override
-  State<OnboardWeb> createState() => _OnboardWebState();
+  State<OnBoardCarousel> createState() => _OnBoardCarouselState();
 }
 
-class _OnboardWebState extends State<OnboardWeb> {
+class _OnBoardCarouselState extends State<OnBoardCarousel> {
   Timer? _timer;
   final LoopPageController _pageControllerWeb = LoopPageController(
     initialPage: 0,

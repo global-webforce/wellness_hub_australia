@@ -1,5 +1,5 @@
 import 'package:wellness_hub_australia/features/pillars/widgets/pillar_progress_grid.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -18,6 +18,8 @@ class PillarStats extends StatelessWidget {
     return ScreenTypeLayout.builder(
       mobile: (BuildContext context) {
         return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             PillarProgressCircle(pillars: pillarsProgress),
             PillarProgressGrid(
@@ -31,9 +33,10 @@ class PillarStats extends StatelessWidget {
           children: [
             PillarProgressCircle(pillars: pillarsProgress),
             Expanded(
-                child: PillarProgressGrid(
-              pillars: pillarsProgress,
-            )),
+              child: PillarProgressGrid(
+                pillars: pillarsProgress,
+              ),
+            ),
           ],
         );
       },

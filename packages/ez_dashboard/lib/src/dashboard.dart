@@ -3,7 +3,7 @@ import 'package:ez_dashboard/src/widgets/ez_bottom_navbar.dart';
 import 'package:ez_dashboard/src/widgets/ez_drawer.dart';
 import 'package:flutter/material.dart';
 
-class EZDashboard extends StatefulWidget {
+class EZDashboard extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   final EZDrawer drawer;
@@ -18,34 +18,23 @@ class EZDashboard extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<EZDashboard> createState() => _EZDashboardState();
-}
-
-class _EZDashboardState extends State<EZDashboard> {
-  @override
-  void didChangeDependencies() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.scaffoldKey.currentState!.isDrawerOpen) {
-        widget.scaffoldKey.currentState!.closeDrawer();
-      }
-      if (isDesktop(context)) widget.scaffoldKey.currentState!.closeDrawer();
-    });
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (scaffoldKey.currentState!.isDrawerOpen) {
+        scaffoldKey.currentState!.closeDrawer();
+      }
+      if (isDesktop(context)) scaffoldKey.currentState!.closeDrawer();
+    });
     return Scaffold(
-        key: widget.scaffoldKey,
-        drawer: widget.drawer,
+        key: scaffoldKey,
+        drawer: drawer,
         drawerEnableOpenDragGesture: true,
-        bottomNavigationBar: !(MediaQuery.of(context).size.width > 1062)
-            ? widget.bottomNavBar
-            : null,
+        bottomNavigationBar:
+            !(MediaQuery.of(context).size.width > 1062) ? bottomNavBar : null,
         body: Row(
           children: [
-            if (isDesktop(context)) widget.drawer,
-            Expanded(child: widget.mainContent),
+            if (isDesktop(context)) drawer,
+            Expanded(child: mainContent),
           ],
         ));
   }

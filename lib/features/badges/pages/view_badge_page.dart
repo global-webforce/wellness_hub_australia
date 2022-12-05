@@ -28,9 +28,7 @@ class BadgesPage extends StatelessWidget {
             isBusy: viewModel.isBusy,
             emptyIndicatorWidget: const EmptyDisplay(
               icon: EvaIcons.award,
-              title: "You have no badges",
-              subtitle:
-                  "Take tasks seriously to achieve badges and get rewards",
+              title: "No badges",
             ),
             onRefresh: () async {
               await viewModel.getAll();

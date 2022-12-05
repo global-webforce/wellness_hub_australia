@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 
 import 'package:ez_dashboard/src/widgets/ez_appbar.dart';
 import 'package:flutter/material.dart';
 
-import '../helpers/screen_size.dart';
-
 class EZDrawerMenuItem {
   final String title;
-  final Widget icon;
+  final IconData icon;
   final int notificationCount;
   final PageRouteInfo route;
 
@@ -53,7 +52,12 @@ class _EZDrawerState extends State<EZDrawer> {
             ? Theme.of(context).primaryColorLight
             : Colors.transparent,
         child: ListTile(
-          leading: menu.icon,
+          leading: Icon(
+            menu.icon,
+            color: autoRouter.isRouteActive(menu.route.routeName)
+                ? Theme.of(context).primaryColor
+                : null,
+          ),
           title: Text(
             menu.title,
             style: const TextStyle(
@@ -61,8 +65,11 @@ class _EZDrawerState extends State<EZDrawer> {
             ),
           ),
           onTap: () {
-            context.replaceRoute(menu.route);
-            widget.scaffoldKey.currentState!.closeDrawer();
+            EasyDebounce.debounce(
+                'bottom-navigation', const Duration(milliseconds: 100), () {
+              context.replaceRoute(menu.route);
+              widget.scaffoldKey.currentState!.closeDrawer();
+            });
           },
           trailing: (menu.notificationCount > 0)
               ? CircleAvatar(
@@ -98,10 +105,10 @@ class _EZDrawerState extends State<EZDrawer> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                if (isDesktop(context)) widget.appBar,
+                widget.appBar,
                 widget.drawerHeader ?? const SizedBox.shrink(),
                 ListView(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(10),
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
                     children: items)

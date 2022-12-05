@@ -1,6 +1,6 @@
 import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_card.dart';
-import 'package:wellness_hub_australia/models/custom_link.model.dart';
+import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:url_launcher/url_launcher.dart';

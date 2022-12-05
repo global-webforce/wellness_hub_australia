@@ -5,8 +5,8 @@ import 'package:wellness_hub_australia/features/custom_links/services/custom_lin
 import 'package:wellness_hub_australia/features/pillars/pillars_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
-import 'package:wellness_hub_australia/models/custom_link.model.dart';
-import 'package:wellness_hub_australia/models/pillar_progress.model.dart';
+import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar_progress.model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -1,6 +1,6 @@
 {
   "__className": "CustomLink.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "link_icon": "mjd-homes-favicon-310x310.jpg",
   "company_name": "",

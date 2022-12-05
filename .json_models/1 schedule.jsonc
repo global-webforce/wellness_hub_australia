@@ -1,6 +1,6 @@
 {
   "__className": "Schedule.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 5,
   "task_id": 1,
   "weekdays": "1,2,3,4,5,6",

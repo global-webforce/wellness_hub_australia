@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/custom_link.model.dart';
+import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 
 abstract class CustomLinkService {
   Stream<int> get dataStream;

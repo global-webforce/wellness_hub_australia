@@ -13,7 +13,6 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_themes/src/theme_service.dart';
 import 'package:wellness_hub_australia/app/api/api_service.dart';
-
 import '../dashboards/client_dashboard/viewmodels/client_home_page_viewmodel.dart';
 import '../dashboards/client_dashboard/viewmodels/client_scaffold_page_viewmodel.dart';
 import '../dashboards/service_provider_dashboard/viewmodels/service_provider_home_page_viewmodel.dart';
@@ -58,7 +57,7 @@ import '../features/task_alarm/viewmodels/task_alarm_viewmodel.dart';
 import '../features/tasks/services/task_service.dart';
 import '../features/tasks/services/task_service_laravel.dart';
 import '../features/tasks/viewmodels/tasks_viewmodel.dart';
-import '../features_core/local_storage_service/local_storage_service.dart';
+import 'core/local_storage/local_storage_service.dart';
 import 'app_service.dart';
 import 'app_view_model.dart';
 
@@ -66,23 +65,17 @@ final locator = StackedLocator.instance;
 
 Future<void> setupLocator(
     {String? environment, EnvironmentFilter? environmentFilter}) async {
-// Register environments
   locator.registerEnvironment(
       environment: environment, environmentFilter: environmentFilter);
-
-// Register dependencies
-  locator.registerLazySingleton(() => AppService());
-
+  final localStorageService = await LocalStorageService.getInstance();
+  locator.registerSingleton(localStorageService);
   locator.registerSingleton(NavigationService());
   locator.registerLazySingleton(() => ThemeService.getInstance());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => ApiService());
-
-  final localStorageService = await LocalStorageService.getInstance();
-  locator.registerSingleton(localStorageService);
-
+  locator.registerLazySingleton(() => AppService());
   locator.registerLazySingleton<FieldsService>(() => FieldsServiceLaravel());
   locator.registerLazySingleton<PillarService>(() => PillarServiceLaravel());
   locator.registerLazySingleton<TaskService>(() => TaskServiceLaravel());

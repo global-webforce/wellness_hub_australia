@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 
-import 'package:wellness_hub_australia/features/authentication/pages/onboarding_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/onboarding_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';

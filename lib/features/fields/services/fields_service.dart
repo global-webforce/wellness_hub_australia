@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
 
 abstract class FieldsService {
   List<Field> get fields;

@@ -1,6 +1,6 @@
 {
   "__className": "Mail.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "subject": "Welcome Aboard",
   "body": "You still have 3 pending tasks for this week",

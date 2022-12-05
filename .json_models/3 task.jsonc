@@ -1,6 +1,6 @@
 {
   "__className": "Task.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 1,
   "title": "Go walking or riding your bike to work.",
   "description": "If you leave far, take the public transportation and drop out 1 station before your destination",

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:ez_dashboard/screen_size_helper.dart';
-import 'package:wellness_hub_australia/features/tasks/widgets/empty_tasks.dart';
+import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/tasks/widgets/task_card.dart';
 import 'package:wellness_hub_australia/features/tasks/viewmodels/tasks_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
@@ -29,7 +29,10 @@ class TasksPage extends StatelessWidget {
             ),
             body: ListGridViewWrapper(
               isBusy: viewModel.isBusy,
-              emptyIndicatorWidget: const EmptyTasks(),
+              emptyIndicatorWidget: const EmptyDisplay(
+                icon: Icons.light_mode_rounded,
+                title: "No Tasks",
+              ),
               onRefresh: () async {
                 await viewModel.getAll();
               },

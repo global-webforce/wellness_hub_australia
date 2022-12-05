@@ -116,9 +116,9 @@ class _LoginForm extends StatelessWidget {
     Widget emailField() {
       return FormBuilderTextField(
         name: "email",
+        initialValue: "jane_doe@yahoo.com",
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.emailAddress,
-        autofillHints: const [AutofillHints.email],
         textInputAction: TextInputAction.next,
         maxLength: 70,
         decoration: const InputDecoration(
@@ -136,9 +136,9 @@ class _LoginForm extends StatelessWidget {
     Widget passwordField() {
       return FormBuilderTextField(
         name: "password",
+        initialValue: "abc123",
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.visiblePassword,
-        autofillHints: const [AutofillHints.password],
         textInputAction: TextInputAction.next,
         obscureText: true,
         decoration: const InputDecoration(

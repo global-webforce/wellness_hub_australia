@@ -2,17 +2,17 @@ import 'package:ez_onboarding/src/onboard_item.dart';
 import 'package:flutter/material.dart';
 import 'package:page_view_indicators/page_view_indicators.dart';
 
-class OnboardApp extends StatefulWidget {
+class OnboardExplorer extends StatefulWidget {
   final Function onDone;
   final List<OnboardItem> pages;
-  const OnboardApp({Key? key, required this.pages, required this.onDone})
+  const OnboardExplorer({Key? key, required this.pages, required this.onDone})
       : super(key: key);
 
   @override
-  State<OnboardApp> createState() => _OnboardAppState();
+  State<OnboardExplorer> createState() => _OnboardExplorerState();
 }
 
-class _OnboardAppState extends State<OnboardApp> {
+class _OnboardExplorerState extends State<OnboardExplorer> {
   final PageController _pageController = PageController(
     initialPage: 0,
   );
@@ -91,7 +91,7 @@ class _OnboardAppState extends State<OnboardApp> {
     );
   }
 
-  _loopPageView() {
+  _pageView() {
     return PageView.builder(
       controller: _pageController,
       itemCount: widget.pages.length,
@@ -119,7 +119,7 @@ class _OnboardAppState extends State<OnboardApp> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          _loopPageView(),
+          _pageView(),
           Container(
             padding: const EdgeInsets.all(15),
             color: Colors.black.withOpacity(0.4),

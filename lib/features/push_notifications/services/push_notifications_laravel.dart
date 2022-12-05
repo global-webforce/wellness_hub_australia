@@ -4,7 +4,7 @@ import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/push_notifications/services/push_notifications_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/models/push_notification.model.dart';
+import 'package:wellness_hub_australia/app/models/push_notification.model.dart';
 import 'package:stacked/stacked.dart';
 
 class PushNotificationsServiceLaravel

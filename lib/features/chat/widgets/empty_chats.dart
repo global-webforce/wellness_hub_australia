@@ -18,7 +18,7 @@ class EmptyChats extends StatelessWidget {
           ),
         ),
         vSpaceRegular,
-        const EzText.title2("You have no chats")
+        const EzText.title2("No chats")
       ],
     );
   }

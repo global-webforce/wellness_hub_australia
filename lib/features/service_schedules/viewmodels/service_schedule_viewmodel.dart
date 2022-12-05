@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
@@ -7,13 +8,11 @@ import 'package:wellness_hub_australia/features/service_schedules/pages/add_serv
 import 'package:wellness_hub_australia/features/service_schedules/services/service_schedule_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/service_schedule.model.dart';
+import 'package:wellness_hub_australia/app/models/service_schedule.model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-const String busyScheduleDelete = 'busy-schedule-delete';
 
 class ServiceSchedulesViewModel extends ReactiveViewModel {
   final log = getLogger('ServiceSchedulesViewModel');
@@ -63,7 +62,7 @@ class ServiceSchedulesViewModel extends ReactiveViewModel {
       _serviceScheduleFormKey.currentState!.reset();
 
       _snackbarService.showCustomSnackBar(
-          message: "Credential added",
+          message: "Schedule added",
           duration: const Duration(seconds: 2),
           variant: SnackbarType.successful);
     }
@@ -71,7 +70,7 @@ class ServiceSchedulesViewModel extends ReactiveViewModel {
 
   Future delete(int? id) async {
     await runBusyFuture(_serviceSchedulesService.delete(id),
-        busyObject: busyScheduleDelete, throwException: true);
+        busyObject: ViewModelBusyKeys.scheduleDelete, throwException: true);
 
     _snackbarService.showCustomSnackBar(
       message: "Schedule #$id deleted",

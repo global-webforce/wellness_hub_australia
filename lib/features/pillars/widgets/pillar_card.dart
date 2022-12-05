@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/pillar.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar.model.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -19,18 +19,23 @@ class PillarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget image(double width) {
       return CachedNetworkImage(
-        color: Colors.white,
-        imageUrl:
-            "https://gwf-cors-anywhere.herokuapp.com/${pillar.pillarIcon}",
+        imageUrl: "${pillar.pillarIcon}",
         width: 50,
         height: 50,
+        fit: BoxFit.contain,
+        color: Colors.white,
+        placeholder: (context, url) {
+          return Image.asset(
+            "assets/images/logo_basic.png",
+            fit: BoxFit.contain,
+            color: Colors.white,
+          );
+        },
         errorWidget: (context, url, error) {
-          return Card(
-            clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              "/images/placeholder.png",
-              fit: BoxFit.cover,
-            ),
+          return Image.asset(
+            "assets/images/logo_basic.png",
+            fit: BoxFit.contain,
+            color: Colors.white,
           );
         },
       );

@@ -2,16 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/pages/appointments_page.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/choose_service_provider_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/loading_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/onboarding_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/onboarding_page.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_page.dart';
 import 'package:wellness_hub_australia/features/profile/client_profile_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/auth_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/login_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/register_client_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/register_service_provider_page.dart';
-import 'package:wellness_hub_australia/features/authentication/pages/welcome_page.dart';
-
+import 'package:wellness_hub_australia/app/core/authentication/pages/auth_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/login_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/register_client_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/register_service_provider_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/welcome_page.dart';
 import 'package:wellness_hub_australia/dashboards/client_dashboard/pages/client_home_page.dart';
 import 'package:wellness_hub_australia/dashboards/client_dashboard/pages/client_scaffold_page.dart';
 import 'package:wellness_hub_australia/features/settings/pages/client_settings_page.dart';
@@ -35,11 +33,6 @@ class HeroEmptyRouterPage extends StatelessWidget {
 }
 
 @MaterialAutoRouter(replaceInRouteName: 'Page,Route', routes: [
-  CustomRoute(
-    path: '/',
-    page: LoadingPage,
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-  ),
   CustomRoute(
     path: '/',
     page: AuthPage,
@@ -78,7 +71,6 @@ class HeroEmptyRouterPage extends StatelessWidget {
     children: [
       CustomRoute(
         initial: true,
-        path: "",
         page: ClientHomePage,
         meta: {
           'prefixPath': 'home',

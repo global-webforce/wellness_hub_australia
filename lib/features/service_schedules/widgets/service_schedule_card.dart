@@ -1,5 +1,5 @@
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/service_schedule.model.dart';
+import 'package:wellness_hub_australia/app/models/service_schedule.model.dart';
 import 'package:flutter/material.dart';
 
 class ServiceScheduleCard extends StatelessWidget {

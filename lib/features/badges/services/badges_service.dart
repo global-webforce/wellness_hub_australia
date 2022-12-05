@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/badge.model.dart';
+import 'package:wellness_hub_australia/app/models/badge.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class BadgesService with ReactiveServiceMixin {

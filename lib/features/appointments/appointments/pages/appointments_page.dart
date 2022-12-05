@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:ez_dashboard/screen_size_helper.dart';
+import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/widgets/sf_calendar_widget.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/book_appointment_page.dart';
@@ -15,7 +16,7 @@ class AppointmentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AppointmentViewModel>.reactive(
-        viewModelBuilder: () => AppointmentViewModel(),
+        viewModelBuilder: () => locator<AppointmentViewModel>(),
         onModelReady: (viewModel) => viewModel.getAll(),
         onDispose: ((viewModel) {
           viewModel.controller1.dispose();

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ez_dashboard/ez_dashboard.dart';
+import 'package:ez_ui/ez_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -12,7 +13,11 @@ class _DrawerHeader extends ViewModelWidget<AppViewModel> {
   @override
   Widget build(BuildContext context, AppViewModel viewModel) {
     return EZDrawerHeader(
-      userNetworkImage: "${viewModel.user?.profilePic}",
+      currentAccountPicture: EzAvatar(
+        imgUrl: "${viewModel.user?.profilePic}",
+        name: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+        radius: 40,
+      ),
       userEmail: "${viewModel.user?.email}",
       userName:
           "${viewModel.user?.firstName} ${viewModel.user?.lastName}  #${viewModel.user?.id}",
@@ -70,32 +75,32 @@ class ServiceProviderScaffoldPage extends StatelessWidget {
                 drawerHeader: const _DrawerHeader(),
                 items: [
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.home_rounded),
+                    icon: Icons.home_rounded,
                     title: "HOME",
                     route: const ServiceProviderHomeRoute(),
                   ),
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.calendar_month_rounded),
+                    icon: Icons.calendar_month_rounded,
                     title: "APPOINTMENTS",
                     route: const AppointmentsRoute(),
                   ),
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.chat_rounded),
+                    icon: Icons.chat_rounded,
                     title: "CHAT",
                     route: const ChatsRoute(),
                   ),
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.notifications_rounded),
+                    icon: Icons.notifications_rounded,
                     title: "NOTIFICATIONS",
                     route: const PushNotificationsRoute(),
                   ),
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.person_rounded),
+                    icon: Icons.person_rounded,
                     title: "PROFILE",
                     route: const ServiceProviderProfileRoute(),
                   ),
                   EZDrawerMenuItem(
-                    icon: const Icon(Icons.settings_rounded),
+                    icon: Icons.settings_rounded,
                     title: "SETTINGS",
                     route: const ServiceProviderSettingsRoute(),
                   ),
@@ -104,22 +109,22 @@ class ServiceProviderScaffoldPage extends StatelessWidget {
               bottomNavBar: EZBottomNavbar(
                 items: [
                   EZBottomNavbarItem(
-                    icon: const Icon(Icons.home_rounded),
+                    icon: Icons.home_rounded,
                     title: "HOME",
                     route: const ServiceProviderHomeRoute(),
                   ),
                   EZBottomNavbarItem(
-                    icon: const Icon(Icons.calendar_month_rounded),
+                    icon: Icons.calendar_month_rounded,
                     title: "APPOINTMENTS",
                     route: const AppointmentsRoute(),
                   ),
                   EZBottomNavbarItem(
-                    icon: const Icon(Icons.person_rounded),
+                    icon: Icons.person_rounded,
                     title: "PROFILE",
                     route: const ServiceProviderProfileRoute(),
                   ),
                   EZBottomNavbarItem(
-                    icon: const Icon(Icons.settings_rounded),
+                    icon: Icons.settings_rounded,
                     title: "SETTINGS",
                     route: const ServiceProviderSettingsRoute(),
                   ),

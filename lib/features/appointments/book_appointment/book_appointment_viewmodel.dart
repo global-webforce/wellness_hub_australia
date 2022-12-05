@@ -1,20 +1,18 @@
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/features/appointments/appointments/services/appointments_service.dart';
 import 'package:wellness_hub_australia/features/appointments/book_appointment/pages/booking_successful_page.dart';
-import 'package:wellness_hub_australia/models/field.model.dart';
-import 'package:wellness_hub_australia/models/pillar.model.dart';
-import 'package:wellness_hub_australia/models/service_provider.model.dart';
+import 'package:wellness_hub_australia/app/models/field.model.dart';
+import 'package:wellness_hub_australia/app/models/pillar.model.dart';
+import 'package:wellness_hub_australia/app/models/service_provider.model.dart';
 import 'package:flutter/material.dart';
-
 import 'package:wellness_hub_australia/features/fields/services/fields_service.dart';
 import 'package:wellness_hub_australia/features/pillars/pillars_service.dart';
 import 'package:wellness_hub_australia/features/service_providers/services/service_providers_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-const String busyAppintmentBookingKey = 'busy-appointment-booking-key';
 
 class BookAppointmentViewModel extends ReactiveViewModel {
   final log = getLogger('ClientHomePageViewModel');
@@ -228,7 +226,7 @@ class BookAppointmentViewModel extends ReactiveViewModel {
           "status": "Pending",
           "paid": 0,
         }),
-        busyObject: busyAppintmentBookingKey,
+        busyObject: ViewModelBusyKeys.appointmentBooking,
         throwException: true);
 
     await _navigationService.clearTillFirstAndShowView(

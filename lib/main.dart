@@ -6,7 +6,7 @@ import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_bottomsheet_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
-import 'package:wellness_hub_australia/app/shared/constants/theme_settings.dart';
+import 'package:wellness_hub_australia/app/app.theme_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,8 @@ import 'package:stacked_themes/stacked_themes.dart';
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  if (!kIsWeb) FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   setupLocator();
   await ThemeManager.initialise();
   await setupSnackBarUI();
@@ -43,15 +44,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AppViewModel>.reactive(
-      viewModelBuilder: () => AppViewModel(),
+      viewModelBuilder: () => locator<AppViewModel>(),
       onModelReady: (viewModel) async {
         await viewModel.fetchUser();
       },
-      disposeViewModel: true,
+      disposeViewModel: false,
+      fireOnModelReadyOnce: true,
       builder: (context, viewModel, child) {
-        //  FlutterNativeSplash.remove();
         return ThemeBuilder(
-            defaultThemeMode: ThemeMode.light,
+            defaultThemeMode: ThemeMode.system,
             lightTheme: ThemeSettings.lightTheme,
             darkTheme: ThemeSettings.darkTheme,
             builder: (context, regularTheme, darkTheme, themeMode) {
@@ -66,43 +67,29 @@ class MyApp extends StatelessWidget {
                 ],
                 debugShowCheckedModeBanner: false,
                 routeInformationParser: _appRouter.defaultRouteParser(),
-                routerDelegate: _appRouter.declarativeDelegate(
-                  routes: (ctx) {
-                    if (viewModel.isBusy) {
-                      return [];
-                    } else {
-                      FlutterNativeSplash.remove();
-                      // FlutterNativeSplash.remove();
-                      if (kIsWeb) {
-                        // running on the web!
-                        if (viewModel.user != null) {
-                          if (viewModel.isMember()) {
-                            return [const ClientScaffoldRoute()];
-                          }
-                          if (viewModel.isServiceProvider()) {
-                            return [const ServiceProviderScaffoldRoute()];
-                          }
-                        }
-
-                        return [AuthRoute(key: UniqueKey())];
-                      } else {
-                        if (viewModel.isOnboarded != true) {
-                          return [const OnboardingRoute()];
-                        }
-                        if (viewModel.user != null) {
-                          if (viewModel.isMember()) {
-                            return [const ClientScaffoldRoute()];
-                          }
-                          if (viewModel.isServiceProvider()) {
-                            return [const ServiceProviderScaffoldRoute()];
-                          }
-                        }
-
-                        return [AuthRoute(key: UniqueKey())];
+                routerDelegate: _appRouter.declarativeDelegate(routes: (ctx) {
+                  if (viewModel.isBusy) {
+                    return [];
+                  } else {
+                    if (!kIsWeb) {
+                      Future.delayed(const Duration(seconds: 1), () {
+                        FlutterNativeSplash.remove();
+                      });
+                      if (viewModel.isOnboarded != true) {
+                        return [const OnboardingRoute()];
                       }
                     }
-                  },
-                ),
+                    if (viewModel.user != null) {
+                      if (viewModel.isMember()) {
+                        return [const ClientScaffoldRoute()];
+                      }
+                      if (viewModel.isServiceProvider()) {
+                        return [const ServiceProviderScaffoldRoute()];
+                      }
+                    }
+                    return [AuthRoute(key: UniqueKey())];
+                  }
+                }),
               );
             });
       },

@@ -3,7 +3,7 @@ import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/features/badges/services/badges_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/badge.model.dart';
+import 'package:wellness_hub_australia/app/models/badge.model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class BadgesViewModel extends ReactiveViewModel {

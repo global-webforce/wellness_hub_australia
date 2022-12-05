@@ -1,4 +1,4 @@
-import 'package:wellness_hub_australia/models/service_schedule.model.dart';
+import 'package:wellness_hub_australia/app/models/service_schedule.model.dart';
 import 'package:stacked/stacked.dart';
 
 abstract class ServiceSchedulesService with ReactiveServiceMixin {

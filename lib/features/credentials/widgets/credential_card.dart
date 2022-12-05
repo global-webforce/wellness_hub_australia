@@ -1,5 +1,5 @@
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/credential.model.dart';
+import 'package:wellness_hub_australia/app/models/credential.model.dart';
 import 'package:flutter/material.dart';
 
 class CredentialCard extends StatelessWidget {

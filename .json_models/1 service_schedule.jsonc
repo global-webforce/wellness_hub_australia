@@ -1,6 +1,6 @@
 {
   "__className": "ServiceSchedule.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "id": 13,
   "day": "Monday",
   "start_date": "2022-03-22T18:18:39.000000Z",

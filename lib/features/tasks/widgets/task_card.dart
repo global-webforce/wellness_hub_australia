@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/task.model.dart';
+import 'package:wellness_hub_australia/app/models/task.model.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,13 +18,25 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget image(double width) {
       return Card(
+        elevation: 0,
         color: Colors.white,
         child: CachedNetworkImage(
           imageUrl: "${task!.imgUrl}",
           width: max(width * 0.13, 80),
           height: max(width * 0.13, 80),
+          placeholder: (context, url) {
+            return Card(
+              elevation: 0,
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(
+                "/images/placeholder.png",
+                fit: BoxFit.cover,
+              ),
+            );
+          },
           errorWidget: (context, url, error) {
             return Card(
+              elevation: 0,
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
                 "/images/placeholder.png",
@@ -132,7 +144,7 @@ class TaskCard extends StatelessWidget {
                       frequency(),
                       const SizedBox(height: 4),
                       title(),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 6),
                       description()
                     ],
                   ),

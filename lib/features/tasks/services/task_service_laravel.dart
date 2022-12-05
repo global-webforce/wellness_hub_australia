@@ -7,7 +7,7 @@ import 'package:wellness_hub_australia/features/pillars/pillars_service.dart';
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/task.model.dart';
+import 'package:wellness_hub_australia/app/models/task.model.dart';
 import 'package:stacked/stacked.dart';
 
 class TaskServiceLaravel with ReactiveServiceMixin implements TaskService {

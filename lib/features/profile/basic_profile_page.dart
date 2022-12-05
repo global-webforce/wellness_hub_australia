@@ -10,10 +10,11 @@ import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
-import 'package:wellness_hub_australia/features/authentication/address_extension.dart';
-import 'package:wellness_hub_australia/models/address.model.dart';
+import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
+import 'package:wellness_hub_australia/app/models/address.model.dart';
 
 class BasicProfilePage extends StatelessWidget {
   const BasicProfilePage({Key? key}) : super(key: key);
@@ -210,6 +211,9 @@ class _BasicProfileForm extends StatelessWidget {
       return FormBuilderSearchableDropdown<Address>(
         name: 'address2',
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
+        ]),
         itemAsString: (address) {
           return address.displaySafe();
         },
@@ -361,7 +365,8 @@ class _BasicProfileForm extends StatelessWidget {
                     child: Row(
                       children: [
                         EzButton.elevated(
-                          busy: viewModel.busy(busyUserProfileUpdateKey),
+                          busy: viewModel
+                              .busy(ViewModelBusyKeys.userProfileUpdate),
                           title: "Save",
                           onTap: () async {
                             await viewModel.updateProfile();

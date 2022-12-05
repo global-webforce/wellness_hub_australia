@@ -1,5 +1,6 @@
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/features/task_alarm/viewmodels/task_alarm_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,7 @@ class _TaskAlarmForm extends StatelessWidget {
   final textStyle = const TextStyle(fontWeight: FontWeight.w500);
   @override
   Widget build(BuildContext context) {
-    final viewModel =
-        getParentViewModel<TaskAlarmViewModel>(context, listen: false);
+    final viewModel = getParentViewModel<TaskAlarmViewModel>(context);
 
     Widget titleField() {
       return Text(
@@ -168,7 +168,8 @@ class _TaskAlarmForm extends StatelessWidget {
                 spacing: 10,
                 children: [
                   EzButton.elevated(
-                    busy: viewModel.busy(busyTaskAlarmDelete),
+                    busy: viewModel.busy(ViewModelBusyKeys.taskAlarmDelete),
+                    disabled: viewModel.busy(ViewModelBusyKeys.taskAlarmUpdate),
                     background: Colors.red,
                     foreground: Colors.white,
                     leading: Icons.delete_forever,
@@ -178,7 +179,8 @@ class _TaskAlarmForm extends StatelessWidget {
                     },
                   ),
                   EzButton.elevated(
-                    busy: viewModel.busy(busyTaskAlarmUpdate),
+                    busy: viewModel.busy(ViewModelBusyKeys.taskAlarmUpdate),
+                    disabled: viewModel.busy(ViewModelBusyKeys.taskAlarmDelete),
                     background: Colors.green,
                     foreground: Colors.white,
                     leading: Icons.update,

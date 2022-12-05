@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:wellness_hub_australia/app/app.logger.dart';
-import 'package:wellness_hub_australia/models/address.model.dart';
-import 'package:wellness_hub_australia/models/user.model.dart';
+import 'package:wellness_hub_australia/app/models/address.model.dart';
+import 'package:wellness_hub_australia/app/models/user.model.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

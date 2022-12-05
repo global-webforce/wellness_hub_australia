@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ez_core/ez_core.dart';
-import 'package:wellness_hub_australia/models/badge.model.dart';
+import 'package:wellness_hub_australia/app/models/badge.model.dart';
 
 import 'package:flutter/material.dart';
 

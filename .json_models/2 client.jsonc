@@ -1,6 +1,6 @@
 {
   "__className": "Client.model",
-  "__path": "/lib/models/",
+  "__path": "/lib/app/models/",
   "r@id": 1,
   "r@first_name": "Morton",
   "r@last_name": "Schmeler",

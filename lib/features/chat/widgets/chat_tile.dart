@@ -52,7 +52,7 @@ class ChatTile extends StatelessWidget {
 
     Widget avatar() {
       return EzAvatar(
-        firstName: "${chatUser.firstName} ${chatUser.lastName}",
+        name: "${chatUser.firstName} ${chatUser.lastName}",
         imgUrl: "${chatUser.profileImage}",
         radius: 25,
       );

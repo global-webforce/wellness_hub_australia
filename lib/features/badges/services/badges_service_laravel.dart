@@ -5,7 +5,7 @@ import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/features/badges/services/badges_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/models/badge.model.dart';
+import 'package:wellness_hub_australia/app/models/badge.model.dart';
 import 'package:stacked/stacked.dart';
 
 class BadgesServiceLaravel with ReactiveServiceMixin implements BadgesService {
