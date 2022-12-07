@@ -76,31 +76,20 @@ class AppService with ReactiveServiceMixin {
     _user.value = _localStorageService.user;
   }
 
-  Future xxx(Map<String, dynamic> formData) async {
-    var request = http.MultipartRequest(
-        'POST', Uri.parse(ApiEndpoints.instance.userProfile()));
-    formData.remove('profile_pic');
-    request.fields
-        .addEntries(formData.entries as Iterable<MapEntry<String, String>>);
-    request.files.add(http.MultipartFile.fromBytes(
-        'picture', formData['profile_pic']![0].readAsBytesSync(),
-        filename: formData['profile_pic']![0].name));
-
-    await request.send();
-  }
-
   Future updateProfile(Map<String, dynamic> formData) async {
     await _apiService.postFile(
       ApiEndpoints.instance.userProfile(),
       requestBody: formData,
-      files: [
-        http.MultipartFile.fromBytes(
-          'profile-pic',
-          await formData['profile_pic']![0].readAsBytes(),
-          filename: formData['profile_pic']![0].name,
-          contentType: MediaType("image", "*"),
-        ),
-      ],
+      files: formData['profile_pic'] != null
+          ? [
+              http.MultipartFile.fromBytes(
+                'profile-pic',
+                await formData['profile_pic']![0].readAsBytes(),
+                filename: formData['profile_pic']![0].name,
+                contentType: MediaType("image", "*"),
+              )
+            ]
+          : [],
       onSuccess: (res) {
         _user.value = User.fromJson(jsonDecode(res.body));
         _localStorageService.user = _user.value;

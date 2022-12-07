@@ -1,7 +1,5 @@
-import 'package:ez_core/ez_core.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wellness_hub_australia/app/app.locator.dart';
-import 'package:wellness_hub_australia/app/app_service.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:wellness_hub_australia/app/models/appointment.model.dart'
     as appt;
 import 'package:flutter/material.dart';
@@ -23,9 +21,12 @@ class SfCalendarTemplateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final calendarTextStyle = TextStyle(
+    final calendarTextStyle1 = TextStyle(
         fontFamily: GoogleFonts.poppins().fontFamily,
         color: Theme.of(context).textTheme.bodyText1!.color);
+
+    final calendarTextStyle2 = TextStyle(
+        fontFamily: GoogleFonts.poppins().fontFamily, color: Colors.white);
 
     return SfCalendar(
       controller: controller,
@@ -39,9 +40,11 @@ class SfCalendarTemplateWidget extends StatelessWidget {
       showNavigationArrow: true,
       showCurrentTimeIndicator: true,
       monthViewSettings: MonthViewSettings(
+          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+          showTrailingAndLeadingDates: false,
           showAgenda: true,
           monthCellStyle: MonthCellStyle(
-              textStyle: calendarTextStyle,
+              textStyle: calendarTextStyle1,
               leadingDatesTextStyle: TextStyle(
                   fontFamily: GoogleFonts.poppins().fontFamily,
                   color: Colors.grey),
@@ -49,26 +52,31 @@ class SfCalendarTemplateWidget extends StatelessWidget {
                   fontFamily: GoogleFonts.poppins().fontFamily,
                   color: Colors.grey)),
           agendaStyle: AgendaStyle(
-              dayTextStyle: calendarTextStyle,
-              dateTextStyle: calendarTextStyle,
-              appointmentTextStyle: calendarTextStyle)),
-      headerStyle: CalendarHeaderStyle(textStyle: calendarTextStyle),
+              dayTextStyle: calendarTextStyle1,
+              dateTextStyle: calendarTextStyle1,
+              appointmentTextStyle: calendarTextStyle1)),
+      headerStyle: CalendarHeaderStyle(textStyle: calendarTextStyle1),
       viewHeaderStyle: ViewHeaderStyle(
-          dayTextStyle: calendarTextStyle, dateTextStyle: calendarTextStyle),
+          dayTextStyle: calendarTextStyle1, dateTextStyle: calendarTextStyle1),
       timeSlotViewSettings: TimeSlotViewSettings(
         timelineAppointmentHeight: 40,
-        timeTextStyle: calendarTextStyle,
+        timeTextStyle: calendarTextStyle1,
       ),
       scheduleViewSettings: ScheduleViewSettings(
-        appointmentTextStyle: calendarTextStyle,
+        hideEmptyScheduleWeek: true,
+        appointmentTextStyle: calendarTextStyle1,
         dayHeaderSettings: DayHeaderSettings(
-            dateTextStyle: calendarTextStyle, dayTextStyle: calendarTextStyle),
-        monthHeaderSettings:
-            MonthHeaderSettings(monthTextStyle: calendarTextStyle),
+            dateTextStyle: calendarTextStyle1,
+            dayTextStyle: calendarTextStyle1),
+        monthHeaderSettings: MonthHeaderSettings(
+            monthTextStyle: calendarTextStyle2,
+            backgroundColor: HexColor("#50306B"),
+            height: 70,
+            textAlign: TextAlign.start),
         weekHeaderSettings:
-            WeekHeaderSettings(weekTextStyle: calendarTextStyle),
+            WeekHeaderSettings(weekTextStyle: calendarTextStyle1),
       ),
-      appointmentTextStyle: calendarTextStyle,
+      appointmentTextStyle: calendarTextStyle1,
     );
   }
 }
@@ -79,7 +87,7 @@ https://www.syncfusion.com/kb/11529/how-to-add-a-custom-appointments-or-objects-
 */
 
 class MeetingDataSource extends CalendarDataSource<appt.Appointment> {
-  final _appService = locator<AppService>();
+  //final _appService = locator<AppService>();
   MeetingDataSource(List<appt.Appointment> source) {
     appointments = source;
   }
@@ -91,15 +99,15 @@ class MeetingDataSource extends CalendarDataSource<appt.Appointment> {
 
     switch (status) {
       case "Confirmed":
-        return Colors.blue;
+        return HexColor("#B4DBFB");
       case "Completed":
-        return Colors.green;
+        return HexColor("#C0E1B8");
       case "Missed":
-        return Colors.orange;
+        return HexColor("#FFDCAA");
       case "Cancelled":
-        return Colors.red;
+        return HexColor("#FBC0BC");
       default:
-        return Colors.grey;
+        return HexColor("#DEDEDE");
     }
   }
 
@@ -121,9 +129,11 @@ class MeetingDataSource extends CalendarDataSource<appt.Appointment> {
   @override
   String getSubject(int index) {
     final appt.Appointment a = appointments![index];
-    final double total = a.total ?? 0;
-    return _appService.user?.role == "member"
+
+    return "${a.fieldDetails?.title} | ${a.paymentType} (${a.paid == 1 ? "Paid" : "Unpaid"})";
+
+    /*  return _appService.user?.role == "member"
         ? "${a.fieldDetails?.title} w/ ${a.serviceProvider?.firstName} ${a.serviceProvider?.lastName} - ${total.moneyFormat()} via ${a.paymentType} (${a.paid == 1 ? "Paid" : "Unpaid"})"
-        : "${a.fieldDetails?.title} w/ client ${a.member?.firstName} ${a.member?.lastName} - ${total.moneyFormat()} via ${a.paymentType} (${a.paid == 1 ? "Paid" : "Unpaid"})";
+        : "${a.fieldDetails?.title} w/ client ${a.member?.firstName} ${a.member?.lastName} - ${total.moneyFormat()} via ${a.paymentType} (${a.paid == 1 ? "Paid" : "Unpaid"})"; */
   }
 }

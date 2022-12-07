@@ -2,6 +2,7 @@ import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 
 class ClientFeedbackPage extends StatefulWidget {
   const ClientFeedbackPage({Key? key}) : super(key: key);
@@ -95,7 +96,7 @@ class _ClientFeedbackPageState extends State<ClientFeedbackPage> {
         centerTitle: true,
         title: const Text("Feedback"),
       ),
-      body: EzScaffoldBody(builder: (context, constraints) {
+      body: ScaffoldBodyWrapper(builder: (context, constraints) {
         return SingleChildScrollView(
           padding: xSpaceSmall,
           child: Center(

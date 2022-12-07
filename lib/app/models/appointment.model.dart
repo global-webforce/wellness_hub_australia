@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'client.model.dart';
@@ -22,6 +23,7 @@ class Appointment with _$Appointment {
     @JsonKey(name: 'field_details') Field? fieldDetails,
     Client? member,
     @JsonKey(name: 'service_provider') ServiceProvider? serviceProvider,
+    @JsonKey(name: 'is_editable') bool? isEditable,
   }) = _Appointment;
 
   factory Appointment.fromJson(Map<String, dynamic> json) =>

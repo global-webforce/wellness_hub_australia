@@ -33,15 +33,13 @@ class BasicProfilePage extends StatelessWidget {
                 leading: const AutoLeadingButton(),
                 title: const Text("Basic Profile"),
               ),
-              body: ScaffoldBodyWrapper(
-                  onRefresh: () async {},
-                  builder: (context, constraints) {
-                    return Column(
-                      children: const [
-                        _BasicProfileForm(),
-                      ],
-                    );
-                  }));
+              body: ScaffoldBodyWrapper(builder: (context, constraints) {
+                return Column(
+                  children: const [
+                    _BasicProfileForm(),
+                  ],
+                );
+              }));
         });
   }
 }

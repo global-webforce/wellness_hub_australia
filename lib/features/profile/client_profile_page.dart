@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 import 'package:wellness_hub_australia/app/core/authentication/address_extension.dart';
 import 'package:wellness_hub_australia/features/badges/pages/view_badge_page.dart';
-import 'package:wellness_hub_australia/features/profile/basic_profile_page.dart';
+import 'package:wellness_hub_australia/app/core/authentication/pages/basic_profile_page.dart';
 import 'package:wellness_hub_australia/features/settings/widgets/settings_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -78,49 +78,47 @@ class ClientProfilePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: const Text("Profile"),
         ),
-        body: ScaffoldBodyWrapper(
-            onRefresh: () async {},
-            builder: (context, constraints) {
-              return Column(
-                children: [
-                  _Profile(),
-                  vSpaceRegular,
-                  SettingsList(sections: [
-                    SettingsSection(title: "MY ACCOUNT", tiles: [
-                      SettingsTile(
-                        icon: RoundedIcon(
-                          const Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
-                          background: Colors.blue.shade400,
-                        ),
-                        title: "Basic Profile",
-                        onTap: () {
-                          context.router.root.pushWidget(
-                            const BasicProfilePage(),
-                          );
-                        },
+        body: ScaffoldBodyWrapper(builder: (context, constraints) {
+          return Column(
+            children: [
+              _Profile(),
+              vSpaceRegular,
+              SettingsList(sections: [
+                SettingsSection(title: "MY ACCOUNT", tiles: [
+                  SettingsTile(
+                    icon: RoundedIcon(
+                      const Icon(
+                        Icons.person,
+                        color: Colors.white,
                       ),
-                      SettingsTile(
-                        icon: RoundedIcon(
-                          const Icon(
-                            EvaIcons.award,
-                            color: Colors.white,
-                          ),
-                          background: Colors.orange.shade400,
-                        ),
-                        title: "Badges",
-                        onTap: () {
-                          context.router.root.pushWidget(
-                            const BadgesPage(),
-                          );
-                        },
+                      background: Colors.blue.shade400,
+                    ),
+                    title: "Basic Profile",
+                    onTap: () {
+                      context.router.root.pushWidget(
+                        const BasicProfilePage(),
+                      );
+                    },
+                  ),
+                  SettingsTile(
+                    icon: RoundedIcon(
+                      const Icon(
+                        EvaIcons.award,
+                        color: Colors.white,
                       ),
-                    ])
-                  ]),
-                ],
-              );
-            }));
+                      background: Colors.orange.shade400,
+                    ),
+                    title: "Badges",
+                    onTap: () {
+                      context.router.root.pushWidget(
+                        const BadgesPage(),
+                      );
+                    },
+                  ),
+                ])
+              ]),
+            ],
+          );
+        }));
   }
 }

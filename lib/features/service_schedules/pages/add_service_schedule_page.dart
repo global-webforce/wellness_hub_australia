@@ -19,13 +19,11 @@ class AddServiceSchedulePage extends StatelessWidget {
               appBar: AppBar(
                 title: const Text("Add Service Schedule"),
               ),
-              body: ScaffoldBodyWrapper(
-                  onRefresh: () async {},
-                  builder: (context, constraints) {
-                    return const Card(
-                      child: _ServiceScheduleForm(),
-                    );
-                  }));
+              body: ScaffoldBodyWrapper(builder: (context, constraints) {
+                return const Card(
+                  child: _ServiceScheduleForm(),
+                );
+              }));
         });
   }
 }

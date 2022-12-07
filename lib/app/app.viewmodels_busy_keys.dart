@@ -12,4 +12,5 @@ class ViewModelBusyKeys {
   static const String scheduleDelete = 'schedule-delete';
   static const String taskAlarmUpdate = 'task-alarm-update';
   static const String taskAlarmDelete = 'task-alarm-delete';
+  static const String appointmentUpdate = 'appointment-update';
 }

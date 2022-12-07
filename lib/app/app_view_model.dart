@@ -44,7 +44,7 @@ class AppViewModel extends ReactiveViewModel {
       ];
 
   User? get user => _appService.user;
-  bool get isOnboarded => _storageService.isOnboarded == true ? true : false;
+  bool get isOnboarded => _storageService.isOnboarded;
 
   Future<void> init() async {
     await runBusyFuture(_appService.fetchUser(), throwException: true);
@@ -98,12 +98,14 @@ class AppViewModel extends ReactiveViewModel {
       await runBusyFuture(_appService.login(formValue!), throwException: true);
 
       if (_appService.user?.role == "registered") {
-        _bottomSheetService.showCustomSheet(
-            variant: BottomSheetType.codeVerification,
-            takesInput: true,
-            enableDrag: false,
-            barrierDismissible: false,
-            useRootNavigator: true);
+        _bottomSheetService
+            .showCustomSheet(
+                variant: BottomSheetType.codeVerification,
+                takesInput: true,
+                enableDrag: false,
+                barrierDismissible: false,
+                useRootNavigator: true)
+            .whenComplete(() => _loginFormKey.currentState?.reset());
       }
     }
   }
@@ -128,12 +130,14 @@ class AppViewModel extends ReactiveViewModel {
           throwException: true);
 
       if (_appService.user?.role == "registered") {
-        _bottomSheetService.showCustomSheet(
-            variant: BottomSheetType.codeVerification,
-            takesInput: true,
-            enableDrag: false,
-            barrierDismissible: false,
-            useRootNavigator: true);
+        _bottomSheetService
+            .showCustomSheet(
+                variant: BottomSheetType.codeVerification,
+                takesInput: true,
+                enableDrag: false,
+                barrierDismissible: false,
+                useRootNavigator: true)
+            .whenComplete(() => _registerFormKey.currentState?.reset());
       }
     }
   }

@@ -25,13 +25,11 @@ class AddTaskAlarmPage extends StatelessWidget {
               appBar: AppBar(
                 title: const Text("Add Alarm"),
               ),
-              body: ScaffoldBodyWrapper(
-                  onRefresh: () async {},
-                  builder: (context, constraints) {
-                    return const Card(
-                      child: _TaskAlarmForm(),
-                    );
-                  }));
+              body: ScaffoldBodyWrapper(builder: (context, constraints) {
+                return const Card(
+                  child: _TaskAlarmForm(),
+                );
+              }));
         });
   }
 }

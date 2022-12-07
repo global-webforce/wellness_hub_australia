@@ -1,12 +1,11 @@
-import 'dart:math';
-
 import 'package:ez_dashboard/screen_size_helper.dart';
+import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
+import 'package:wellness_hub_australia/app/shared/ui/sliver_grid_delegate.dart';
 import 'package:wellness_hub_australia/features/tasks/widgets/task_card.dart';
 import 'package:wellness_hub_australia/features/tasks/viewmodels/tasks_viewmodel.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class TasksPage extends StatelessWidget {
@@ -22,12 +21,11 @@ class TasksPage extends StatelessWidget {
         await viewModel.getAll();
       },
       builder: (context, viewModel, child) {
-        final tasks = viewModel.tasks;
         return Scaffold(
             appBar: AppBar(
               title: Text("My ${viewModel.pillar!.title} Tasks"),
             ),
-            body: ListGridViewWrapper(
+            body: ListAndGridViewWrapper(
               isBusy: viewModel.isBusy,
               emptyIndicatorWidget: const EmptyDisplay(
                 icon: Icons.light_mode_rounded,
@@ -36,24 +34,26 @@ class TasksPage extends StatelessWidget {
               onRefresh: () async {
                 await viewModel.getAll();
               },
-              itemCount: tasks.length,
+              itemCount: viewModel.tasks.length,
               builder: (context, constraints) {
-                return AlignedGridView.count(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: max((screenWidth(context) - 1000) / 2, 15)),
-                  crossAxisCount: isMobile(context) ? 1 : 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
+                return GridView.builder(
+                  itemCount: viewModel.tasks.length,
+                  padding: Dimens.sliverPadding(constraints),
+                  gridDelegate:
+                      SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                    crossAxisCount: isMobile(context) ? 1 : 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    height: 115,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
                     return TaskCard(
-                      task: tasks[index],
+                      task: viewModel.tasks[index],
                       onTap: () {
-                        viewModel.goToTaskDetailPage(tasks[index].id);
+                        viewModel.goToTaskDetailPage(viewModel.tasks[index].id);
                       },
                       onTapAlarm: () {
-                        viewModel.goToTaskAlarmPage(tasks[index].id);
+                        viewModel.goToTaskAlarmPage(viewModel.tasks[index].id);
                       },
                     );
                   },

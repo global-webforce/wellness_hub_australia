@@ -1,8 +1,7 @@
 import 'package:wellness_hub_australia/features/fields/viewmodels/fields_viewmodel.dart';
 import 'package:wellness_hub_australia/features/fields/widgets/field_card.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class ViewFieldsPage extends StatelessWidget {
@@ -21,19 +20,19 @@ class ViewFieldsPage extends StatelessWidget {
         },
         builder: (context, viewModel, child) {
           final fields = viewModel.fields;
-          return ListGridViewWrapper(
+          return ListAndGridViewWrapper(
             isBusy: viewModel.isBusy,
             onRefresh: () async {
               await viewModel.getAll();
             },
             itemCount: fields.length,
             builder: (context, constraints) {
-              return AlignedGridView.count(
+              return ListView.separated(
                 padding: const EdgeInsets.all(15),
-                crossAxisCount: 1,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
                 itemCount: fields.length,
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 10,
+                ),
                 itemBuilder: (context, index) {
                   return FieldCard(
                     field: fields[index],

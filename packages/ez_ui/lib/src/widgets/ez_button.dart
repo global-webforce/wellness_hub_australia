@@ -93,7 +93,6 @@ class EzButton extends StatelessWidget {
         title,
         style: TextStyle(
           fontSize: 16,
-          fontWeight: FontWeight.w600,
           color: outline
               ? background
               : foreground ?? Theme.of(context).colorScheme.onPrimary,
@@ -125,8 +124,8 @@ class EzButton extends StatelessWidget {
                 shape: buttonRadius,
                 side: buttonBorder,
               ),
-        onPressed: disabled ? null : () => onTap!(),
-        onLongPress: disabled || busy ? null : onLongPress,
+        onPressed: busy || disabled ? () {} : () => onTap!(),
+        onLongPress: busy || disabled || busy ? () {} : onLongPress,
         child: content(),
       );
     }
@@ -137,16 +136,16 @@ class EzButton extends StatelessWidget {
           shape: buttonRadius,
           backgroundColor: disabled ? null : buttonBackgroundColor,
         ),
-        onPressed: disabled || busy ? null : onTap,
-        onLongPress: disabled || busy ? null : onLongPress,
+        onPressed: disabled || busy ? () {} : onTap,
+        onLongPress: disabled || busy ? () {} : onLongPress,
         child: content(),
       );
     }
 
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        minHeight: 40,
-        maxHeight: 40,
+        minHeight: 45,
+        maxHeight: 45,
         minWidth: 120,
         maxWidth: double.infinity,
       ),

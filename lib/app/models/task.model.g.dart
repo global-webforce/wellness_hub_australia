@@ -14,7 +14,7 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       embedUrl: json['embed_url'] as String?,
       frequency: json['frequency'] as String?,
       imgUrl: json['imgURL'] as String?,
-      taskProgressId: json['task_progress_id'],
+      taskProgressId: json['task_progress_id'] as int?,
       isFavorite: json['isFavorite'] as bool?,
       schedule: json['schedule'] == null
           ? null

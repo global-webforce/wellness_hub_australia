@@ -47,7 +47,7 @@ class PillarProgressCard extends StatelessWidget {
 
     Widget title() {
       return Text(
-        "${pillar.title}",
+        "${pillar.title}".toUpperCase(),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
@@ -73,7 +73,6 @@ class PillarProgressCard extends StatelessWidget {
           "${pillar.progress()}%",
           style: const TextStyle(
             fontSize: 14,
-            fontWeight: FontWeight.w600,
           ),
         );
 
@@ -81,7 +80,6 @@ class PillarProgressCard extends StatelessWidget {
           "${pillar.completed!} / ${pillar.total}",
           style: const TextStyle(
             fontSize: 14,
-            fontWeight: FontWeight.w600,
           ),
         );
 

@@ -31,7 +31,7 @@ mixin _$Task {
   @JsonKey(name: 'imgURL')
   String? get imgUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'task_progress_id')
-  dynamic get taskProgressId => throw _privateConstructorUsedError;
+  int? get taskProgressId => throw _privateConstructorUsedError;
   bool? get isFavorite => throw _privateConstructorUsedError;
   Schedule? get schedule => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $TaskCopyWith<$Res> {
       @JsonKey(name: 'embed_url') String? embedUrl,
       String? frequency,
       @JsonKey(name: 'imgURL') String? imgUrl,
-      @JsonKey(name: 'task_progress_id') dynamic taskProgressId,
+      @JsonKey(name: 'task_progress_id') int? taskProgressId,
       bool? isFavorite,
       Schedule? schedule});
 
@@ -80,7 +80,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? embedUrl = freezed,
     Object? frequency = freezed,
     Object? imgUrl = freezed,
-    Object? taskProgressId = null,
+    Object? taskProgressId = freezed,
     Object? isFavorite = freezed,
     Object? schedule = freezed,
   }) {
@@ -113,10 +113,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      taskProgressId: null == taskProgressId
+      taskProgressId: freezed == taskProgressId
           ? _value.taskProgressId
           : taskProgressId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
       isFavorite: freezed == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       @JsonKey(name: 'embed_url') String? embedUrl,
       String? frequency,
       @JsonKey(name: 'imgURL') String? imgUrl,
-      @JsonKey(name: 'task_progress_id') dynamic taskProgressId,
+      @JsonKey(name: 'task_progress_id') int? taskProgressId,
       bool? isFavorite,
       Schedule? schedule});
 
@@ -179,7 +179,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? embedUrl = freezed,
     Object? frequency = freezed,
     Object? imgUrl = freezed,
-    Object? taskProgressId = null,
+    Object? taskProgressId = freezed,
     Object? isFavorite = freezed,
     Object? schedule = freezed,
   }) {
@@ -212,10 +212,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      taskProgressId: null == taskProgressId
+      taskProgressId: freezed == taskProgressId
           ? _value.taskProgressId
           : taskProgressId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
       isFavorite: freezed == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -264,7 +264,7 @@ class _$_Task implements _Task {
   final String? imgUrl;
   @override
   @JsonKey(name: 'task_progress_id')
-  final dynamic taskProgressId;
+  final int? taskProgressId;
   @override
   final bool? isFavorite;
   @override
@@ -291,8 +291,8 @@ class _$_Task implements _Task {
             (identical(other.frequency, frequency) ||
                 other.frequency == frequency) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.taskProgressId, taskProgressId) &&
+            (identical(other.taskProgressId, taskProgressId) ||
+                other.taskProgressId == taskProgressId) &&
             (identical(other.isFavorite, isFavorite) ||
                 other.isFavorite == isFavorite) &&
             (identical(other.schedule, schedule) ||
@@ -301,18 +301,8 @@ class _$_Task implements _Task {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      description,
-      pillarId,
-      embedUrl,
-      frequency,
-      imgUrl,
-      const DeepCollectionEquality().hash(taskProgressId),
-      isFavorite,
-      schedule);
+  int get hashCode => Object.hash(runtimeType, id, title, description, pillarId,
+      embedUrl, frequency, imgUrl, taskProgressId, isFavorite, schedule);
 
   @JsonKey(ignore: true)
   @override
@@ -337,7 +327,7 @@ abstract class _Task implements Task {
       @JsonKey(name: 'embed_url') final String? embedUrl,
       final String? frequency,
       @JsonKey(name: 'imgURL') final String? imgUrl,
-      @JsonKey(name: 'task_progress_id') final dynamic taskProgressId,
+      @JsonKey(name: 'task_progress_id') final int? taskProgressId,
       final bool? isFavorite,
       final Schedule? schedule}) = _$_Task;
 
@@ -362,7 +352,7 @@ abstract class _Task implements Task {
   String? get imgUrl;
   @override
   @JsonKey(name: 'task_progress_id')
-  dynamic get taskProgressId;
+  int? get taskProgressId;
   @override
   bool? get isFavorite;
   @override

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:flutter/material.dart';
 
-class ListGridViewWrapper extends StatelessWidget {
+class ListAndGridViewWrapper extends StatelessWidget {
   final Future<void> Function() onRefresh;
   final bool isBusy;
   final Widget busyIndicatorWidget;
@@ -11,7 +11,7 @@ class ListGridViewWrapper extends StatelessWidget {
   final Widget emptyIndicatorWidget;
   final Widget Function(BuildContext, BoxConstraints) builder;
   final bool fit;
-  const ListGridViewWrapper({
+  const ListAndGridViewWrapper({
     Key? key,
     required this.onRefresh,
     this.isBusy = false,

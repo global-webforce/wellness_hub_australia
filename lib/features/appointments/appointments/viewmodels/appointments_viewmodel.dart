@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:wellness_hub_australia/app/app.logger.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 import 'package:wellness_hub_australia/app/app_service.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_snackbar_ui.dart';
@@ -79,13 +80,13 @@ class AppointmentViewModel extends ReactiveViewModel {
       _appointmentService.appointments
           .where((e) =>
               e.status == "Completed" &&
-              e.startDate?.isAfter(DateTime.now()) == true)
+              e.startDate?.isBefore(DateTime.now()) == true)
           .toList();
 
   List<Appointment> get clientAppointmentsMissed => _appointmentService
       .appointments
       .where((e) =>
-          e.status == "Missed" && e.endDate!.isAfter(DateTime.now()) == true)
+          e.status == "Missed" && e.endDate!.isBefore(DateTime.now()) == true)
       .toList();
 
   List<Appointment> get clientAppointmentsCancelled =>
@@ -100,6 +101,7 @@ class AppointmentViewModel extends ReactiveViewModel {
 
       await runBusyFuture(
           _appointmentService.update(_selectedAppointmentId, rawFormData),
+          busyObject: ViewModelBusyKeys.appointmentUpdate,
           throwException: true);
 
       _snackbarService.showCustomSnackBar(
@@ -110,11 +112,7 @@ class AppointmentViewModel extends ReactiveViewModel {
   }
 
   Future getAll() async {
-    runBusyFuture(
-      Future.wait([
-        _appointmentService.getAll(),
-      ], eagerError: true),
-    );
+    await runBusyFuture(_appointmentService.getAll(), throwException: true);
   }
 
   int? _selectedAppointmentId;

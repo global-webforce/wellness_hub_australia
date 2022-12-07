@@ -2,10 +2,9 @@ import 'package:ez_dashboard/ez_drawer_button.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/push_notifications/viewmodels/push_notifications_viewmodel.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 import 'package:wellness_hub_australia/features/push_notifications/widgets/push_notification_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class PushNotificationsPage extends StatelessWidget {
@@ -27,7 +26,7 @@ class PushNotificationsPage extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 title: const Text("Notifications"),
               ),
-              body: ListGridViewWrapper(
+              body: ListAndGridViewWrapper(
                 emptyIndicatorWidget: const EmptyDisplay(
                     icon: Icons.notifications, title: "No notifications"),
                 isBusy: viewModel.isBusy,
@@ -36,12 +35,12 @@ class PushNotificationsPage extends StatelessWidget {
                 },
                 itemCount: viewModel.pushNotifications.length,
                 builder: (context, constraints) {
-                  return AlignedGridView.count(
+                  return ListView.separated(
                     padding: const EdgeInsets.all(15),
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
                     itemCount: viewModel.pushNotifications.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 10,
+                    ),
                     itemBuilder: (context, index) {
                       return PushNotificationCard(
                         onTap: () {

@@ -48,8 +48,8 @@ class LocalStorageService {
   String? get token => _getFromDisk(tokenKey);
   set token(String? value) => _saveToDisk(tokenKey, value);
 
-  static const String isOnboardedKey = 'firstTimeKey';
-  bool? get isOnboarded => _getFromDisk(isOnboardedKey);
+  static const String isOnboardedKey = 'isOnboardedKey';
+  bool get isOnboarded => _getFromDisk(isOnboardedKey) ?? false;
   set isOnboarded(bool? value) => _saveToDisk(isOnboardedKey, value);
 
   static const String userKey = 'user';

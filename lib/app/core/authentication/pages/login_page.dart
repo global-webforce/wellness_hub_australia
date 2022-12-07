@@ -83,22 +83,20 @@ class _LoginPageState extends State<LoginPage> {
                   body: ScaffoldBodyWrapper(
                       neverScroll: true,
                       centered: true,
-                      onRefresh: () async {},
                       builder: (context, constraints) {
-                        return Center(
-                          child: SizedBox(
-                            width: 500,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                formHeader(),
-                                vSpaceMedium,
-                                _LoginForm(),
-                                vSpaceMedium,
-                                formFooter(),
-                              ],
-                            ),
+                        return SizedBox(
+                          width: 500,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              formHeader(),
+                              vSpaceMedium,
+                              _LoginForm(),
+                              vSpaceMedium,
+                              formFooter(),
+                            ],
                           ),
                         );
                       })));

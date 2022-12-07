@@ -58,7 +58,7 @@ class ClientScaffoldPage extends StatelessWidget {
             key: const Key("111111"),
             builder: (context, content) {
               final kContent = KeyedSubtree(
-                key: const GlobalObjectKey(2),
+                key: const GlobalObjectKey('client-scaffold'),
                 child: content,
               );
               return EZDashboard(

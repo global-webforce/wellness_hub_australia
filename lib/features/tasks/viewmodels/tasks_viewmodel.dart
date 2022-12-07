@@ -4,7 +4,6 @@ import 'package:wellness_hub_australia/app/app.logger.dart';
 import 'package:wellness_hub_australia/app/shared/ui/setup_dialog_ui.dart';
 import 'package:wellness_hub_australia/features/pillars/pillars_service.dart';
 import 'package:wellness_hub_australia/features/task_alarm/pages/add_task_alarm_page.dart';
-import 'package:wellness_hub_australia/features/tasks/pages/task_completed_page.dart';
 import 'package:wellness_hub_australia/features/tasks/pages/task_detail_page.dart';
 import 'package:wellness_hub_australia/features/tasks/services/task_service.dart';
 import 'package:stacked/stacked.dart';
@@ -19,6 +18,9 @@ class TasksViewModel extends ReactiveViewModel {
   final _dialogService = locator<DialogService>();
   final _taskService = locator<TaskService>();
   final _pillarService = locator<PillarService>();
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_taskService];
 
   @override
   void onFutureError(error, Object? key) {
@@ -40,9 +42,6 @@ class TasksViewModel extends ReactiveViewModel {
     _navigationService.navigateToView(AddTaskAlarmPage(taskId: taskId));
   }
 
-  @override
-  List<ReactiveServiceMixin> get reactiveServices => [_taskService];
-
   int? pillarId;
   PillarProgress? get pillar =>
       _pillarService.pillarsProgress.safeFirstWhere((e) => e.id == pillarId);
@@ -60,7 +59,5 @@ class TasksViewModel extends ReactiveViewModel {
   Future<void> toggleProgress(int? taskId) async {
     await runBusyFuture(_taskService.toggleProgress(taskId),
         throwException: true);
-    //_navigationService.clearTillFirstAndShowView(const TaskCompletedPage());
-    _navigationService.replaceWithTransition(const TaskCompletedPage());
   }
 }

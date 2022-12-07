@@ -38,9 +38,6 @@ class TaskDetailPage extends StatelessWidget {
 }
 
 class FinishTaskButton extends ViewModelWidget<TasksViewModel> {
-  @override
-  bool get reactive => true;
-
   const FinishTaskButton({Key? key}) : super(key: key);
 
   @override
@@ -50,17 +47,18 @@ class FinishTaskButton extends ViewModelWidget<TasksViewModel> {
       color: Theme.of(context).backgroundColor,
       child: SizedBox(
           height: 40,
-          child: viewModel.task?.taskProgressId != null
+          child: viewModel.task?.taskProgressId != null && !viewModel.isBusy
               ? Tooltip(
                   message: '(Press-hold to Undo)',
                   child: EzButton.elevated(
                     busy: viewModel.isBusy,
                     leading: Icons.check_circle_rounded,
                     title: "Task Completed ",
-                    onLongPress: () {
-                      viewModel.toggleProgress(viewModel.task!.id);
+                    onLongPress: () async {
+                      await viewModel.toggleProgress(viewModel.task!.id);
                     },
                     rounded: true,
+                    background: Colors.green,
                   ),
                 )
               : Tooltip(
@@ -69,8 +67,8 @@ class FinishTaskButton extends ViewModelWidget<TasksViewModel> {
                     busy: viewModel.isBusy,
                     leading: Icons.add,
                     title: "Set as Finished",
-                    onTap: () {
-                      viewModel.toggleProgress(viewModel.task!.id);
+                    onTap: () async {
+                      await viewModel.toggleProgress(viewModel.task!.id);
                     },
                     background: Colors.grey,
                     rounded: true,
@@ -127,124 +125,3 @@ class MyWidgetFactory extends WidgetFactory {
   @override
   bool get webView => true;
 }
-
-/* class EmptyTask extends StatelessWidget {
-  const EmptyTask({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-      Widget fallBackIcon = Card(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Image.asset(
-              "/images/placeholder.png",
-              fit: BoxFit.cover,
-              width: 120,
-              height: 120,
-            ),
-          );
-
-          Widget _image() {
-            return Card(
-                elevation: 0,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      "https://gwf-cors-anywhere.herokuapp.com/${task!.imgUrl}",
-                  //color: Colors.white,
-                  width: 120,
-                  height: 120,
-                  placeholder: (context, v) {
-                    return fallBackIcon;
-                  },
-                  errorWidget: (context, url, error) {
-                    return Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: fallBackIcon,
-                    );
-                  },
-                ));
-          }
-
-          Widget _frequency() {
-            Color? color;
-            String? text;
-            switch (task!.frequency) {
-              case "daily":
-                color = Colors.blue;
-                text = "Today";
-                break;
-              case "weekly":
-                color = Colors.green;
-                text = "This Week";
-                break;
-              case "monthly":
-                color = Colors.orange;
-                text = "This Month";
-                break;
-              case "once":
-                color = Colors.red;
-                text = "Try it!";
-                break;
-              default:
-            }
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: color!.withOpacity(0.8),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  text!.toTitleCase(),
-                  style: const TextStyle(fontSize: 14, color: Colors.white),
-                ),
-              ),
-            );
-          }
-
-          Widget _title() {
-            return Text(
-              "${task!.title}",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                height: 1.3,
-              ),
-            );
-          }
-
-          Widget _description() {
-            return Text(
-              "${task!.description}",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 16,
-                height: 1.3,
-              ),
-            );
-          }
-
-        
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(15),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _frequency(),
-                    vSpaceSmall,
-                    _image(),
-                    vSpaceRegular,
-                    _title(),
-                    vSpaceRegular,
-                    _description(),
-                  ],
-                ),
-              ),
-            );
-          
-  }
-} */

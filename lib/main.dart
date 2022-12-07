@@ -48,11 +48,9 @@ class MyApp extends StatelessWidget {
       onModelReady: (viewModel) async {
         await viewModel.fetchUser();
       },
-      disposeViewModel: false,
-      fireOnModelReadyOnce: true,
       builder: (context, viewModel, child) {
         return ThemeBuilder(
-            defaultThemeMode: ThemeMode.system,
+            defaultThemeMode: ThemeMode.light,
             lightTheme: ThemeSettings.lightTheme,
             darkTheme: ThemeSettings.darkTheme,
             builder: (context, regularTheme, darkTheme, themeMode) {
@@ -72,13 +70,14 @@ class MyApp extends StatelessWidget {
                     return [];
                   } else {
                     if (!kIsWeb) {
-                      Future.delayed(const Duration(seconds: 1), () {
+                      Future.delayed(const Duration(milliseconds: 500), () {
                         FlutterNativeSplash.remove();
                       });
-                      if (viewModel.isOnboarded != true) {
+                      if (viewModel.isOnboarded == false) {
                         return [const OnboardingRoute()];
                       }
                     }
+
                     if (viewModel.user != null) {
                       if (viewModel.isMember()) {
                         return [const ClientScaffoldRoute()];

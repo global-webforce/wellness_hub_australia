@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wellness_hub_australia/app/app.viewmodels_busy_keys.dart';
 
 import 'package:wellness_hub_australia/features/appointments/appointments/viewmodels/appointments_viewmodel.dart';
 
@@ -17,8 +18,7 @@ class AppointmentUpdateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel =
-        getParentViewModel<AppointmentViewModel>(context, listen: false);
+    final viewModel = getParentViewModel<AppointmentViewModel>(context);
 
     Widget paidField() {
       return FormBuilderDropdown(
@@ -131,7 +131,8 @@ class AppointmentUpdateCard extends StatelessWidget {
                     child: Row(
                       children: [
                         EzButton.elevated(
-                            busy: viewModel.isBusy,
+                            busy: viewModel
+                                .busy(ViewModelBusyKeys.appointmentUpdate),
                             title: "Save",
                             onTap: viewModel.editMode
                                 ? () {
@@ -141,7 +142,6 @@ class AppointmentUpdateCard extends StatelessWidget {
                         hSpaceSmall,
                         viewModel.editMode
                             ? EzButton.elevated(
-                                //  busy: viewModel.isBusy,
                                 title: "Reset",
                                 background: Colors.grey,
                                 onTap: () {

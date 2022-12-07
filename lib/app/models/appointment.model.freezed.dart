@@ -39,6 +39,8 @@ mixin _$Appointment {
   Client? get member => throw _privateConstructorUsedError;
   @JsonKey(name: 'service_provider')
   ServiceProvider? get serviceProvider => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_editable')
+  bool? get isEditable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +66,8 @@ abstract class $AppointmentCopyWith<$Res> {
       @JsonKey(name: 'payment_type') String? paymentType,
       @JsonKey(name: 'field_details') Field? fieldDetails,
       Client? member,
-      @JsonKey(name: 'service_provider') ServiceProvider? serviceProvider});
+      @JsonKey(name: 'service_provider') ServiceProvider? serviceProvider,
+      @JsonKey(name: 'is_editable') bool? isEditable});
 
   $FieldCopyWith<$Res>? get fieldDetails;
   $ClientCopyWith<$Res>? get member;
@@ -96,6 +99,7 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
     Object? fieldDetails = freezed,
     Object? member = freezed,
     Object? serviceProvider = freezed,
+    Object? isEditable = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -146,6 +150,10 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
           ? _value.serviceProvider
           : serviceProvider // ignore: cast_nullable_to_non_nullable
               as ServiceProvider?,
+      isEditable: freezed == isEditable
+          ? _value.isEditable
+          : isEditable // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -206,7 +214,8 @@ abstract class _$$_AppointmentCopyWith<$Res>
       @JsonKey(name: 'payment_type') String? paymentType,
       @JsonKey(name: 'field_details') Field? fieldDetails,
       Client? member,
-      @JsonKey(name: 'service_provider') ServiceProvider? serviceProvider});
+      @JsonKey(name: 'service_provider') ServiceProvider? serviceProvider,
+      @JsonKey(name: 'is_editable') bool? isEditable});
 
   @override
   $FieldCopyWith<$Res>? get fieldDetails;
@@ -239,6 +248,7 @@ class __$$_AppointmentCopyWithImpl<$Res>
     Object? fieldDetails = freezed,
     Object? member = freezed,
     Object? serviceProvider = freezed,
+    Object? isEditable = freezed,
   }) {
     return _then(_$_Appointment(
       id: freezed == id
@@ -289,6 +299,10 @@ class __$$_AppointmentCopyWithImpl<$Res>
           ? _value.serviceProvider
           : serviceProvider // ignore: cast_nullable_to_non_nullable
               as ServiceProvider?,
+      isEditable: freezed == isEditable
+          ? _value.isEditable
+          : isEditable // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -308,7 +322,8 @@ class _$_Appointment implements _Appointment {
       @JsonKey(name: 'payment_type') this.paymentType,
       @JsonKey(name: 'field_details') this.fieldDetails,
       this.member,
-      @JsonKey(name: 'service_provider') this.serviceProvider});
+      @JsonKey(name: 'service_provider') this.serviceProvider,
+      @JsonKey(name: 'is_editable') this.isEditable});
 
   factory _$_Appointment.fromJson(Map<String, dynamic> json) =>
       _$$_AppointmentFromJson(json);
@@ -344,10 +359,13 @@ class _$_Appointment implements _Appointment {
   @override
   @JsonKey(name: 'service_provider')
   final ServiceProvider? serviceProvider;
+  @override
+  @JsonKey(name: 'is_editable')
+  final bool? isEditable;
 
   @override
   String toString() {
-    return 'Appointment(id: $id, userId: $userId, startDate: $startDate, endDate: $endDate, total: $total, fieldAssignmentId: $fieldAssignmentId, status: $status, paid: $paid, paymentType: $paymentType, fieldDetails: $fieldDetails, member: $member, serviceProvider: $serviceProvider)';
+    return 'Appointment(id: $id, userId: $userId, startDate: $startDate, endDate: $endDate, total: $total, fieldAssignmentId: $fieldAssignmentId, status: $status, paid: $paid, paymentType: $paymentType, fieldDetails: $fieldDetails, member: $member, serviceProvider: $serviceProvider, isEditable: $isEditable)';
   }
 
   @override
@@ -371,7 +389,9 @@ class _$_Appointment implements _Appointment {
                 other.fieldDetails == fieldDetails) &&
             (identical(other.member, member) || other.member == member) &&
             (identical(other.serviceProvider, serviceProvider) ||
-                other.serviceProvider == serviceProvider));
+                other.serviceProvider == serviceProvider) &&
+            (identical(other.isEditable, isEditable) ||
+                other.isEditable == isEditable));
   }
 
   @JsonKey(ignore: true)
@@ -389,7 +409,8 @@ class _$_Appointment implements _Appointment {
       paymentType,
       fieldDetails,
       member,
-      serviceProvider);
+      serviceProvider,
+      isEditable);
 
   @JsonKey(ignore: true)
   @override
@@ -408,24 +429,18 @@ class _$_Appointment implements _Appointment {
 abstract class _Appointment implements Appointment {
   factory _Appointment(
       {final int? id,
-      @JsonKey(name: 'user_id')
-          final int? userId,
-      @JsonKey(name: 'start_date')
-          final DateTime? startDate,
-      @JsonKey(name: 'end_date')
-          final DateTime? endDate,
+      @JsonKey(name: 'user_id') final int? userId,
+      @JsonKey(name: 'start_date') final DateTime? startDate,
+      @JsonKey(name: 'end_date') final DateTime? endDate,
       final double? total,
-      @JsonKey(name: 'field_assignment_id')
-          final int? fieldAssignmentId,
+      @JsonKey(name: 'field_assignment_id') final int? fieldAssignmentId,
       final String? status,
       final int? paid,
-      @JsonKey(name: 'payment_type')
-          final String? paymentType,
-      @JsonKey(name: 'field_details')
-          final Field? fieldDetails,
+      @JsonKey(name: 'payment_type') final String? paymentType,
+      @JsonKey(name: 'field_details') final Field? fieldDetails,
       final Client? member,
-      @JsonKey(name: 'service_provider')
-          final ServiceProvider? serviceProvider}) = _$_Appointment;
+      @JsonKey(name: 'service_provider') final ServiceProvider? serviceProvider,
+      @JsonKey(name: 'is_editable') final bool? isEditable}) = _$_Appointment;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$_Appointment.fromJson;
@@ -461,6 +476,9 @@ abstract class _Appointment implements Appointment {
   @override
   @JsonKey(name: 'service_provider')
   ServiceProvider? get serviceProvider;
+  @override
+  @JsonKey(name: 'is_editable')
+  bool? get isEditable;
   @override
   @JsonKey(ignore: true)
   _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>

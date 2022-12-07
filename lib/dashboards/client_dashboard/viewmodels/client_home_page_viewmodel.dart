@@ -13,7 +13,6 @@ import 'package:stacked_services/stacked_services.dart';
 class ClientHomePageViewModel extends ReactiveViewModel {
   final log = getLogger('ClientHomePageViewModel');
   final _dialogService = locator<DialogService>();
-
   final _pillarService = locator<PillarService>();
   final _taskService = locator<TaskService>();
   final _customLinkService = locator<CustomLinkService>();

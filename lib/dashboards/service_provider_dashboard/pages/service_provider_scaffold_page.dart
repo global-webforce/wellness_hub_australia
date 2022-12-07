@@ -58,7 +58,7 @@ class ServiceProviderScaffoldPage extends StatelessWidget {
           key: const GlobalObjectKey(1),
           builder: (context, content) {
             final kContent = KeyedSubtree(
-              key: const GlobalObjectKey(2),
+              key: const GlobalObjectKey('sp-scaffold'),
               child: content,
             );
             return EZDashboard(

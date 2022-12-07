@@ -12,5 +12,6 @@
   "payment_type": "Card",
   "field_details.field": {},
   "member.client": {},
-  "service_provider.service_provider": {}
+  "service_provider.service_provider": {},
+  "is_editable": false
 }

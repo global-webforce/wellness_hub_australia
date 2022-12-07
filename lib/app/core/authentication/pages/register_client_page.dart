@@ -115,7 +115,6 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                   backgroundColor: Theme.of(context).colorScheme.surface,
                   body: ScaffoldBodyWrapper(
                       centered: true,
-                      onRefresh: () async {},
                       builder: (context, constraints) {
                         return Center(
                           child: SizedBox(
@@ -149,7 +148,6 @@ class _RegisterForm extends StatelessWidget {
     Widget addressDropdownField() {
       return FormBuilderSearchableDropdown<Address>(
         name: 'address2',
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(),
         ]),
@@ -179,7 +177,6 @@ class _RegisterForm extends StatelessWidget {
     Widget emailField() {
       return FormBuilderTextField(
         name: "email",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.emailAddress,
         autofillHints: const [AutofillHints.email],
@@ -199,7 +196,6 @@ class _RegisterForm extends StatelessWidget {
     Widget firstNameField() {
       return FormBuilderTextField(
         name: "first_name",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.name,
         autofillHints: const [AutofillHints.namePrefix],
@@ -218,7 +214,6 @@ class _RegisterForm extends StatelessWidget {
     Widget lastNameField() {
       return FormBuilderTextField(
         name: "last_name",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.name,
         autofillHints: const [AutofillHints.nameSuffix],
@@ -250,7 +245,7 @@ class _RegisterForm extends StatelessWidget {
         ]),
         //valueTransformer: (text) => maskFormatter.getUnmaskedText(),
         name: "mobile_number",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.phone,
         autofillHints: const [AutofillHints.telephoneNumber],
@@ -263,7 +258,6 @@ class _RegisterForm extends StatelessWidget {
     Widget passwordField() {
       return FormBuilderTextField(
         name: "password",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.visiblePassword,
         autofillHints: const [AutofillHints.password],
@@ -280,7 +274,6 @@ class _RegisterForm extends StatelessWidget {
     Widget passwordConfirmationField() {
       return FormBuilderTextField(
         name: "password_confirmation",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.visiblePassword,
         autofillHints: const [AutofillHints.password],
@@ -305,7 +298,6 @@ class _RegisterForm extends StatelessWidget {
     Widget inviteCodeField() {
       return FormBuilderTextField(
         name: "code",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
@@ -313,7 +305,6 @@ class _RegisterForm extends StatelessWidget {
           labelText: "Membership Code",
         ),
         obscureText: true,
-        obscuringCharacter: "X",
       );
     }
 
@@ -329,8 +320,9 @@ class _RegisterForm extends StatelessWidget {
     }
 
     return FormBuilder(
-      skipDisabled: true,
       key: viewModel.registerFormKey,
+      autoFocusOnValidationFailure: true,
+      skipDisabled: true,
       child: Column(
         children: [
           emailField(),

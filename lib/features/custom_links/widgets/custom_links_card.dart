@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +16,19 @@ class CustomLinksCard extends StatelessWidget {
       return Container(
         color: Colors.white,
         child: CachedNetworkImage(
-          imageUrl:
-              "https://gwf-cors-anywhere.herokuapp.com/${customLink.linkIcon}",
+          imageUrl: "${customLink.linkIcon}",
           width: double.infinity,
           height: 140,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.cover,
           placeholder: (context, url) {
             return Image.asset(
-              "/images/placeholder.png",
+              "assets/images/placeholder.png",
               fit: BoxFit.cover,
             );
           },
           errorWidget: (context, url, error) {
             return Image.asset(
-              "/images/placeholder.png",
+              "assets/images/placeholder.png",
               fit: BoxFit.cover,
             );
           },
@@ -55,21 +55,20 @@ class CustomLinksCard extends StatelessWidget {
     } */
 
     Widget title() {
-      return Text(
+      return AutoSizeText(
         "${customLink.title}",
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w600, height: 1.3),
       );
     }
 
     Widget description() {
-      return Text(
+      return AutoSizeText(
         "${customLink.description}",
-        style: const TextStyle(
-          fontSize: 14,
-        ),
+        style: const TextStyle(fontSize: 14),
+        maxLines: 4,
+        overflow: TextOverflow.ellipsis,
       );
     }
 

@@ -47,7 +47,7 @@ class AppointmentDetailCard extends StatelessWidget {
 
     Widget clientName() {
       return Text(
-        "${appointment!.member?.firstName} ${appointment.member?.lastName} ",
+        "${appointment?.member?.firstName} ${appointment?.member?.lastName} ",
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       );
     }
@@ -68,7 +68,7 @@ class AppointmentDetailCard extends StatelessWidget {
 
     Widget spService() {
       return EzPill(
-        "${appointment!.fieldDetails?.title}",
+        "${appointment?.fieldDetails?.title}",
         backgroundColor: HexColor("#8A58B2"),
         foregroundColor: Colors.white,
       );

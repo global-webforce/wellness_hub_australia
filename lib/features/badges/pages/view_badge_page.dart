@@ -1,12 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/badges/viewmodels/badges_viewmodel.dart';
 import 'package:wellness_hub_australia/features/badges/widgets/badge_card.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class BadgesPage extends StatelessWidget {
@@ -24,7 +22,7 @@ class BadgesPage extends StatelessWidget {
           await viewModel.getAll();
         },
         builder: (context, viewModel, child) {
-          return ListGridViewWrapper(
+          return ListAndGridViewWrapper(
             isBusy: viewModel.isBusy,
             emptyIndicatorWidget: const EmptyDisplay(
               icon: EvaIcons.award,
@@ -35,12 +33,12 @@ class BadgesPage extends StatelessWidget {
             },
             itemCount: viewModel.badges.length,
             builder: (context, constraints) {
-              return AlignedGridView.count(
+              return ListView.separated(
                 padding: const EdgeInsets.all(15),
-                crossAxisCount: isMobile(context) ? 1 : 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
                 itemCount: viewModel.badges.length,
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 10,
+                ),
                 itemBuilder: (context, index) {
                   return BadgeCard(
                     badge: viewModel.badges[index],

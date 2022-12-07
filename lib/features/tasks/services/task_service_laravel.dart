@@ -10,6 +10,11 @@ import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/models/task.model.dart';
 import 'package:stacked/stacked.dart';
 
+class Wrapped<T> {
+  final T value;
+  const Wrapped.value(this.value);
+}
+
 class TaskServiceLaravel with ReactiveServiceMixin implements TaskService {
   final _apiService = locator<ApiService>();
   final _appService = locator<AppService>();
@@ -40,19 +45,17 @@ class TaskServiceLaravel with ReactiveServiceMixin implements TaskService {
   }
 
   @override
-  Future<dynamic> toggleProgress(int? taskId) async {
+  Future toggleProgress(int? taskId) async {
     final task = _tasks.value.safeFirstWhere((e) => e.id == taskId);
     if (task?.taskProgressId != null) {
       await _apiService.delete(
         ApiEndpoints.instance.undoFinishedTask(task?.taskProgressId),
         onSuccess: (res) async {
-          _pillarService.getPillarsProgressOfUser();
-          final temp = [..._tasks.value];
-          int index = temp.indexWhere((e) => e.id == task?.id);
-          temp[index] = temp[index].copyWith(
-            taskProgressId: null,
-          );
-          _tasks.value = temp;
+          tasks[tasks.indexWhere((e) => e.id == taskId)] = tasks
+              .firstWhere((e) => e.id == taskId)
+              .copyWith(taskProgressId: null);
+          notifyListeners();
+          await _pillarService.getPillarsProgressOfUser();
         },
         onError: (_) {},
       );
@@ -66,13 +69,11 @@ class TaskServiceLaravel with ReactiveServiceMixin implements TaskService {
           "pillar_id": task?.pillarId,
         },
         onSuccess: (res) async {
-          _pillarService.getPillarsProgressOfUser();
-          final updatedTask = jsonDecode(res.body);
-          final temp = [..._tasks.value];
-          int index = temp.indexWhere((e) => e.id == task?.id);
-          temp[index] =
-              temp[index].copyWith(taskProgressId: updatedTask["task_id"]);
-          _tasks.value = temp;
+          tasks[tasks.indexWhere((e) => e.id == taskId)] = tasks
+              .firstWhere((e) => e.id == taskId)
+              .copyWith(taskProgressId: jsonDecode(res.body)["task_id"]);
+          notifyListeners();
+          await _pillarService.getPillarsProgressOfUser();
         },
         onError: (_) {},
       );

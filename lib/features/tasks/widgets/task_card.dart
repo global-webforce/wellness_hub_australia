@@ -29,7 +29,7 @@ class TaskCard extends StatelessWidget {
               elevation: 0,
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
-                "/images/placeholder.png",
+                "assets/images/placeholder.png",
                 fit: BoxFit.cover,
               ),
             );
@@ -39,7 +39,7 @@ class TaskCard extends StatelessWidget {
               elevation: 0,
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
-                "/images/placeholder.png",
+                "assets/images/placeholder.png",
                 fit: BoxFit.cover,
               ),
             );
@@ -88,7 +88,7 @@ class TaskCard extends StatelessWidget {
     Widget title() {
       return Text(
         "${task!.title}",
-        maxLines: 3,
+        maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 16,

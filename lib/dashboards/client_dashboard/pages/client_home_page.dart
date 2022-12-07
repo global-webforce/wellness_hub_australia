@@ -1,7 +1,10 @@
+import 'package:ez_core/ez_core.dart';
 import 'package:ez_dashboard/ez_drawer_button.dart';
+import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_grid.dart';
-import 'package:wellness_hub_australia/features/pillars/widgets/pillar_stats.dart';
+import 'package:wellness_hub_australia/features/pillars/widgets/pillar_progress_circle.dart';
+import 'package:wellness_hub_australia/features/pillars/widgets/pillar_progress_grid.dart';
 import 'package:wellness_hub_australia/app/shared/ui/scaffold_body_wrapper.dart';
 import 'package:wellness_hub_australia/app/shared/ui/text_typography.dart';
 import 'package:wellness_hub_australia/dashboards/client_dashboard/viewmodels/client_home_page_viewmodel.dart';
@@ -32,46 +35,45 @@ class ClientHomePage extends StatelessWidget {
                 builder: (context, constraints) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "Welcome to Dashboard",
                         style: MyTextStyle.display2,
                       ),
-                      PillarStatsWidget(),
-                      SizedBox(height: 15),
-                      Text(
+                      isMobile(context)
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                PillarProgressCircle(
+                                    pillars: viewModel.pillarsProgress),
+                                PillarProgressGrid(
+                                  pillars: viewModel.pillarsProgress,
+                                )
+                              ],
+                            )
+                          : Row(
+                              children: [
+                                PillarProgressCircle(
+                                    pillars: viewModel.pillarsProgress),
+                                Expanded(
+                                  child: PillarProgressGrid(
+                                    pillars: viewModel.pillarsProgress,
+                                  ),
+                                ),
+                              ],
+                            ),
+                      vSpaceRegular,
+                      const Text(
                         "Our Partners",
                         style: MyTextStyle.display2,
                       ),
-                      SizedBox(height: 15),
-                      CustomLinksGridWidget(),
+                      vSpaceRegular,
+                      CustomLinksGrid(customLinks: viewModel.customLinks)
                     ],
                   );
                 },
               ),
             ));
-  }
-}
-
-class PillarStatsWidget extends StatelessWidget {
-  const PillarStatsWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final viewModel = getParentViewModel<ClientHomePageViewModel>(
-      context,
-    );
-    return PillarStats(pillarsProgress: viewModel.pillarsProgress);
-  }
-}
-
-class CustomLinksGridWidget extends StatelessWidget {
-  const CustomLinksGridWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final viewModel =
-        getParentViewModel<ClientHomePageViewModel>(context, listen: false);
-    return CustomLinksGrid(customLinks: viewModel.customLinks);
   }
 }

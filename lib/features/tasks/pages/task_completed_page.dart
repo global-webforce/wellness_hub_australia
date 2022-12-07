@@ -11,7 +11,6 @@ class TaskCompletedPage extends StatelessWidget {
         appBar: AppBar(),
         body: ScaffoldBodyWrapper(
             centered: true,
-            onRefresh: () async {},
             builder: (context, constraints) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -62,6 +62,7 @@ class _EZDrawerState extends State<EZDrawer> {
             menu.title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
+              fontSize: 14,
             ),
           ),
           onTap: () {

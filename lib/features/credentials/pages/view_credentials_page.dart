@@ -3,10 +3,9 @@ import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/credentials/viewmodels/credentials_viewmodel.dart';
 import 'package:wellness_hub_australia/features/credentials/widgets/credential_card.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class ViewCredentialsPage extends StatelessWidget {
@@ -43,7 +42,7 @@ class ViewCredentialsPage extends StatelessWidget {
               title: const Text("Manage Credentials"),
             ),
             bottomNavigationBar: addButton(),
-            body: ListGridViewWrapper(
+            body: ListAndGridViewWrapper(
               isBusy: viewModel.isBusy,
               emptyIndicatorWidget: const EmptyDisplay(
                 icon: Icons.file_present_rounded,
@@ -56,12 +55,12 @@ class ViewCredentialsPage extends StatelessWidget {
               },
               itemCount: credentials.length,
               builder: (context, constraints) {
-                return AlignedGridView.count(
+                return ListView.separated(
                   padding: Dimens.sliverPadding800(constraints),
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
                   itemCount: credentials.length,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 10,
+                  ),
                   itemBuilder: (context, index) {
                     return CredentialCard(
                       credential: credentials[index],

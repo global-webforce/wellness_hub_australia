@@ -5,7 +5,6 @@ import 'package:ez_core/ez_core.dart';
 import 'package:ez_ui/ez_ui.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
-import 'package:wellness_hub_australia/app/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -47,16 +46,11 @@ class _VerifiyMembershipCodePage extends StatelessWidget {
                   topLeft: Radius.circular(30.0),
                   topRight: Radius.circular(30.0)),
             ),
-            padding: EdgeInsets.fromLTRB(
-              0,
-              30,
-              0,
-              MediaQuery.of(context).viewInsets.bottom,
-            ),
             child: Center(
               child: SizedBox(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(
+                      vertical: 30,
                       horizontal: max(
                           (MediaQuery.of(context).size.width - 500) / 2, 15)),
                   child: Column(
@@ -66,8 +60,7 @@ class _VerifiyMembershipCodePage extends StatelessWidget {
                     children: <Widget>[
                       const EzText.title1("Enter your Membership Code",
                           align: TextAlign.center),
-                      const EzText.caption(
-                          "This is a close community you'll need a code to proceed.",
+                      const EzText.caption("You'll need a code to proceed.",
                           align: TextAlign.center),
                       vSpaceMedium,
                       _MembershipCodeForm(),
@@ -75,16 +68,12 @@ class _VerifiyMembershipCodePage extends StatelessWidget {
                       TextButton(
                           onPressed: () {
                             context.router.root.pop();
-                            context.router.push(const LoginRoute());
                           },
                           child: const Text(
                             "I'll comeback later",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w500),
                           )),
-                      const SizedBox(
-                        height: 20,
-                      ),
                     ],
                   ),
                 ),

@@ -31,6 +31,7 @@ _$_Appointment _$$_AppointmentFromJson(Map<String, dynamic> json) =>
           ? null
           : ServiceProvider.fromJson(
               json['service_provider'] as Map<String, dynamic>),
+      isEditable: json['is_editable'] as bool?,
     );
 
 Map<String, dynamic> _$$_AppointmentToJson(_$_Appointment instance) =>
@@ -47,4 +48,5 @@ Map<String, dynamic> _$$_AppointmentToJson(_$_Appointment instance) =>
       'field_details': instance.fieldDetails,
       'member': instance.member,
       'service_provider': instance.serviceProvider,
+      'is_editable': instance.isEditable,
     };

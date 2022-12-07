@@ -74,51 +74,47 @@ class PushNotificationDetailPage extends StatelessWidget {
               ],
             ),
             //bottomNavigationBar: const ViewLinkButton(),
-            body: ScaffoldBodyWrapper(
-                onRefresh: () async {},
-                builder: (context, constraints) {
-                  return Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Card(
-                                clipBehavior: Clip.antiAlias,
-                                child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 30),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        date(),
-                                        vSpaceTiny,
-                                        title(),
-                                        vSpaceSmall,
-                                        const Divider(),
-                                        vSpaceSmall,
-                                        body()
-                                      ],
-                                    )),
-                              ),
-                            ),
-                          ],
+            body: ScaffoldBodyWrapper(builder: (context, constraints) {
+              return Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Card(
+                            clipBehavior: Clip.antiAlias,
+                            child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 30),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    date(),
+                                    vSpaceTiny,
+                                    title(),
+                                    vSpaceSmall,
+                                    const Divider(),
+                                    vSpaceSmall,
+                                    body()
+                                  ],
+                                )),
+                          ),
                         ),
-                      ),
-                      CircleAvatar(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          child: const Icon(
-                            Icons.mail_rounded,
-                            color: Colors.white,
-                          )),
-                    ],
-                  );
-                }),
+                      ],
+                    ),
+                  ),
+                  CircleAvatar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: const Icon(
+                        Icons.mail_rounded,
+                        color: Colors.white,
+                      )),
+                ],
+              );
+            }),
           );
         });
   }

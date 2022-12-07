@@ -19,13 +19,11 @@ class AddOfferedServicePage extends StatelessWidget {
               appBar: AppBar(
                 title: const Text("Add Offered Service"),
               ),
-              body: ScaffoldBodyWrapper(
-                  onRefresh: () async {},
-                  builder: (context, constraints) {
-                    return const Card(
-                      child: OfferedServiceForm(),
-                    );
-                  }));
+              body: ScaffoldBodyWrapper(builder: (context, constraints) {
+                return const Card(
+                  child: OfferedServiceForm(),
+                );
+              }));
         });
   }
 }

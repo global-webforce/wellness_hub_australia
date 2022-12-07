@@ -4,7 +4,6 @@ import 'package:wellness_hub_australia/app/api/api_service.dart';
 import 'package:wellness_hub_australia/app/app.locator.dart';
 import 'package:wellness_hub_australia/features/credentials/services/credentials_service.dart';
 import 'package:wellness_hub_australia/app/api/api_endpoints.dart';
-import 'package:wellness_hub_australia/app/core/local_storage/local_storage_service.dart';
 import 'package:wellness_hub_australia/app/models/credential.model.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:stacked/stacked.dart';
@@ -14,8 +13,6 @@ class CredentialsServiceLaravel
     with ReactiveServiceMixin
     implements CredentialsService {
   final _apiService = locator<ApiService>();
-
-  final _localStorageService = locator<LocalStorageService>();
 
   CredentialsServiceLaravel() {
     listenToReactiveValues([
@@ -31,14 +28,16 @@ class CredentialsServiceLaravel
     await _apiService.postFile(
       ApiEndpoints.instance.addCredential(),
       requestBody: formData,
-      files: [
-        http.MultipartFile.fromBytes(
-          'attachment',
-          await formData['attachment']![0].readAsBytes(),
-          filename: formData['attachment']![0].name,
-          contentType: MediaType("image", "*"),
-        ),
-      ],
+      files: formData['attachment'] != null
+          ? [
+              http.MultipartFile.fromBytes(
+                'attachment',
+                await formData['attachment']![0].readAsBytes(),
+                filename: formData['attachment']![0].name,
+                contentType: MediaType("image", "*"),
+              )
+            ]
+          : [],
       onSuccess: (res) async {
         await getAll();
       },

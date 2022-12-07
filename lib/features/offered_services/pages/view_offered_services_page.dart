@@ -4,9 +4,8 @@ import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/offered_services/viewmodels/offered_services_viewmodel.dart';
 import 'package:wellness_hub_australia/features/offered_services/widgets/offered_service_card.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:stacked/stacked.dart';
 
 class ViewOfferedServicesPage extends StatelessWidget {
@@ -43,7 +42,7 @@ class ViewOfferedServicesPage extends StatelessWidget {
                 title: const Text("Manage Offered Services"),
               ),
               bottomNavigationBar: addButton(),
-              body: ListGridViewWrapper(
+              body: ListAndGridViewWrapper(
                 isBusy: viewModel.isBusy,
                 emptyIndicatorWidget: const EmptyDisplay(
                   icon: EvaIcons.heart,
@@ -55,12 +54,12 @@ class ViewOfferedServicesPage extends StatelessWidget {
                 },
                 itemCount: offeredServices.length,
                 builder: (context, constraints) {
-                  return AlignedGridView.count(
+                  return ListView.separated(
                     padding: Dimens.sliverPadding800(constraints),
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
                     itemCount: offeredServices.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 10,
+                    ),
                     itemBuilder: (context, index) {
                       return OfferedServiceCard(
                         offeredService: offeredServices[index],

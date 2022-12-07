@@ -4,7 +4,7 @@ import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
 import 'package:wellness_hub_australia/features/chat/viewmodels/chat_viewmodel.dart';
 import 'package:wellness_hub_australia/features/chat/pages/chats_detail_page.dart';
 import 'package:wellness_hub_australia/features/chat/widgets/chat_tile.dart';
-import 'package:wellness_hub_australia/app/shared/ui/list_gridview_wrapper.dart';
+import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -27,7 +27,7 @@ class ChatsPage extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 title: const Text("Chats"),
               ),
-              body: ListGridViewWrapper(
+              body: ListAndGridViewWrapper(
                 isBusy: viewModel.isBusy,
                 emptyIndicatorWidget: const EmptyDisplay(
                   icon: Icons.chat_rounded,

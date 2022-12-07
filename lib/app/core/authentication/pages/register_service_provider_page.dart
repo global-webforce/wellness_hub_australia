@@ -116,7 +116,6 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
                   backgroundColor: Theme.of(context).colorScheme.surface,
                   body: ScaffoldBodyWrapper(
                       centered: true,
-                      onRefresh: () async {},
                       builder: (context, constraints) {
                         return Center(
                           child: SizedBox(

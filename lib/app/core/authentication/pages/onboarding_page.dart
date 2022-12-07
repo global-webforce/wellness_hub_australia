@@ -1,5 +1,6 @@
 import 'package:ez_core/ez_core.dart';
 import 'package:ez_onboarding/ez_onboarding.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:stacked/stacked.dart';
@@ -12,8 +13,8 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = getParentViewModel<AppViewModel>(context);
     return OnboardApp(
-      onDone: viewModel.onboard,
-      carouselMode: true,
+      onDone: () => viewModel.onboard(),
+      carouselMode: kIsWeb,
       pages: [
         OnboardItem(
           title:

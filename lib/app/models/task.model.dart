@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'schedule.model.dart';
@@ -15,7 +16,7 @@ class Task with _$Task {
     @JsonKey(name: 'embed_url') String? embedUrl,
     String? frequency,
     @JsonKey(name: 'imgURL') String? imgUrl,
-    @JsonKey(name: 'task_progress_id') dynamic taskProgressId,
+    @JsonKey(name: 'task_progress_id') int? taskProgressId,
     bool? isFavorite,
     Schedule? schedule,
   }) = _Task;

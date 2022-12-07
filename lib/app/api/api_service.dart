@@ -88,7 +88,6 @@ class ApiService {
 
       for (var element in files) {
         request.files.add(element);
-        print(element);
       }
       return await request.send().then((res) async {
         http.Response.fromStream(res).then((response) {
@@ -187,7 +186,7 @@ class ApiService {
     required Function(String errorMessage) onError,
   }) async {
     try {
-      return await client
+      await client
           .delete(
         Uri.parse(url),
         body: (requestBody != null) ? jsonEncode(requestBody) : null,
@@ -196,7 +195,7 @@ class ApiService {
         if (res.ok) {
           onSuccess(res);
         } else {
-          return Future.error("Non-200 error: ${res.body.toString()}");
+          return Future.error(res.body.toString());
         }
       });
     } catch (e) {

@@ -76,7 +76,7 @@ class _ChooseServiceProviderPageState extends State<ChooseServiceProviderPage> {
                             crossAxisCount: isMobile(context) ? 1 : 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
-                            height: 230,
+                            height: 200,
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
