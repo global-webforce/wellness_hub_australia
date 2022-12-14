@@ -2,7 +2,7 @@
   "__className": "Review.model",
   "__path": "/lib/app/models/",
   "id": 1,
-  "d@rating": 0.01,
+  "rating": 0.01,
   "service_provider_id": 2,
   "comment": "Good Service. lived up to expectations.",
   "author": "Dionee",

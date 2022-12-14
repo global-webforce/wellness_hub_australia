@@ -5,7 +5,7 @@
   "subject": "Welcome Aboard",
   "body": "You still have 3 pending tasks for this week",
   "link": "#",
-  "d@isRead": false,
+  "isRead": false,
   "created_at": "2022-03-08T18:26:04.000000Z",
   "updated_at": "2022-03-08T18:26:04.000000Z"
 }

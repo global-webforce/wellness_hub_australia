@@ -39,7 +39,7 @@ class ServiceProviderCard extends StatelessWidget {
 
     Widget name() {
       return Text(
-        "${serviceProvider.firstName} ${serviceProvider.lastName[0]}.",
+        "${serviceProvider.firstName} ${serviceProvider.lastName}.",
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),

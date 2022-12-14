@@ -1,17 +1,19 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ez_core/ez_core.dart';
 import 'package:wellness_hub_australia/app/models/task.model.dart';
 
 import 'package:flutter/material.dart';
 
 class TaskCard extends StatelessWidget {
   final Task? task;
+  final Color? color;
   final Function onTap;
   final Function? onTapAlarm;
   const TaskCard(
-      {Key? key, required this.task, required this.onTap, this.onTapAlarm})
+      {Key? key,
+      required this.task,
+      required this.onTap,
+      this.onTapAlarm,
+      this.color})
       : super(key: key);
 
   @override
@@ -22,8 +24,9 @@ class TaskCard extends StatelessWidget {
         color: Colors.white,
         child: CachedNetworkImage(
           imageUrl: "${task!.imgUrl}",
-          width: max(width * 0.13, 80),
-          height: max(width * 0.13, 80),
+          fit: BoxFit.contain,
+          width: 70,
+          height: 70,
           placeholder: (context, url) {
             return Card(
               elevation: 0,
@@ -49,36 +52,31 @@ class TaskCard extends StatelessWidget {
     }
 
     Widget frequency() {
-      Color? color;
       String? text;
       switch (task!.frequency) {
         case "daily":
-          color = Colors.blue;
-          text = "Today";
+          text = "Daily";
           break;
         case "weekly":
-          color = Colors.green;
-          text = "This Week";
+          text = "Weekly";
           break;
         case "monthly":
-          color = Colors.orange;
-          text = "This Month";
+          text = "Monthly";
           break;
         case "once":
-          color = Colors.red;
-          text = "Try it!";
+          text = "Discover";
           break;
         default:
       }
       return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: color!.withOpacity(0.8),
+          color: Colors.grey,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Text(
-            text!.toTitleCase(),
+            text!.toUpperCase(),
             style: const TextStyle(fontSize: 12, color: Colors.white),
           ),
         ),
@@ -88,8 +86,6 @@ class TaskCard extends StatelessWidget {
     Widget title() {
       return Text(
         "${task!.title}",
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
@@ -100,71 +96,111 @@ class TaskCard extends StatelessWidget {
     Widget description() {
       return Text(
         "${task!.description}",
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 12,
         ),
       );
     }
 
-    Widget alarm() {
-      return IconButton(
-        onPressed: onTapAlarm != null ? () => onTapAlarm!() : null,
-        icon: task!.schedule != null
-            ? const Icon(
-                Icons.alarm,
-                color: Colors.green,
-              )
-            : const Icon(
-                Icons.alarm,
-                color: Colors.grey,
-              ),
-      );
-    }
-
     return Card(
+      elevation: 3,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () => onTap(),
         child: LayoutBuilder(builder: (context, constraints) {
-          return Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                image(constraints.maxWidth),
-                hSpaceSmall,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      frequency(),
-                      const SizedBox(height: 4),
-                      title(),
-                      const SizedBox(height: 6),
-                      description()
-                    ],
-                  ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    frequency(),
+                  ],
                 ),
-                hSpaceTiny,
-                Column(
+              ),
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    task!.taskProgressId != null
-                        ? const Icon(
-                            Icons.check_circle_rounded,
-                            color: Colors.green,
-                          )
-                        : const SizedBox.shrink(),
-                    /*    _checkbox(),*/
-                    alarm(),
+                    image(constraints.maxWidth),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [title(), description()],
+                      ),
+                    ),
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Material(
+                        color: task!.schedule != null ? color : Colors.grey,
+                        child: InkWell(
+                          onTap:
+                              onTapAlarm != null ? () => onTapAlarm!() : null,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 5,
+                              children: [
+                                task!.schedule != null
+                                    ? const Icon(Icons.alarm_on_outlined,
+                                        color: Colors.white)
+                                    : const Icon(Icons.alarm_off_outlined,
+                                        color: Colors.white),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const VerticalDivider(
+                      width: 1,
+                    ),
+                    Expanded(
+                      child: Material(
+                        color:
+                            task!.taskProgressId != null ? color : Colors.grey,
+                        child: InkWell(
+                          onTap: () => onTap(),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 5,
+                              children: [
+                                task!.taskProgressId != null
+                                    ? const Icon(Icons.check,
+                                        color: Colors.white)
+                                    : const Icon(Icons.visibility_outlined,
+                                        color: Colors.white),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           );
         }),
       ),

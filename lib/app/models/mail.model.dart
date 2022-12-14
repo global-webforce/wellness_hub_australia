@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'mail.model.freezed.dart';
@@ -11,7 +10,7 @@ class Mail with _$Mail {
     String? subject,
     String? body,
     String? link,
-    @Default(false) bool isRead,
+    bool? isRead,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _Mail;

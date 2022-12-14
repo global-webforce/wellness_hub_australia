@@ -1,7 +1,10 @@
 import 'package:ez_dashboard/screen_size_helper.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 import 'package:wellness_hub_australia/app/shared/ui/empty_display.dart';
-import 'package:wellness_hub_australia/app/shared/ui/sliver_grid_delegate.dart';
+import 'package:wellness_hub_australia/features/task_alarm/pages/add_task_alarm_page.dart';
+import 'package:wellness_hub_australia/features/tasks/pages/task_detail_page.dart';
 import 'package:wellness_hub_australia/features/tasks/widgets/task_card.dart';
 import 'package:wellness_hub_australia/features/tasks/viewmodels/tasks_viewmodel.dart';
 import 'package:wellness_hub_australia/app/shared/ui/list_and_grid_view_wrapper.dart';
@@ -24,6 +27,7 @@ class TasksPage extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
               title: Text("My ${viewModel.pillar!.title} Tasks"),
+              backgroundColor: HexColor("${viewModel.pillar?.colorTheme}"),
             ),
             body: ListAndGridViewWrapper(
               isBusy: viewModel.isBusy,
@@ -36,24 +40,32 @@ class TasksPage extends StatelessWidget {
               },
               itemCount: viewModel.tasks.length,
               builder: (context, constraints) {
-                return GridView.builder(
+                return AlignedGridView.count(
+                  crossAxisCount: isMobile(context) ? 1 : 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
                   itemCount: viewModel.tasks.length,
                   padding: Dimens.sliverPadding(constraints),
-                  gridDelegate:
-                      SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                    crossAxisCount: isMobile(context) ? 1 : 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    height: 115,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: false,
+                  itemBuilder: (context, index) {
                     return TaskCard(
                       task: viewModel.tasks[index],
+                      color: HexColor("${viewModel.pillar?.colorTheme}"),
                       onTap: () {
-                        viewModel.goToTaskDetailPage(viewModel.tasks[index].id);
+                        viewModel.navigationService
+                            .navigateToView(TaskDetailPage(
+                          taskId: viewModel.tasks[index].id,
+                          color: HexColor("${viewModel.pillar?.colorTheme}"),
+                        ));
                       },
                       onTapAlarm: () {
-                        viewModel.goToTaskAlarmPage(viewModel.tasks[index].id);
+                        viewModel.navigationService.navigateToView(
+                          AddTaskAlarmPage(
+                              taskId: viewModel.tasks[index].id,
+                              color:
+                                  HexColor("${viewModel.pillar?.colorTheme}")),
+                        );
                       },
                     );
                   },

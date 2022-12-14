@@ -24,7 +24,7 @@ mixin _$Mail {
   String? get subject => throw _privateConstructorUsedError;
   String? get body => throw _privateConstructorUsedError;
   String? get link => throw _privateConstructorUsedError;
-  bool get isRead => throw _privateConstructorUsedError;
+  bool? get isRead => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -45,7 +45,7 @@ abstract class $MailCopyWith<$Res> {
       String? subject,
       String? body,
       String? link,
-      bool isRead,
+      bool? isRead,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
@@ -67,7 +67,7 @@ class _$MailCopyWithImpl<$Res, $Val extends Mail>
     Object? subject = freezed,
     Object? body = freezed,
     Object? link = freezed,
-    Object? isRead = null,
+    Object? isRead = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -88,10 +88,10 @@ class _$MailCopyWithImpl<$Res, $Val extends Mail>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
-      isRead: null == isRead
+      isRead: freezed == isRead
           ? _value.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ abstract class _$$_MailCopyWith<$Res> implements $MailCopyWith<$Res> {
       String? subject,
       String? body,
       String? link,
-      bool isRead,
+      bool? isRead,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
@@ -133,7 +133,7 @@ class __$$_MailCopyWithImpl<$Res> extends _$MailCopyWithImpl<$Res, _$_Mail>
     Object? subject = freezed,
     Object? body = freezed,
     Object? link = freezed,
-    Object? isRead = null,
+    Object? isRead = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -154,10 +154,10 @@ class __$$_MailCopyWithImpl<$Res> extends _$MailCopyWithImpl<$Res, _$_Mail>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
-      isRead: null == isRead
+      isRead: freezed == isRead
           ? _value.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class _$_Mail implements _Mail {
       this.subject,
       this.body,
       this.link,
-      this.isRead = false,
+      this.isRead,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt});
 
@@ -193,8 +193,7 @@ class _$_Mail implements _Mail {
   @override
   final String? link;
   @override
-  @JsonKey()
-  final bool isRead;
+  final bool? isRead;
   @override
   @JsonKey(name: 'created_at')
   final DateTime? createdAt;
@@ -248,7 +247,7 @@ abstract class _Mail implements Mail {
       final String? subject,
       final String? body,
       final String? link,
-      final bool isRead,
+      final bool? isRead,
       @JsonKey(name: 'created_at') final DateTime? createdAt,
       @JsonKey(name: 'updated_at') final DateTime? updatedAt}) = _$_Mail;
 
@@ -263,7 +262,7 @@ abstract class _Mail implements Mail {
   @override
   String? get link;
   @override
-  bool get isRead;
+  bool? get isRead;
   @override
   @JsonKey(name: 'created_at')
   DateTime? get createdAt;

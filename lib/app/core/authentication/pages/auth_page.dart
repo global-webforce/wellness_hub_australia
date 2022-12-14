@@ -47,10 +47,8 @@ class AuthPage extends StatelessWidget {
                               return Row(
                                 children: [
                                   const Expanded(child: OnboardingPage()),
-                                  Container(
+                                  const VerticalDivider(
                                     width: 1,
-                                    height: double.infinity,
-                                    color: Colors.grey,
                                   ),
                                   Expanded(child: kContent),
                                 ],

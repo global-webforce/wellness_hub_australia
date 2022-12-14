@@ -72,69 +72,75 @@ class AppointmentsPage extends StatelessWidget {
             initialIndex: 0,
             length: 5,
             child: Scaffold(
-              floatingActionButton: viewModel.bookingEnabled
-                  ? isMobile(context)
-                      ? mobileButton()
-                      : desktopButton()
-                  : const SizedBox.shrink(),
-              appBar: AppBar(
-                leading: ezDrawerButton(context),
-                title: const Text("Appointments"),
-                bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(48),
-                  child: ColoredBox(
-                    color: Theme.of(context).primaryColor.darken(),
-                    child: LayoutBuilder(builder: (context, constraints) {
-                      final double width =
-                          max(((constraints.maxWidth / 5) - 32), 110);
+                floatingActionButton: viewModel.appService.isMember()
+                    ? isMobile(context)
+                        ? mobileButton()
+                        : desktopButton()
+                    : const SizedBox.shrink(),
+                appBar: AppBar(
+                  leading: ezDrawerButton(context),
+                  title: const Text("Appointments"),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => showDatePickerW(),
+                      child: const Icon(
+                        Icons.date_range,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+                body: viewModel.isBusy
+                    ? const Center(child: CircularProgressIndicator())
+                    : Column(
+                        children: [
+                          PreferredSize(
+                            preferredSize: const Size.fromHeight(48),
+                            child: ColoredBox(
+                              color: Theme.of(context).primaryColor.darken(),
+                              child: LayoutBuilder(
+                                  builder: (context, constraints) {
+                                final double width =
+                                    max(((constraints.maxWidth / 5) - 32), 110);
 
-                      Widget tab(String title) {
-                        return Tab(
-                          child: SizedBox(
-                            width: width,
-                            child: Text(
-                              title,
-                              textAlign: TextAlign.center,
+                                Widget tab(String title) {
+                                  return Tab(
+                                    child: SizedBox(
+                                      width: width,
+                                      child: Text(
+                                        title,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  );
+                                }
+
+                                return TabBar(
+                                  isScrollable: true,
+                                  tabs: [
+                                    tab("Pending (${viewModel.clientAppointmentsPending.length})"),
+                                    tab("Upcoming (${viewModel.clientAppointmentsUpcoming.length})"),
+                                    tab("Completed (${viewModel.clientAppointmentsCompleted.length})"),
+                                    tab("Missed (${viewModel.clientAppointmentsMissed.length})"),
+                                    tab("Cancelled (${viewModel.clientAppointmentsCancelled.length})"),
+                                  ],
+                                );
+                              }),
                             ),
                           ),
-                        );
-                      }
-
-                      return TabBar(
-                        isScrollable: true,
-                        tabs: [
-                          tab("All (${viewModel.clientAppointments.length})"),
-                          tab("Upcoming (${viewModel.clientAppointmentsUpcoming.length})"),
-                          tab("Completed (${viewModel.clientAppointmentsCompleted.length})"),
-                          tab("Missed (${viewModel.clientAppointmentsMissed.length})"),
-                          tab("Cancelled (${viewModel.clientAppointmentsCancelled.length})"),
+                          const Expanded(
+                            child: TabBarView(
+                              children: [
+                                Tab1(),
+                                Tab2(),
+                                Tab3(),
+                                Tab4(),
+                                Tab5(),
+                              ],
+                            ),
+                          ),
                         ],
-                      );
-                    }),
-                  ),
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => showDatePickerW(),
-                    child: const Icon(
-                      Icons.date_range,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              body: viewModel.isBusy
-                  ? const Center(child: CircularProgressIndicator())
-                  : const TabBarView(
-                      children: [
-                        Tab1(),
-                        Tab2(),
-                        Tab3(),
-                        Tab4(),
-                        Tab5(),
-                      ],
-                    ),
-            ),
+                      )),
           );
         });
   }
@@ -156,7 +162,7 @@ class _Tab1State extends State<Tab1> with AutomaticKeepAliveClientMixin {
     final viewModel = getParentViewModel<AppointmentViewModel>(context);
     return SfCalendarTemplateWidget(
         controller: viewModel.controller1,
-        dataSource: MeetingDataSource(viewModel.clientAppointments),
+        dataSource: MeetingDataSource(viewModel.clientAppointmentsPending),
         onViewChanged: viewModel.viewChanged,
         onTap: viewModel.calendarTapped);
   }

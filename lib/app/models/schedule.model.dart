@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'schedule.model.freezed.dart';
@@ -11,7 +10,7 @@ class Schedule with _$Schedule {
     @JsonKey(name: 'task_id') int? taskId,
     String? weekdays,
     String? timeSlots,
-    @Default(0) int enabled,
+    int? enabled,
   }) = _Schedule;
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>

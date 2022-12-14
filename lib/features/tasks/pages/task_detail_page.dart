@@ -8,7 +8,8 @@ import 'package:stacked/stacked.dart';
 
 class TaskDetailPage extends StatelessWidget {
   final int? taskId;
-  const TaskDetailPage({Key? key, this.taskId}) : super(key: key);
+  final Color? color;
+  const TaskDetailPage({Key? key, this.taskId, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,9 @@ class TaskDetailPage extends StatelessWidget {
               appBar: AppBar(
                 leading: const AutoLeadingButton(),
                 actions: const [hSpaceSmall],
+                backgroundColor: color,
               ),
-              bottomNavigationBar: const FinishTaskButton(),
+              bottomNavigationBar: FinishTaskButton(color),
               body: (task == null || task.embedUrl == null)
                   ? const Center()
                   : LayoutBuilder(builder: (context, constraints) {
@@ -38,42 +40,45 @@ class TaskDetailPage extends StatelessWidget {
 }
 
 class FinishTaskButton extends ViewModelWidget<TasksViewModel> {
-  const FinishTaskButton({Key? key}) : super(key: key);
+  final Color? color;
+  const FinishTaskButton(this.color, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, TasksViewModel viewModel) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      color: Theme.of(context).backgroundColor,
-      child: SizedBox(
-          height: 40,
-          child: viewModel.task?.taskProgressId != null && !viewModel.isBusy
-              ? Tooltip(
-                  message: '(Press-hold to Undo)',
-                  child: EzButton.elevated(
-                    busy: viewModel.isBusy,
-                    leading: Icons.check_circle_rounded,
-                    title: "Task Completed ",
-                    onLongPress: () async {
-                      await viewModel.toggleProgress(viewModel.task!.id);
-                    },
-                    rounded: true,
-                    background: Colors.green,
-                  ),
-                )
-              : Tooltip(
-                  message: "Tap to set as Finished",
-                  child: EzButton.elevated(
-                    busy: viewModel.isBusy,
-                    leading: Icons.add,
-                    title: "Set as Finished",
-                    onTap: () async {
-                      await viewModel.toggleProgress(viewModel.task!.id);
-                    },
-                    background: Colors.grey,
-                    rounded: true,
-                  ),
-                )),
+    return BottomAppBar(
+      elevation: 5,
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        color: Theme.of(context).backgroundColor,
+        child: SizedBox(
+            height: 40,
+            child: viewModel.task?.taskProgressId != null && !viewModel.isBusy
+                ? Tooltip(
+                    message: '(Press-hold to Undo)',
+                    child: EzButton.elevated(
+                        busy: viewModel.isBusy,
+                        leading: Icons.check,
+                        title: "Task Completed ",
+                        onLongPress: () async {
+                          await viewModel.toggleProgress(viewModel.task!.id);
+                        },
+                        rounded: true,
+                        background: color),
+                  )
+                : Tooltip(
+                    message: "Tap to set as Finished",
+                    child: EzButton.elevated(
+                      busy: viewModel.isBusy,
+                      leading: Icons.add,
+                      title: "Finish Task",
+                      onTap: () async {
+                        await viewModel.toggleProgress(viewModel.task!.id);
+                      },
+                      background: Colors.grey,
+                      rounded: true,
+                    ),
+                  )),
+      ),
     );
   }
 }

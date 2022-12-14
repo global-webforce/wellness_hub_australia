@@ -102,7 +102,6 @@ class _MembershipCodeForm extends StatelessWidget {
           labelText: "Membership Code",
         ),
         obscureText: true,
-        obscuringCharacter: "X",
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(),
         ]),

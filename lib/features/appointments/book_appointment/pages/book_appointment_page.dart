@@ -143,7 +143,10 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                     : BackButton(onPressed: () => viewModel.back()),
                 title: const Text('BOOK NOW'),
               ),
-              bottomNavigationBar: nextBackButton(),
+              bottomNavigationBar: BottomAppBar(
+                elevation: 5,
+                child: nextBackButton(),
+              ),
               body: viewModel.isBusy
                   ? const Center(child: CircularProgressIndicator())
                   : PageView.builder(

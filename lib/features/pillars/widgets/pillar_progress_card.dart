@@ -73,6 +73,7 @@ class PillarProgressCard extends StatelessWidget {
           "${pillar.progress()}%",
           style: const TextStyle(
             fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         );
 
@@ -80,6 +81,7 @@ class PillarProgressCard extends StatelessWidget {
           "${pillar.completed!} / ${pillar.total}",
           style: const TextStyle(
             fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         );
 
@@ -88,7 +90,7 @@ class PillarProgressCard extends StatelessWidget {
         child: InkWell(
           onTap: () => onTap(),
           child: Padding(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(12),
             child: LayoutBuilder(builder: (context, constraints) {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,7 +101,7 @@ class PillarProgressCard extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         title(),
                         const SizedBox(

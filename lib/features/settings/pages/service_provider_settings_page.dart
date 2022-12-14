@@ -16,22 +16,22 @@ class _ServiceProviderSettingsPageState
     extends State<ServiceProviderSettingsPage> {
   @override
   Widget build(BuildContext context) {
-    final theme =
-        getParentViewModel<AppViewModel>(context, listen: false).themeService;
+/*     final theme =
+        getParentViewModel<AppViewModel>(context, listen: false).themeService; */
     return Scaffold(
         appBar: AppBar(
           leading: ezDrawerButton(context),
           automaticallyImplyLeading: false,
           title: const Text("Settings"),
           centerTitle: true,
-          actions: [
+          /*   actions: [
             IconButton(
                 tooltip: "Change Theme",
                 icon: const Icon(Icons.light_mode),
                 onPressed: () {
                   theme.toggleDarkLightTheme();
                 })
-          ],
+          ], */
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),

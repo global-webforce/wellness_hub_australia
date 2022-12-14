@@ -51,14 +51,15 @@ class OnboardItem extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     subtitle,
                     textAlign: TextAlign.justify,
-                    style: const TextStyle(fontSize: 14, color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
                   ),
                   const SizedBox(
                     height: 70,

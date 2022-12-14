@@ -16,8 +16,22 @@ import 'package:wellness_hub_australia/features/appointments/appointments/servic
 import 'package:wellness_hub_australia/app/models/appointment.model.dart';
 
 class AppointmentViewModel extends ReactiveViewModel {
+  final appService = locator<AppService>();
+  final calendar.CalendarController controller1 = calendar.CalendarController();
+  final calendar.CalendarController controller2 = calendar.CalendarController();
+  final calendar.CalendarController controller3 = calendar.CalendarController();
+  final calendar.CalendarController controller4 = calendar.CalendarController();
+  final calendar.CalendarController controller5 = calendar.CalendarController();
+  DateTime datePicked = DateTime.now();
+  final log = getLogger('AppointmentViewModel');
+  final navigationService = locator<NavigationService>();
+
   final _appointmentFormKey = GlobalKey<FormBuilderState>();
-  GlobalKey<FormBuilderState> get appointmentFormKey => _appointmentFormKey;
+  int? _appointmentID;
+  final _appointmentService = locator<AppointmentsService>();
+  final _dialogService = locator<DialogService>();
+  bool _editMode = false;
+  final _snackbarService = locator<SnackbarService>();
 
   @override
   void onFutureError(error, Object? key) {
@@ -29,27 +43,19 @@ class AppointmentViewModel extends ReactiveViewModel {
     super.onFutureError(error, key);
   }
 
-  final log = getLogger('AppointmentViewModel');
-
-  final navigationService = locator<NavigationService>();
-  final _appointmentService = locator<AppointmentsService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _dialogService = locator<DialogService>();
-  final _appService = locator<AppService>();
-
-  bool _editMode = false;
-  bool get editMode => _editMode;
-  set editMode(bool value) {
-    _editMode = value;
-    notifyListeners();
-  }
-
-  bool get bookingEnabled => _appService.user?.role == "member" ? true : false;
-
   @override
   List<ReactiveServiceMixin> get reactiveServices => [
         _appointmentService,
       ];
+
+  GlobalKey<FormBuilderState> get appointmentFormKey => _appointmentFormKey;
+
+  bool get editMode => _editMode;
+
+  set editMode(bool value) {
+    _editMode = value;
+    notifyListeners();
+  }
 
   void end() {
     controller1.dispose();
@@ -59,15 +65,12 @@ class AppointmentViewModel extends ReactiveViewModel {
     controller5.dispose();
   }
 
-  final calendar.CalendarController controller1 = calendar.CalendarController();
-  final calendar.CalendarController controller2 = calendar.CalendarController();
-  final calendar.CalendarController controller3 = calendar.CalendarController();
-  final calendar.CalendarController controller4 = calendar.CalendarController();
-  final calendar.CalendarController controller5 = calendar.CalendarController();
-
-  DateTime datePicked = DateTime.now();
-
   List<Appointment> get clientAppointments => _appointmentService.appointments;
+
+  List<Appointment> get clientAppointmentsPending =>
+      _appointmentService.appointments
+          .where((e) => e.status == "Pending")
+          .toList();
 
   List<Appointment> get clientAppointmentsUpcoming =>
       _appointmentService.appointments
@@ -100,7 +103,7 @@ class AppointmentViewModel extends ReactiveViewModel {
       Map<String, dynamic> rawFormData = Map.of(formValue!);
 
       await runBusyFuture(
-          _appointmentService.update(_selectedAppointmentId, rawFormData),
+          _appointmentService.update(_appointmentID, rawFormData),
           busyObject: ViewModelBusyKeys.appointmentUpdate,
           throwException: true);
 
@@ -115,11 +118,12 @@ class AppointmentViewModel extends ReactiveViewModel {
     await runBusyFuture(_appointmentService.getAll(), throwException: true);
   }
 
-  int? _selectedAppointmentId;
-  set selectedAppointmentId(int? value) => _selectedAppointmentId = value;
+  set appointmentID(int? value) => _appointmentID = value;
 
-  Appointment? get getSelectedAppointment => _appointmentService.appointments
-      .firstWhere((e) => e.id == _selectedAppointmentId);
+  Appointment? get appointment {
+    return _appointmentService.appointments
+        .firstWhere((e) => e.id == _appointmentID);
+  }
 
   void viewChanged(calendar.ViewChangedDetails viewChangedDetails) {
     SchedulerBinding.instance.addPostFrameCallback((duration) {

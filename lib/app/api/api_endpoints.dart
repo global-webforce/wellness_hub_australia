@@ -39,8 +39,15 @@ class ApiEndpoints {
       "$baseUrl/user/${_appService.user?.id}/messages/$threadId";
   String messageThreadViaRecipientId(int? recipientId) =>
       "$baseUrl/user/${_appService.user?.id}/get-thread/$recipientId";
-  String messageSend(int? threadId, int? recipientId) =>
-      "$baseUrl/send-message/${_appService.user?.id}/$threadId/$recipientId";
+  String messageSend(int? threadId, int? recipientId) {
+    if (threadId != null) {
+      print("MERONG THREAD ID");
+      return "$baseUrl/send-message/${_appService.user?.id}/$threadId";
+    } else {
+      print("WALANG THREAD ID");
+      return "$baseUrl/send-message/${_appService.user?.id}";
+    }
+  }
 
   String companies() => "$baseUrl/custom-links";
   static const String companyMembers = "$baseUrl/custom-links";

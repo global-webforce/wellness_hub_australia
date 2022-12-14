@@ -15,28 +15,28 @@ class OnboardingPage extends StatelessWidget {
     return OnboardApp(
       onDone: () => viewModel.onboard(),
       carouselMode: kIsWeb,
-      pages: [
+      pages: const [
         OnboardItem(
           title:
               "It’s these networks that enable us to feel connected and engaged.They enrich us and fulfill our lives.",
           subtitle:
               "The ability to communicate and develop meaningful relationships with family, friends, colleagues, and co-workers throughout our lives is vital to our wellbeing.",
           imagePath: "assets/images/onboard/img1.png",
-          pageColor: HexColor("#C86556").darken(),
+          pageColor: Colors.white,
         ),
         OnboardItem(
           title: "Provides affordable program and activities",
           subtitle:
               "Physical and Mental health work together. Physical wellbeing is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without physical stress.",
           imagePath: "assets/images/onboard/img2.png",
-          pageColor: HexColor("#EFBF5C").darken(),
+          pageColor: Colors.white,
         ),
         OnboardItem(
           title: "Increases social and community health.",
           subtitle:
               "Mental well-being is strongly supported by emotional skills like positivity, calmness, and mindfulness. Often, we need to build a variety of these skills to cope with the wide variety of situations we encounter in our daily lives.",
           imagePath: "assets/images/onboard/img3.png",
-          pageColor: HexColor("#73B19C").darken(),
+          pageColor: Colors.white,
         ),
         OnboardItem(
           title:
@@ -44,7 +44,7 @@ class OnboardingPage extends StatelessWidget {
           subtitle:
               "Having financial goals, setting spending budgets and keeping tabs on what we spend our money on empowers us. We know how much we earn and how we should best spend it. ",
           imagePath: "assets/images/onboard/img4.png",
-          pageColor: HexColor("#8959B0").darken(),
+          pageColor: Colors.white,
         ),
       ],
     );

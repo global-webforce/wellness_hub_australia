@@ -19,7 +19,7 @@ class AppointmentDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = getParentViewModel<AppointmentViewModel>(context);
-    final appointment = viewModel.getSelectedAppointment;
+    final appointment = viewModel.appointment;
 
     Widget spAvatar() {
       return EzAvatar(

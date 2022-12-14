@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'badge.model.freezed.dart';
@@ -13,7 +12,7 @@ class Badge with _$Badge {
     @JsonKey(name: 'img_path') String? imgPath,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
-    @Default(false) bool acquired,
+    bool? acquired,
   }) = _Badge;
 
   factory Badge.fromJson(Map<String, dynamic> json) => _$BadgeFromJson(json);

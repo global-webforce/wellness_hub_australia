@@ -22,13 +22,19 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
 
   @override
   Future findOne(int? threadId, int? recipientId) async {
+    print("WWWWWWWWWWWWWWWWWWWWWW");
+    print(threadId);
+    print(recipientId);
     return await _apiService.get(
       (threadId != null)
           ? ApiEndpoints.instance.messageThreadViaThreadId(threadId)
           : ApiEndpoints.instance.messageThreadViaRecipientId(recipientId),
       onSuccess: (res) {
+        print(res.body);
         List<dynamic> messagesJson = jsonDecode(res.body)["messages"];
         List<dynamic> participantsJson = jsonDecode(res.body)["participants"];
+
+        int? threadId = jsonDecode(res.body)["thread_id"];
         List<ChatMessage> messages = List<ChatMessage>.from(
           messagesJson.map<ChatMessage>(
             (dynamic i) => ChatMessage(
@@ -53,7 +59,11 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
             ),
           ),
         );
-        return ChatThread(messages: messages, participants: participants);
+        return ChatThread(
+          threadId: threadId,
+          messages: messages,
+          participants: participants,
+        );
 
         // fakeChatThread();
       },
@@ -67,9 +77,10 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
       ApiEndpoints.instance.messageSend(threadId, recipientId),
       requestBody: {
         "text": m?.text,
-        "recipient": m?.user.id,
+        "recipient": recipientId,
       },
       onSuccess: (res) async {
+        await findOne(threadId, recipientId);
         await getAll();
       },
       onError: (_) {},

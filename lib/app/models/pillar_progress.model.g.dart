@@ -8,7 +8,7 @@ part of 'pillar_progress.model.dart';
 
 _$_PillarProgress _$$_PillarProgressFromJson(Map<String, dynamic> json) =>
     _$_PillarProgress(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       colorTheme: json['color_theme'] as String?,
       pillarIcon: json['pillar_icon'] as String?,
       title: json['title'] as String?,

@@ -8,7 +8,7 @@ part of 'review.model.dart';
 
 _$_Review _$$_ReviewFromJson(Map<String, dynamic> json) => _$_Review(
       id: json['id'] as int?,
-      rating: (json['rating'] as num?)?.toDouble() ?? 0.01,
+      rating: (json['rating'] as num?)?.toDouble(),
       serviceProviderId: json['service_provider_id'] as int?,
       comment: json['comment'] as String?,
       author: json['author'] as String?,

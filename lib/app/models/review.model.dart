@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'review.model.freezed.dart';
@@ -8,7 +7,7 @@ part 'review.model.g.dart';
 class Review with _$Review {
   factory Review({
     int? id,
-    @Default(0.01) double rating,
+    double? rating,
     @JsonKey(name: 'service_provider_id') int? serviceProviderId,
     String? comment,
     String? author,

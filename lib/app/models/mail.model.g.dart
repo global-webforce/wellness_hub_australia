@@ -11,7 +11,7 @@ _$_Mail _$$_MailFromJson(Map<String, dynamic> json) => _$_Mail(
       subject: json['subject'] as String?,
       body: json['body'] as String?,
       link: json['link'] as String?,
-      isRead: json['isRead'] as bool? ?? false,
+      isRead: json['isRead'] as bool?,
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),

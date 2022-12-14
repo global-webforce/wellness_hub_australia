@@ -62,7 +62,7 @@ class _EZDrawerState extends State<EZDrawer> {
             menu.title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14,
+              fontSize: 16,
             ),
           ),
           onTap: () {
@@ -91,31 +91,19 @@ class _EZDrawerState extends State<EZDrawer> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      return ClipRRect(
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border(
-              right: BorderSide(
-                color: Theme.of(context).disabledColor.withOpacity(0.2),
-                width: 1.0,
-              ),
-            ),
-          ),
-          child: Drawer(
-            elevation: 0,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                widget.appBar,
-                widget.drawerHeader ?? const SizedBox.shrink(),
-                ListView(
-                    padding: const EdgeInsets.all(10),
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
-                    children: items)
-              ],
-            ),
-          ),
+      return Drawer(
+        elevation: 0,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            widget.appBar,
+            widget.drawerHeader ?? const SizedBox.shrink(),
+            ListView(
+                padding: const EdgeInsets.all(10),
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                children: items)
+          ],
         ),
       );
     });

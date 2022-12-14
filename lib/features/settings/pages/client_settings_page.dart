@@ -20,7 +20,7 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
           leading: ezDrawerButton(context),
           automaticallyImplyLeading: false,
           title: const Text("Settings"),
-          actions: [
+          /*      actions: [
             IconButton(
                 tooltip: "Change Theme",
                 icon: const Icon(Icons.light_mode),
@@ -29,7 +29,7 @@ class _ClientSettingsPageState extends State<ClientSettingsPage> {
                       .themeService
                       .toggleDarkLightTheme();
                 })
-          ],
+          ], */
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),

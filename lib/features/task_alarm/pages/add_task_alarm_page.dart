@@ -11,7 +11,9 @@ import 'package:stacked/stacked.dart';
 
 class AddTaskAlarmPage extends StatelessWidget {
   final int? taskId;
-  const AddTaskAlarmPage({Key? key, required this.taskId}) : super(key: key);
+  final Color? color;
+  const AddTaskAlarmPage({Key? key, required this.taskId, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class AddTaskAlarmPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
               appBar: AppBar(
-                title: const Text("Add Alarm"),
+                title: const Text("Set Alarm"),
+                backgroundColor: color,
               ),
               body: ScaffoldBodyWrapper(builder: (context, constraints) {
                 return const Card(

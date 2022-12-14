@@ -30,8 +30,8 @@ class EZBottomNavbar extends StatelessWidget {
                   BottomNavigationBarItem(icon: Icon(e.icon), label: e.title))
               .toList(),
           unselectedItemColor: Theme.of(context).disabledColor,
-          type: BottomNavigationBarType.fixed,
-          showUnselectedLabels: true,
+          type: BottomNavigationBarType.shifting,
+          showUnselectedLabels: false,
           onTap: (i) {
             EasyDebounce.debounce(
                 'bottom-navigate', // <-- An ID for this particular debouncer

@@ -73,13 +73,13 @@ class _LoginPageState extends State<LoginPage> {
 
           return SafeArea(
               child: Scaffold(
-                  backgroundColor: Theme.of(context).colorScheme.surface,
                   floatingActionButton: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: closeButton(),
                   ),
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.startTop,
+                  backgroundColor: Colors.white,
                   body: ScaffoldBodyWrapper(
                       neverScroll: true,
                       centered: true,
@@ -105,8 +105,6 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 class _LoginForm extends StatelessWidget {
-  final List<String> roleOptions = ['User', 'Admin'];
-
   @override
   Widget build(BuildContext context) {
     final viewModel = getParentViewModel<AppViewModel>(context);
@@ -114,8 +112,7 @@ class _LoginForm extends StatelessWidget {
     Widget emailField() {
       return FormBuilderTextField(
         name: "email",
-        initialValue: "jane_doe@yahoo.com",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        // initialValue: "jane_doe@yahoo.com",
         keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.next,
         maxLength: 70,
@@ -134,8 +131,7 @@ class _LoginForm extends StatelessWidget {
     Widget passwordField() {
       return FormBuilderTextField(
         name: "password",
-        initialValue: "abc123",
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        //initialValue: "abc123",
         keyboardType: TextInputType.visiblePassword,
         textInputAction: TextInputAction.next,
         obscureText: true,

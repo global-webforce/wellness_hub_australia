@@ -17,7 +17,7 @@ _$_Badge _$$_BadgeFromJson(Map<String, dynamic> json) => _$_Badge(
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      acquired: json['acquired'] as bool? ?? false,
+      acquired: json['acquired'] as bool?,
     );
 
 Map<String, dynamic> _$$_BadgeToJson(_$_Badge instance) => <String, dynamic>{

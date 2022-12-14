@@ -7,12 +7,12 @@ part of 'client.model.dart';
 // **************************************************************************
 
 _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
-      id: json['id'] as int,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      email: json['email'] as String,
+      id: json['id'] as int?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      email: json['email'] as String?,
       emailVerifiedAt: json['email_verified_at'],
-      mobileNumber: json['mobile_number'] as String,
+      mobileNumber: json['mobile_number'] as String?,
       role: json['role'],
       profilePic: json['profile_pic'],
       companyId: json['company_id'],

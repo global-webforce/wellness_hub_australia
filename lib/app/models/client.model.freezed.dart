@@ -20,16 +20,16 @@ Client _$ClientFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Client {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
-  String get firstName => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
-  String get lastName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'email_verified_at')
   dynamic get emailVerifiedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'mobile_number')
-  String get mobileNumber => throw _privateConstructorUsedError;
+  String? get mobileNumber => throw _privateConstructorUsedError;
   dynamic get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_pic')
   dynamic get profilePic => throw _privateConstructorUsedError;
@@ -54,12 +54,12 @@ abstract class $ClientCopyWith<$Res> {
       _$ClientCopyWithImpl<$Res, Client>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName,
-      String email,
+      {int? id,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      String? email,
       @JsonKey(name: 'email_verified_at') dynamic emailVerifiedAt,
-      @JsonKey(name: 'mobile_number') String mobileNumber,
+      @JsonKey(name: 'mobile_number') String? mobileNumber,
       dynamic role,
       @JsonKey(name: 'profile_pic') dynamic profilePic,
       @JsonKey(name: 'company_id') dynamic companyId,
@@ -84,12 +84,12 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
     Object? emailVerifiedAt = null,
-    Object? mobileNumber = null,
+    Object? mobileNumber = freezed,
     Object? role = null,
     Object? profilePic = null,
     Object? companyId = null,
@@ -101,30 +101,30 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
     Object? address = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: null == firstName
+              as int?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerifiedAt: null == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      mobileNumber: null == mobileNumber
+      mobileNumber: freezed == mobileNumber
           ? _value.mobileNumber
           : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -172,12 +172,12 @@ abstract class _$$_ClientCopyWith<$Res> implements $ClientCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName,
-      String email,
+      {int? id,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      String? email,
       @JsonKey(name: 'email_verified_at') dynamic emailVerifiedAt,
-      @JsonKey(name: 'mobile_number') String mobileNumber,
+      @JsonKey(name: 'mobile_number') String? mobileNumber,
       dynamic role,
       @JsonKey(name: 'profile_pic') dynamic profilePic,
       @JsonKey(name: 'company_id') dynamic companyId,
@@ -199,12 +199,12 @@ class __$$_ClientCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
     Object? emailVerifiedAt = null,
-    Object? mobileNumber = null,
+    Object? mobileNumber = freezed,
     Object? role = null,
     Object? profilePic = null,
     Object? companyId = null,
@@ -216,30 +216,30 @@ class __$$_ClientCopyWithImpl<$Res>
     Object? address = null,
   }) {
     return _then(_$_Client(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: null == firstName
+              as int?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerifiedAt: null == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      mobileNumber: null == mobileNumber
+      mobileNumber: freezed == mobileNumber
           ? _value.mobileNumber
           : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -284,12 +284,12 @@ class __$$_ClientCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Client implements _Client {
   _$_Client(
-      {required this.id,
-      @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'last_name') required this.lastName,
-      required this.email,
+      {this.id,
+      @JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
+      this.email,
       @JsonKey(name: 'email_verified_at') this.emailVerifiedAt,
-      @JsonKey(name: 'mobile_number') required this.mobileNumber,
+      @JsonKey(name: 'mobile_number') this.mobileNumber,
       this.role,
       @JsonKey(name: 'profile_pic') this.profilePic,
       @JsonKey(name: 'company_id') this.companyId,
@@ -304,21 +304,21 @@ class _$_Client implements _Client {
       _$$_ClientFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'first_name')
-  final String firstName;
+  final String? firstName;
   @override
   @JsonKey(name: 'last_name')
-  final String lastName;
+  final String? lastName;
   @override
-  final String email;
+  final String? email;
   @override
   @JsonKey(name: 'email_verified_at')
   final dynamic emailVerifiedAt;
   @override
   @JsonKey(name: 'mobile_number')
-  final String mobileNumber;
+  final String? mobileNumber;
   @override
   final dynamic role;
   @override
@@ -409,12 +409,12 @@ class _$_Client implements _Client {
 
 abstract class _Client implements Client {
   factory _Client(
-      {required final int id,
-      @JsonKey(name: 'first_name') required final String firstName,
-      @JsonKey(name: 'last_name') required final String lastName,
-      required final String email,
+      {final int? id,
+      @JsonKey(name: 'first_name') final String? firstName,
+      @JsonKey(name: 'last_name') final String? lastName,
+      final String? email,
       @JsonKey(name: 'email_verified_at') final dynamic emailVerifiedAt,
-      @JsonKey(name: 'mobile_number') required final String mobileNumber,
+      @JsonKey(name: 'mobile_number') final String? mobileNumber,
       final dynamic role,
       @JsonKey(name: 'profile_pic') final dynamic profilePic,
       @JsonKey(name: 'company_id') final dynamic companyId,
@@ -428,21 +428,21 @@ abstract class _Client implements Client {
   factory _Client.fromJson(Map<String, dynamic> json) = _$_Client.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'first_name')
-  String get firstName;
+  String? get firstName;
   @override
   @JsonKey(name: 'last_name')
-  String get lastName;
+  String? get lastName;
   @override
-  String get email;
+  String? get email;
   @override
   @JsonKey(name: 'email_verified_at')
   dynamic get emailVerifiedAt;
   @override
   @JsonKey(name: 'mobile_number')
-  String get mobileNumber;
+  String? get mobileNumber;
   @override
   dynamic get role;
   @override

@@ -18,14 +18,12 @@ class ChatViewModel extends ReactiveViewModel {
   List<ReactiveServiceMixin> get reactiveServices => [_chatService];
 
   List<ChatUser> get chats => _chatService.chats;
-  ChatThread? _chatThread = ChatThread(messages: [], participants: []);
+  ChatThread? _chatThread = ChatThread(
+    threadId: null,
+    messages: [],
+    participants: [],
+  );
   ChatThread? get chatThread => _chatThread;
-
-  List<ChatMessage> _messages = [];
-  List<ChatMessage> get messages {
-    _messages.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-    return _messages;
-  }
 
   @override
   void onFutureError(error, Object? key) {
@@ -58,8 +56,10 @@ class ChatViewModel extends ReactiveViewModel {
       _chatService.findOne(threadId, recipientId),
       throwException: true,
     ).then((value) {
+      print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      print(value);
       _chatThread = value;
-      _messages = _chatThread!.messages;
+
       notifyListeners();
     });
   }

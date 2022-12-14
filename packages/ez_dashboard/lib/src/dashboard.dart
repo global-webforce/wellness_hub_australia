@@ -34,6 +34,10 @@ class EZDashboard extends StatelessWidget {
         body: Row(
           children: [
             if (isDesktop(context)) drawer,
+            if (isDesktop(context))
+              const VerticalDivider(
+                width: 1,
+              ),
             Expanded(child: mainContent),
           ],
         ));

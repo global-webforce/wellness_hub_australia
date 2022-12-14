@@ -34,7 +34,7 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
             return InkWell(
               borderRadius: BorderRadius.circular(8),
               onTap: () => context.pushRoute(const LoginRoute()),
-              onLongPress: () => viewModel.generateUser(),
+              // onLongPress: () => viewModel.generateUser(),
               child: Container(
                   decoration: BoxDecoration(
                       color: Theme.of(context)
@@ -113,7 +113,7 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
                   ),
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.startTop,
-                  backgroundColor: Theme.of(context).colorScheme.surface,
+                  backgroundColor: Colors.white,
                   body: ScaffoldBodyWrapper(
                       centered: true,
                       builder: (context, constraints) {

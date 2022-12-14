@@ -25,7 +25,7 @@ mixin _$Schedule {
   int? get taskId => throw _privateConstructorUsedError;
   String? get weekdays => throw _privateConstructorUsedError;
   String? get timeSlots => throw _privateConstructorUsedError;
-  int get enabled => throw _privateConstructorUsedError;
+  int? get enabled => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $ScheduleCopyWith<$Res> {
       @JsonKey(name: 'task_id') int? taskId,
       String? weekdays,
       String? timeSlots,
-      int enabled});
+      int? enabled});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$ScheduleCopyWithImpl<$Res, $Val extends Schedule>
     Object? taskId = freezed,
     Object? weekdays = freezed,
     Object? timeSlots = freezed,
-    Object? enabled = null,
+    Object? enabled = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -82,10 +82,10 @@ class _$ScheduleCopyWithImpl<$Res, $Val extends Schedule>
           ? _value.timeSlots
           : timeSlots // ignore: cast_nullable_to_non_nullable
               as String?,
-      enabled: null == enabled
+      enabled: freezed == enabled
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -102,7 +102,7 @@ abstract class _$$_ScheduleCopyWith<$Res> implements $ScheduleCopyWith<$Res> {
       @JsonKey(name: 'task_id') int? taskId,
       String? weekdays,
       String? timeSlots,
-      int enabled});
+      int? enabled});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$$_ScheduleCopyWithImpl<$Res>
     Object? taskId = freezed,
     Object? weekdays = freezed,
     Object? timeSlots = freezed,
-    Object? enabled = null,
+    Object? enabled = freezed,
   }) {
     return _then(_$_Schedule(
       id: freezed == id
@@ -139,10 +139,10 @@ class __$$_ScheduleCopyWithImpl<$Res>
           ? _value.timeSlots
           : timeSlots // ignore: cast_nullable_to_non_nullable
               as String?,
-      enabled: null == enabled
+      enabled: freezed == enabled
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -155,7 +155,7 @@ class _$_Schedule implements _Schedule {
       @JsonKey(name: 'task_id') this.taskId,
       this.weekdays,
       this.timeSlots,
-      this.enabled = 0});
+      this.enabled});
 
   factory _$_Schedule.fromJson(Map<String, dynamic> json) =>
       _$$_ScheduleFromJson(json);
@@ -170,8 +170,7 @@ class _$_Schedule implements _Schedule {
   @override
   final String? timeSlots;
   @override
-  @JsonKey()
-  final int enabled;
+  final int? enabled;
 
   @override
   String toString() {
@@ -217,7 +216,7 @@ abstract class _Schedule implements Schedule {
       @JsonKey(name: 'task_id') final int? taskId,
       final String? weekdays,
       final String? timeSlots,
-      final int enabled}) = _$_Schedule;
+      final int? enabled}) = _$_Schedule;
 
   factory _Schedule.fromJson(Map<String, dynamic> json) = _$_Schedule.fromJson;
 
@@ -231,7 +230,7 @@ abstract class _Schedule implements Schedule {
   @override
   String? get timeSlots;
   @override
-  int get enabled;
+  int? get enabled;
   @override
   @JsonKey(ignore: true)
   _$$_ScheduleCopyWith<_$_Schedule> get copyWith =>

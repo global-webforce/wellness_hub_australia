@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client.model.freezed.dart';
@@ -7,12 +6,12 @@ part 'client.model.g.dart';
 @freezed
 class Client with _$Client {
   factory Client({
-    required int id,
-    @JsonKey(name: 'first_name') required String firstName,
-    @JsonKey(name: 'last_name') required String lastName,
-    required String email,
+    int? id,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    String? email,
     @JsonKey(name: 'email_verified_at') dynamic emailVerifiedAt,
-    @JsonKey(name: 'mobile_number') required String mobileNumber,
+    @JsonKey(name: 'mobile_number') String? mobileNumber,
     dynamic role,
     @JsonKey(name: 'profile_pic') dynamic profilePic,
     @JsonKey(name: 'company_id') dynamic companyId,

@@ -1,7 +1,7 @@
 {
   "__className": "PillarProgress.model",
   "__path": "/lib/app/models/",
-  "r@id": 1,
+  "id": 1,
   "color_theme": "#cb2d3e",
   "pillar_icon": "https://ezoapi.ezyworkforce.com.au/storage/pillar-icons/physical-icon.png",
   "title": "Physical",

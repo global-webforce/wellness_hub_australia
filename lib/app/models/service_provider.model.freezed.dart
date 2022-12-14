@@ -20,14 +20,14 @@ ServiceProvider _$ServiceProviderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ServiceProvider {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
-  String get firstName => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
-  String get lastName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'mobile_number')
-  String get mobileNumber => throw _privateConstructorUsedError;
+  String? get mobileNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_pic')
   dynamic get profilePic => throw _privateConstructorUsedError;
   @JsonKey(name: 'birth_date')
@@ -58,11 +58,11 @@ abstract class $ServiceProviderCopyWith<$Res> {
       _$ServiceProviderCopyWithImpl<$Res, ServiceProvider>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName,
-      String email,
-      @JsonKey(name: 'mobile_number') String mobileNumber,
+      {int? id,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      String? email,
+      @JsonKey(name: 'mobile_number') String? mobileNumber,
       @JsonKey(name: 'profile_pic') dynamic profilePic,
       @JsonKey(name: 'birth_date') dynamic birthDate,
       dynamic gender,
@@ -91,11 +91,11 @@ class _$ServiceProviderCopyWithImpl<$Res, $Val extends ServiceProvider>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
-    Object? mobileNumber = null,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
+    Object? mobileNumber = freezed,
     Object? profilePic = null,
     Object? birthDate = null,
     Object? gender = null,
@@ -109,26 +109,26 @@ class _$ServiceProviderCopyWithImpl<$Res, $Val extends ServiceProvider>
     Object? schedules = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: null == firstName
+              as int?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      mobileNumber: null == mobileNumber
+              as String?,
+      mobileNumber: freezed == mobileNumber
           ? _value.mobileNumber
           : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       profilePic: null == profilePic
           ? _value.profilePic
           : profilePic // ignore: cast_nullable_to_non_nullable
@@ -198,11 +198,11 @@ abstract class _$$_ServiceProviderCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName,
-      String email,
-      @JsonKey(name: 'mobile_number') String mobileNumber,
+      {int? id,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      String? email,
+      @JsonKey(name: 'mobile_number') String? mobileNumber,
       @JsonKey(name: 'profile_pic') dynamic profilePic,
       @JsonKey(name: 'birth_date') dynamic birthDate,
       dynamic gender,
@@ -230,11 +230,11 @@ class __$$_ServiceProviderCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
-    Object? mobileNumber = null,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
+    Object? mobileNumber = freezed,
     Object? profilePic = null,
     Object? birthDate = null,
     Object? gender = null,
@@ -248,26 +248,26 @@ class __$$_ServiceProviderCopyWithImpl<$Res>
     Object? schedules = null,
   }) {
     return _then(_$_ServiceProvider(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: null == firstName
+              as int?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      mobileNumber: null == mobileNumber
+              as String?,
+      mobileNumber: freezed == mobileNumber
           ? _value.mobileNumber
           : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       profilePic: null == profilePic
           ? _value.profilePic
           : profilePic // ignore: cast_nullable_to_non_nullable
@@ -320,14 +320,14 @@ class __$$_ServiceProviderCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ServiceProvider implements _ServiceProvider {
   _$_ServiceProvider(
-      {required this.id,
+      {this.id,
       @JsonKey(name: 'first_name')
-          required this.firstName,
+          this.firstName,
       @JsonKey(name: 'last_name')
-          required this.lastName,
-      required this.email,
+          this.lastName,
+      this.email,
       @JsonKey(name: 'mobile_number')
-          required this.mobileNumber,
+          this.mobileNumber,
       @JsonKey(name: 'profile_pic')
           this.profilePic,
       @JsonKey(name: 'birth_date')
@@ -352,18 +352,18 @@ class _$_ServiceProvider implements _ServiceProvider {
       _$$_ServiceProviderFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'first_name')
-  final String firstName;
+  final String? firstName;
   @override
   @JsonKey(name: 'last_name')
-  final String lastName;
+  final String? lastName;
   @override
-  final String email;
+  final String? email;
   @override
   @JsonKey(name: 'mobile_number')
-  final String mobileNumber;
+  final String? mobileNumber;
   @override
   @JsonKey(name: 'profile_pic')
   final dynamic profilePic;
@@ -488,14 +488,14 @@ class _$_ServiceProvider implements _ServiceProvider {
 
 abstract class _ServiceProvider implements ServiceProvider {
   factory _ServiceProvider(
-      {required final int id,
+      {final int? id,
       @JsonKey(name: 'first_name')
-          required final String firstName,
+          final String? firstName,
       @JsonKey(name: 'last_name')
-          required final String lastName,
-      required final String email,
+          final String? lastName,
+      final String? email,
       @JsonKey(name: 'mobile_number')
-          required final String mobileNumber,
+          final String? mobileNumber,
       @JsonKey(name: 'profile_pic')
           final dynamic profilePic,
       @JsonKey(name: 'birth_date')
@@ -516,18 +516,18 @@ abstract class _ServiceProvider implements ServiceProvider {
       _$_ServiceProvider.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'first_name')
-  String get firstName;
+  String? get firstName;
   @override
   @JsonKey(name: 'last_name')
-  String get lastName;
+  String? get lastName;
   @override
-  String get email;
+  String? get email;
   @override
   @JsonKey(name: 'mobile_number')
-  String get mobileNumber;
+  String? get mobileNumber;
   @override
   @JsonKey(name: 'profile_pic')
   dynamic get profilePic;

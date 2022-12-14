@@ -40,7 +40,8 @@ class ChatsDetailPage extends StatelessWidget {
                           child:
                               Text("${person.firstName} ${person.lastName}")),
                   hSpaceSmall,
-                  Text("Thread ID: $threadId | Recipient ID: $recipientId")
+                  Text(
+                      "Thread ID: ${viewModel.chatThread?.threadId} | Recipient ID: $recipientId")
                 ],
               ),
             ),
@@ -70,12 +71,13 @@ class ChatsDetailPage extends StatelessWidget {
                 id: "$userId",
               ),
               onSend: (ChatMessage m) async {
-                await viewModel.create(threadId, recipientId, m);
+                await viewModel.create(
+                    viewModel.chatThread?.threadId, recipientId, m);
               },
               inputOptions: const InputOptions(
                 sendOnEnter: true,
               ),
-              messages: viewModel.messages,
+              messages: viewModel.chatThread!.getMessages,
               messageListOptions: const MessageListOptions(),
             ),
           );

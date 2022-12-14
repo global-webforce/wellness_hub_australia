@@ -1,7 +1,7 @@
 name: wellness_hub_australia
 description: A new Flutter project.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+1
+version: 1.0.2+2
 environment:
   sdk: '>=2.18.4 <3.0.0'
 
@@ -17,7 +17,8 @@ dependencies:
   ez_onboarding:
     path: ./packages/ez_onboarding
   auto_size_text: ^3.0.0
-  
+  awesome_select: ^6.0.0
+  validators: ^3.0.0
   #intro_slider: ^4.2.0
   #date_picker_timeline: ^1.2.3
 # Primary
@@ -47,6 +48,7 @@ dependencies:
   eva_icons_flutter: ^3.0.2
   #introduction_screen: ^3.0.0
   flutter_staggered_grid_view: ^0.6.2
+  waterfall_flow: ^3.0.2
   #flutter_staggered_animations: "^1.0.0"
   #widget_and_text_animator: ^1.0.9
   flutter_widget_from_html: ^0.8.5

@@ -57,12 +57,11 @@ class PushNotificationCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       title(),
-                      vSpaceTiny,
                       body(),
                     ],
                   ),
                 ),
-                hSpaceTiny,
+                hSpaceRegular,
                 date(),
               ],
             )),

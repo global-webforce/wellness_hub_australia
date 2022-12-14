@@ -23,7 +23,7 @@ class AppointmentUpdateCard extends StatelessWidget {
     Widget paidField() {
       return FormBuilderDropdown(
           name: 'paid',
-          initialValue: "${viewModel.getSelectedAppointment?.paid}",
+          initialValue: "${viewModel.appointment?.paid}",
           valueTransformer: (value) => int.parse("$value"),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(12, 16, 0, 16),
@@ -53,7 +53,7 @@ class AppointmentUpdateCard extends StatelessWidget {
       return FormBuilderDropdown(
           //   key: const Key("DSFSFSFSDF"),
           name: 'status',
-          initialValue: "${viewModel.getSelectedAppointment?.status}",
+          initialValue: "${viewModel.appointment?.status}",
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(12, 16, 0, 16),
             labelText: "Status",

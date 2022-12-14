@@ -34,6 +34,14 @@ class AppService with ReactiveServiceMixin {
 
   bool? get isOnboarded => _isOnboarded.value;
 
+  bool isMember() {
+    return user?.role == "member";
+  }
+
+  bool isServiceProvider() {
+    return user?.role == "service_provider";
+  }
+
   Future login(Map<String, dynamic> formData) async {
     await _apiService.post(
       ApiEndpoints.login,

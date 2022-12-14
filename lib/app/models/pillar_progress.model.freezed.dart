@@ -20,7 +20,7 @@ PillarProgress _$PillarProgressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PillarProgress {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'color_theme')
   String? get colorTheme => throw _privateConstructorUsedError;
   @JsonKey(name: 'pillar_icon')
@@ -42,7 +42,7 @@ abstract class $PillarProgressCopyWith<$Res> {
       _$PillarProgressCopyWithImpl<$Res, PillarProgress>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       @JsonKey(name: 'color_theme') String? colorTheme,
       @JsonKey(name: 'pillar_icon') String? pillarIcon,
       String? title,
@@ -63,7 +63,7 @@ class _$PillarProgressCopyWithImpl<$Res, $Val extends PillarProgress>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? colorTheme = freezed,
     Object? pillarIcon = freezed,
     Object? title = freezed,
@@ -71,10 +71,10 @@ class _$PillarProgressCopyWithImpl<$Res, $Val extends PillarProgress>
     Object? total = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       colorTheme: freezed == colorTheme
           ? _value.colorTheme
           : colorTheme // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$_PillarProgressCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       @JsonKey(name: 'color_theme') String? colorTheme,
       @JsonKey(name: 'pillar_icon') String? pillarIcon,
       String? title,
@@ -127,7 +127,7 @@ class __$$_PillarProgressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? colorTheme = freezed,
     Object? pillarIcon = freezed,
     Object? title = freezed,
@@ -135,10 +135,10 @@ class __$$_PillarProgressCopyWithImpl<$Res>
     Object? total = freezed,
   }) {
     return _then(_$_PillarProgress(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       colorTheme: freezed == colorTheme
           ? _value.colorTheme
           : colorTheme // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ class __$$_PillarProgressCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PillarProgress implements _PillarProgress {
   _$_PillarProgress(
-      {required this.id,
+      {this.id,
       @JsonKey(name: 'color_theme') this.colorTheme,
       @JsonKey(name: 'pillar_icon') this.pillarIcon,
       this.title,
@@ -178,7 +178,7 @@ class _$_PillarProgress implements _PillarProgress {
       _$$_PillarProgressFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'color_theme')
   final String? colorTheme;
@@ -234,7 +234,7 @@ class _$_PillarProgress implements _PillarProgress {
 
 abstract class _PillarProgress implements PillarProgress {
   factory _PillarProgress(
-      {required final int id,
+      {final int? id,
       @JsonKey(name: 'color_theme') final String? colorTheme,
       @JsonKey(name: 'pillar_icon') final String? pillarIcon,
       final String? title,
@@ -245,7 +245,7 @@ abstract class _PillarProgress implements PillarProgress {
       _$_PillarProgress.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'color_theme')
   String? get colorTheme;

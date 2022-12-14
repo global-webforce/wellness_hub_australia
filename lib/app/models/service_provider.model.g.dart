@@ -8,11 +8,11 @@ part of 'service_provider.model.dart';
 
 _$_ServiceProvider _$$_ServiceProviderFromJson(Map<String, dynamic> json) =>
     _$_ServiceProvider(
-      id: json['id'] as int,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      email: json['email'] as String,
-      mobileNumber: json['mobile_number'] as String,
+      id: json['id'] as int?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      email: json['email'] as String?,
+      mobileNumber: json['mobile_number'] as String?,
       profilePic: json['profile_pic'],
       birthDate: json['birth_date'],
       gender: json['gender'],

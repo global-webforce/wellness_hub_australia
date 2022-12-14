@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'address.model.dart';
@@ -13,11 +12,11 @@ part 'service_provider.model.g.dart';
 @freezed
 class ServiceProvider with _$ServiceProvider {
   factory ServiceProvider({
-    required int id,
-    @JsonKey(name: 'first_name') required String firstName,
-    @JsonKey(name: 'last_name') required String lastName,
-    required String email,
-    @JsonKey(name: 'mobile_number') required String mobileNumber,
+    int? id,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    String? email,
+    @JsonKey(name: 'mobile_number') String? mobileNumber,
     @JsonKey(name: 'profile_pic') dynamic profilePic,
     @JsonKey(name: 'birth_date') dynamic birthDate,
     dynamic gender,

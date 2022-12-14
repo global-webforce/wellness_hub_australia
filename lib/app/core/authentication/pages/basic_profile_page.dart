@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:ez_core/ez_core.dart';
 
 import 'package:ez_dashboard/screen_size_helper.dart';
 import 'package:ez_ui/ez_ui.dart';
@@ -36,6 +37,8 @@ class BasicProfilePage extends StatelessWidget {
               body: ScaffoldBodyWrapper(builder: (context, constraints) {
                 return Column(
                   children: const [
+                    _ProfileCard(),
+                    vSpaceRegular,
                     _BasicProfileForm(),
                   ],
                 );
@@ -380,5 +383,62 @@ class _BasicProfileForm extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ProfileCard extends ViewModelWidget<AppViewModel> {
+  const _ProfileCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, AppViewModel viewModel) {
+    Widget name() {
+      return Text(
+        "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      );
+    }
+
+    Widget address() {
+      return Text(
+        "${viewModel.user?.address?.displaySafe()}",
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 14,
+        ),
+      );
+    }
+
+    return Stack(children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 60),
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: SizedBox(
+              child: Column(
+                children: [
+                  const SizedBox(height: 60),
+                  name(),
+                  vSpaceTiny,
+                  address(),
+                  vSpaceRegular,
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.topCenter,
+        child: EzAvatar(
+          name: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
+          imgUrl: "${viewModel.user?.profilePic}",
+        ),
+      ),
+    ]);
   }
 }

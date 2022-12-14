@@ -21,7 +21,7 @@ Review _$ReviewFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Review {
   int? get id => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'service_provider_id')
   int? get serviceProviderId => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $ReviewCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      double rating,
+      double? rating,
       @JsonKey(name: 'service_provider_id') int? serviceProviderId,
       String? comment,
       String? author,
@@ -62,7 +62,7 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
   @override
   $Res call({
     Object? id = freezed,
-    Object? rating = null,
+    Object? rating = freezed,
     Object? serviceProviderId = freezed,
     Object? comment = freezed,
     Object? author = freezed,
@@ -73,10 +73,10 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      rating: null == rating
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       serviceProviderId: freezed == serviceProviderId
           ? _value.serviceProviderId
           : serviceProviderId // ignore: cast_nullable_to_non_nullable
@@ -105,7 +105,7 @@ abstract class _$$_ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      double rating,
+      double? rating,
       @JsonKey(name: 'service_provider_id') int? serviceProviderId,
       String? comment,
       String? author,
@@ -123,7 +123,7 @@ class __$$_ReviewCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? rating = null,
+    Object? rating = freezed,
     Object? serviceProviderId = freezed,
     Object? comment = freezed,
     Object? author = freezed,
@@ -134,10 +134,10 @@ class __$$_ReviewCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      rating: null == rating
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       serviceProviderId: freezed == serviceProviderId
           ? _value.serviceProviderId
           : serviceProviderId // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class __$$_ReviewCopyWithImpl<$Res>
 class _$_Review implements _Review {
   _$_Review(
       {this.id,
-      this.rating = 0.01,
+      this.rating,
       @JsonKey(name: 'service_provider_id') this.serviceProviderId,
       this.comment,
       this.author,
@@ -175,8 +175,7 @@ class _$_Review implements _Review {
   @override
   final int? id;
   @override
-  @JsonKey()
-  final double rating;
+  final double? rating;
   @override
   @JsonKey(name: 'service_provider_id')
   final int? serviceProviderId;
@@ -230,7 +229,7 @@ class _$_Review implements _Review {
 abstract class _Review implements Review {
   factory _Review(
       {final int? id,
-      final double rating,
+      final double? rating,
       @JsonKey(name: 'service_provider_id') final int? serviceProviderId,
       final String? comment,
       final String? author,
@@ -241,7 +240,7 @@ abstract class _Review implements Review {
   @override
   int? get id;
   @override
-  double get rating;
+  double? get rating;
   @override
   @JsonKey(name: 'service_provider_id')
   int? get serviceProviderId;

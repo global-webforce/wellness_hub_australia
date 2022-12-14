@@ -89,8 +89,8 @@ class ClientScaffoldPage extends StatelessWidget {
                       route: const AppointmentsRoute(),
                     ),
                     EZDrawerMenuItem(
-                      icon: Icons.chat_rounded,
-                      title: "CHAT",
+                      icon: Icons.chat,
+                      title: "CHATS",
                       route: const ChatsRoute(),
                     ),
                     EZDrawerMenuItem(
@@ -123,14 +123,14 @@ class ClientScaffoldPage extends StatelessWidget {
                       route: const AppointmentsRoute(),
                     ),
                     EZBottomNavbarItem(
-                      icon: Icons.person_rounded,
-                      title: "PROFILE",
-                      route: const ClientProfileRoute(),
+                      icon: Icons.chat_rounded,
+                      title: "CHATS",
+                      route: const ChatsRoute(),
                     ),
                     EZBottomNavbarItem(
-                      icon: Icons.settings_rounded,
-                      title: "SETTINGS",
-                      route: const ClientSettingsRoute(),
+                      icon: Icons.notifications_rounded,
+                      title: "NOTIFICATIONS",
+                      route: const PushNotificationsRoute(),
                     ),
                   ],
                 ),

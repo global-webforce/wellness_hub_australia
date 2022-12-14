@@ -30,7 +30,7 @@ mixin _$Badge {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
-  bool get acquired => throw _privateConstructorUsedError;
+  bool? get acquired => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $BadgeCopyWith<$Res> {
       @JsonKey(name: 'img_path') String? imgPath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt,
-      bool acquired});
+      bool? acquired});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$BadgeCopyWithImpl<$Res, $Val extends Badge>
     Object? imgPath = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? acquired = null,
+    Object? acquired = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -98,10 +98,10 @@ class _$BadgeCopyWithImpl<$Res, $Val extends Badge>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      acquired: null == acquired
+      acquired: freezed == acquired
           ? _value.acquired
           : acquired // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -119,7 +119,7 @@ abstract class _$$_BadgeCopyWith<$Res> implements $BadgeCopyWith<$Res> {
       @JsonKey(name: 'img_path') String? imgPath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt,
-      bool acquired});
+      bool? acquired});
 }
 
 /// @nodoc
@@ -137,7 +137,7 @@ class __$$_BadgeCopyWithImpl<$Res> extends _$BadgeCopyWithImpl<$Res, _$_Badge>
     Object? imgPath = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? acquired = null,
+    Object? acquired = freezed,
   }) {
     return _then(_$_Badge(
       id: freezed == id
@@ -164,10 +164,10 @@ class __$$_BadgeCopyWithImpl<$Res> extends _$BadgeCopyWithImpl<$Res, _$_Badge>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      acquired: null == acquired
+      acquired: freezed == acquired
           ? _value.acquired
           : acquired // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -182,7 +182,7 @@ class _$_Badge implements _Badge {
       @JsonKey(name: 'img_path') this.imgPath,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt,
-      this.acquired = false});
+      this.acquired});
 
   factory _$_Badge.fromJson(Map<String, dynamic> json) =>
       _$$_BadgeFromJson(json);
@@ -204,8 +204,7 @@ class _$_Badge implements _Badge {
   @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
   @override
-  @JsonKey()
-  final bool acquired;
+  final bool? acquired;
 
   @override
   String toString() {
@@ -258,7 +257,7 @@ abstract class _Badge implements Badge {
       @JsonKey(name: 'img_path') final String? imgPath,
       @JsonKey(name: 'created_at') final DateTime? createdAt,
       @JsonKey(name: 'updated_at') final DateTime? updatedAt,
-      final bool acquired}) = _$_Badge;
+      final bool? acquired}) = _$_Badge;
 
   factory _Badge.fromJson(Map<String, dynamic> json) = _$_Badge.fromJson;
 
@@ -279,7 +278,7 @@ abstract class _Badge implements Badge {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
   @override
-  bool get acquired;
+  bool? get acquired;
   @override
   @JsonKey(ignore: true)
   _$$_BadgeCopyWith<_$_Badge> get copyWith =>

@@ -25,7 +25,7 @@ class PillarProgressGrid extends StatelessWidget {
                   crossAxisCount: isMobile(context) ? 1 : 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  height: 100,
+                  height: 90,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int i) {
