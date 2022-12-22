@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 
 class CustomLinksCard extends StatelessWidget {
   final CustomLink customLink;
+  final AutoSizeGroup? autoSizeGroup;
   final Function onTap;
   const CustomLinksCard(
-      {Key? key, required this.customLink, required this.onTap})
+      {Key? key,
+      required this.customLink,
+      required this.onTap,
+      this.autoSizeGroup})
       : super(key: key);
 
   @override
@@ -57,6 +61,7 @@ class CustomLinksCard extends StatelessWidget {
     Widget title() {
       return AutoSizeText(
         "${customLink.title}",
+        group: autoSizeGroup,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
@@ -74,6 +79,7 @@ class CustomLinksCard extends StatelessWidget {
 
     return SizedBox(
       width: 256,
+      height: 200,
       child: IntrinsicHeight(
         child: Card(
           clipBehavior: Clip.antiAlias,

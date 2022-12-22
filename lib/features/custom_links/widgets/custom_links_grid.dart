@@ -1,5 +1,4 @@
-import 'package:ez_dashboard/screen_size_helper.dart';
-import 'package:wellness_hub_australia/app/shared/ui/sliver_grid_delegate.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:wellness_hub_australia/features/custom_links/widgets/custom_links_card.dart';
 import 'package:wellness_hub_australia/app/models/custom_link.model.dart';
 import 'package:flutter/material.dart';
@@ -12,36 +11,38 @@ class CustomLinksGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var myGroup = AutoSizeGroup();
+
     return LayoutBuilder(builder: (context, constraint) {
       return SizedBox(
           width: double.infinity,
-          height: isMobile(context) ? null : 357,
-          child: GridView.builder(
+          height: 330,
+          child: ListView.separated(
+              scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               primary: false,
+              physics: const BouncingScrollPhysics(),
+              addRepaintBoundaries: false,
+              addAutomaticKeepAlives: false,
               itemCount: customLinks.length,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                crossAxisCount: isMobile(context)
-                    ? 2
-                    : isTablet(context)
-                        ? 3
-                        : 4,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                height: 320,
-              ), //48
-              scrollDirection: Axis.vertical,
-              itemBuilder: (ctx, i) {
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              separatorBuilder: ((context, index) {
+                return const SizedBox(
+                  width: 10,
+                );
+              }),
+              itemBuilder: (context, index) {
                 return CustomLinksCard(
-                    customLink: customLinks[i],
+                    autoSizeGroup: myGroup,
+                    customLink: customLinks[index],
                     onTap: () async {
                       await launchUrl(
-                        Uri.parse("${customLinks[i].url}"),
+                        Uri.parse("${customLinks[index].url}"),
                         mode: LaunchMode.platformDefault,
                       );
                     });
               }));
+      //48
     });
   }
 }

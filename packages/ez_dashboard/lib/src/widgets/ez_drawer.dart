@@ -49,7 +49,7 @@ class _EZDrawerState extends State<EZDrawer> {
         elevation: 0,
         clipBehavior: Clip.hardEdge,
         color: autoRouter.isRouteActive(menu.route.routeName)
-            ? Theme.of(context).primaryColorLight
+            ? Theme.of(context).primaryColor.withOpacity(0.3)
             : Colors.transparent,
         child: ListTile(
           leading: Icon(
@@ -60,7 +60,10 @@ class _EZDrawerState extends State<EZDrawer> {
           ),
           title: Text(
             menu.title,
-            style: const TextStyle(
+            style: TextStyle(
+              color: autoRouter.isRouteActive(menu.route.routeName)
+                  ? Theme.of(context).primaryColor
+                  : null,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

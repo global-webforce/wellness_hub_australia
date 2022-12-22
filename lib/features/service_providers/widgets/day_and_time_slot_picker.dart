@@ -59,7 +59,7 @@ class _DayAndTimeSlotPickerState extends State<DayAndTimeSlotPicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Choose Date",
+          "Select Date",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         vSpaceSmall,
@@ -191,7 +191,8 @@ class _DayAndTimeSlotPickerState extends State<DayAndTimeSlotPicker> {
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5)),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
                                     child: Text(
                                       "${e.civilianTime()}",
                                       style:

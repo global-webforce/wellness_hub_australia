@@ -35,7 +35,9 @@ class EZDrawerHeader extends StatelessWidget {
       otherAccountsPictures: null,
       margin: const EdgeInsets.only(bottom: 0.0),
       otherAccountsPicturesSize: const Size(0.0, 0.0),
-      decoration: BoxDecoration(color: darken(const Color(0xff8A58B2))),
+      decoration: BoxDecoration(
+          backgroundBlendMode: BlendMode.darken,
+          color: darken(const Color(0xff8A58B2))),
     );
   }
 }

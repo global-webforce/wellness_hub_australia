@@ -25,7 +25,6 @@ class EZAppBar extends StatelessWidget with PreferredSizeWidget {
       userAvatar ?? const SizedBox.shrink()
     ];
     return AppBar(
-        elevation: 5,
         automaticallyImplyLeading: false,
         title: Row(children: [
           Image.asset("$leadingImageAsset", width: 30, color: Colors.white),

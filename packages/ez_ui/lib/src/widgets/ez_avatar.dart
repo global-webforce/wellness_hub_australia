@@ -29,14 +29,16 @@ class EzAvatar extends StatelessWidget {
       },
       placeholder: (context, url) {
         return CircleAvatar(
-          backgroundColor: Colors.grey,
-          radius: radius,
-          child: const Icon(
-            Icons.person,
-            color: Colors.white,
-            size: 48,
-          ),
-        );
+            radius: radius,
+            backgroundColor: Colors.grey,
+            child: Text(
+              name.isNotEmpty ? name.initials() : "N/A",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w300,
+                color: Colors.white,
+              ),
+            ));
       },
       errorWidget: (context, url, error) {
         return CircleAvatar(

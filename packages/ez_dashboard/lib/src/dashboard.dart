@@ -37,6 +37,7 @@ class EZDashboard extends StatelessWidget {
             if (isDesktop(context))
               const VerticalDivider(
                 width: 1,
+                color: Colors.white70,
               ),
             Expanded(child: mainContent),
           ],

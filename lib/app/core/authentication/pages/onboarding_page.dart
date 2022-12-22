@@ -1,8 +1,6 @@
-import 'package:ez_core/ez_core.dart';
 import 'package:ez_onboarding/ez_onboarding.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wellness_hub_australia/app/app_view_model.dart';
 

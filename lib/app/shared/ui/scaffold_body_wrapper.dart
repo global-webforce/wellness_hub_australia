@@ -1,5 +1,5 @@
-import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:wellness_hub_australia/app/shared/constants/dimensions.dart';
 
 class ScaffoldBodyWrapper extends StatelessWidget {
   final Future<void> Function()? onRefresh;
@@ -11,6 +11,7 @@ class ScaffoldBodyWrapper extends StatelessWidget {
   final bool centered;
   final bool isFullWidth;
   final bool neverScroll;
+  final bool disableScrollView;
   const ScaffoldBodyWrapper({
     Key? key,
     this.onRefresh,
@@ -24,6 +25,7 @@ class ScaffoldBodyWrapper extends StatelessWidget {
     this.centered = false,
     this.isFullWidth = false,
     this.neverScroll = false,
+    this.disableScrollView = false,
   }) : super(key: key);
 
   @override
@@ -45,15 +47,19 @@ class ScaffoldBodyWrapper extends StatelessWidget {
       }
 
       Widget defaultScreen() {
-        return SingleChildScrollView(
-            primary: false,
-            physics: neverScroll
-                ? const NeverScrollableScrollPhysics()
-                : const AlwaysScrollableScrollPhysics(),
-            padding: isFullWidth
-                ? const EdgeInsets.all(15)
-                : Dimens.sliverPadding(constraints),
-            child: builder(context, constraints));
+        return disableScrollView
+            ? Container(
+                child: builder(context, constraints),
+              )
+            : SingleChildScrollView(
+                primary: false,
+                physics: neverScroll
+                    ? const NeverScrollableScrollPhysics()
+                    : const AlwaysScrollableScrollPhysics(),
+                padding: isFullWidth
+                    ? const EdgeInsets.all(15)
+                    : Dimens.sliverPadding(constraints),
+                child: builder(context, constraints));
       }
 
       return onRefresh != null

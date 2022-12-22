@@ -87,6 +87,7 @@ class PillarProgressCard extends StatelessWidget {
 
     return Card(
         clipBehavior: Clip.antiAlias,
+        elevation: 2,
         child: InkWell(
           onTap: () => onTap(),
           child: Padding(
@@ -105,7 +106,7 @@ class PillarProgressCard extends StatelessWidget {
                       children: [
                         title(),
                         const SizedBox(
-                          height: 8,
+                          height: 5,
                         ),
                         percentIndicator(),
                         const SizedBox(

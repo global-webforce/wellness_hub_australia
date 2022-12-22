@@ -25,7 +25,7 @@ class PillarProgressGrid extends StatelessWidget {
                   crossAxisCount: isMobile(context) ? 1 : 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  height: 90,
+                  height: 95,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int i) {
@@ -34,7 +34,7 @@ class PillarProgressGrid extends StatelessWidget {
                         onTap: () {
                           context.router.root.pushWidget(
                             TasksPage(pillarId: pillars[i].id),
-                            transitionBuilder: TransitionsBuilders.fadeIn,
+                            transitionBuilder: TransitionsBuilders.zoomIn,
                           );
                         });
                   },

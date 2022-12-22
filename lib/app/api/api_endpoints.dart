@@ -41,10 +41,8 @@ class ApiEndpoints {
       "$baseUrl/user/${_appService.user?.id}/get-thread/$recipientId";
   String messageSend(int? threadId, int? recipientId) {
     if (threadId != null) {
-      print("MERONG THREAD ID");
       return "$baseUrl/send-message/${_appService.user?.id}/$threadId";
     } else {
-      print("WALANG THREAD ID");
       return "$baseUrl/send-message/${_appService.user?.id}";
     }
   }

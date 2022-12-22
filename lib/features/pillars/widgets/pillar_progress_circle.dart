@@ -55,16 +55,18 @@ class _PillarProgresssCircularProgress extends StatelessWidget {
 
     return <DoughnutSeries<ChartSampleData, String>>[
       DoughnutSeries<ChartSampleData, String>(
-        dataSource: finalDatas,
-        animationDuration: 0,
-        xValueMapper: (ChartSampleData data, _) => data.x as String,
-        yValueMapper: (ChartSampleData data, _) => data.y,
-        pointColorMapper: (ChartSampleData data, _) => data.pointColor,
-        explodeAll: true,
-        radius: "85%",
-        /*  dataLabelMapper: (ChartSampleData data, _) => "${data.y}%",
+          dataSource: finalDatas,
+          animationDuration: 0,
+          xValueMapper: (ChartSampleData data, _) => data.x as String,
+          yValueMapper: (ChartSampleData data, _) => data.y,
+          pointColorMapper: (ChartSampleData data, _) => data.pointColor,
+          explodeAll: true,
+          radius: "85%",
+          innerRadius: '80%',
+          cornerStyle: CornerStyle.bothFlat
+          /*  dataLabelMapper: (ChartSampleData data, _) => "${data.y}%",
         dataLabelSettings: const DataLabelSettings(isVisible: true), */
-      ),
+          ),
     ];
   }
 

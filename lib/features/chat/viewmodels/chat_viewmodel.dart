@@ -1,4 +1,5 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,16 +15,13 @@ class ChatViewModel extends ReactiveViewModel {
   final _dialogService = locator<DialogService>();
   final _chatService = locator<ChatService>();
 
+  late FocusNode myFocusNode;
+
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_chatService];
 
   List<ChatUser> get chats => _chatService.chats;
-  ChatThread? _chatThread = ChatThread(
-    threadId: null,
-    messages: [],
-    participants: [],
-  );
-  ChatThread? get chatThread => _chatThread;
+  ChatThread? get chatThread => _chatService.currentThread;
 
   @override
   void onFutureError(error, Object? key) {
@@ -42,25 +40,22 @@ class ChatViewModel extends ReactiveViewModel {
   }
 
   Future<void> create(int? threadId, int? recipientId, ChatMessage? m) async {
-    _chatThread?.messages.add(m!);
+    // _chatThread?.messages.add(m!);
     await runBusyFuture(_chatService.create(threadId, recipientId, m),
             throwException: true)
         .onError((error, stackTrace) {
-      _chatThread?.messages
-          .removeWhere((e) => e.text == m?.text && e.createdAt == m?.createdAt);
+      /*   _chatThread?.messages
+          .removeWhere((e) => e.text == m?.text && e.createdAt == m?.createdAt); */
     });
   }
 
   Future findOne(int? threadId, int? recipientId) async {
     await runBusyFuture(
-      _chatService.findOne(threadId, recipientId),
+      _chatService.findOne(
+        threadId,
+        recipientId,
+      ),
       throwException: true,
-    ).then((value) {
-      print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-      print(value);
-      _chatThread = value;
-
-      notifyListeners();
-    });
+    );
   }
 }

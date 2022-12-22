@@ -298,6 +298,7 @@ class _RegisterForm extends StatelessWidget {
     Widget inviteCodeField() {
       return FormBuilderTextField(
         name: "code",
+        initialValue: "*(&^ASdhjk",
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(

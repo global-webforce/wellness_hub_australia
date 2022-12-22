@@ -14,23 +14,27 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
   final ReactiveValue<List<ChatUser>> _chats =
       ReactiveValue<List<ChatUser>>([]);
 
+  final ReactiveValue<ChatThread> _currentThread =
+      ReactiveValue<ChatThread>(ChatThread(
+    threadId: null,
+    messages: [],
+    participants: [],
+  ));
+
   ChatServiceLaravel() {
     listenToReactiveValues([
       _chats,
+      _currentThread,
     ]);
   }
 
   @override
   Future findOne(int? threadId, int? recipientId) async {
-    print("WWWWWWWWWWWWWWWWWWWWWW");
-    print(threadId);
-    print(recipientId);
     return await _apiService.get(
       (threadId != null)
           ? ApiEndpoints.instance.messageThreadViaThreadId(threadId)
           : ApiEndpoints.instance.messageThreadViaRecipientId(recipientId),
       onSuccess: (res) {
-        print(res.body);
         List<dynamic> messagesJson = jsonDecode(res.body)["messages"];
         List<dynamic> participantsJson = jsonDecode(res.body)["participants"];
 
@@ -59,13 +63,11 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
             ),
           ),
         );
-        return ChatThread(
+        _currentThread.value = ChatThread(
           threadId: threadId,
           messages: messages,
           participants: participants,
         );
-
-        // fakeChatThread();
       },
       onError: (_) {},
     );
@@ -80,8 +82,16 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
         "recipient": recipientId,
       },
       onSuccess: (res) async {
-        await findOne(threadId, recipientId);
-        await getAll();
+        if (threadId != null) await findOne(threadId, recipientId);
+
+        ChatUser? v = _chats.value[_chats.value
+            .indexWhere((e) => e.customProperties?["thread_id"] == threadId)];
+
+        v.customProperties?["text"] = m?.text;
+        v.customProperties?["created_at"] = DateTime.now().toIso8601String();
+
+        _chats.value[_chats.value.indexWhere(
+            (e) => e.customProperties?["thread_id"] == threadId)] = v;
       },
       onError: (_) {},
     );
@@ -101,4 +111,7 @@ class ChatServiceLaravel with ReactiveServiceMixin implements ChatService {
 
   @override
   List<ChatUser> get chats => _chats.value;
+
+  @override
+  ChatThread get currentThread => _currentThread.value;
 }
