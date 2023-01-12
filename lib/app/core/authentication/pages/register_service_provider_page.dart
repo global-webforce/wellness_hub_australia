@@ -33,7 +33,7 @@ class _RegisterSPPageState extends State<RegisterSPPage> {
           Widget closeButton() {
             return InkWell(
               borderRadius: BorderRadius.circular(8),
-              onTap: () => context.pushRoute(const LoginRoute()),
+              onTap: () => context.replaceRoute(const LoginRoute()),
               // onLongPress: () => viewModel.generateUser(),
               child: Container(
                   decoration: BoxDecoration(

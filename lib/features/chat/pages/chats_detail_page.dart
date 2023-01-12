@@ -44,10 +44,10 @@ class ChatsDetailPage extends StatelessWidget {
                       Expanded(
                           child:
                               Text("${person.firstName} ${person.lastName}")),
-                  hSpaceSmall,
+                  /*   hSpaceSmall,
                   Text(
                     "Thread ID: ${viewModel.chatThread?.threadId} | Recipient ID: $recipientId",
-                  )
+                  ) */
                 ],
               ),
             ),

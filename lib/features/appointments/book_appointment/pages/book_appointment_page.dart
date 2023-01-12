@@ -70,57 +70,58 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                       ],
                     ),
                   )
-                : InkWell(
-                    onTap: () {
-                      viewModel.create();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          viewModel.busy(ViewModelBusyKeys.appointmentBooking)
-                              ? const CircularProgressIndicator(
-                                  color: Colors.white,
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Tooltip(
-                                      message:
-                                          "${viewModel.selectedDate.civilianTime()}",
-                                      child: Wrap(
-                                        spacing: 10,
-                                        children: [
-                                          const Icon(
-                                            Icons.calendar_month_rounded,
-                                            color: Colors.white,
-                                          ),
-                                          Text(
-                                            "${DateFormat("MMM d hh:mm a").format(viewModel.selectedDate ?? DateTime.now())} ",
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                : Material(
+                    color: Theme.of(context).primaryColor,
+                    child: InkWell(
+                      onTap: () {
+                        viewModel.create();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            viewModel.busy(ViewModelBusyKeys.appointmentBooking)
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Tooltip(
+                                        message:
+                                            "${viewModel.selectedDate.civilianTime()}",
+                                        child: Wrap(
+                                          spacing: 10,
+                                          children: [
+                                            const Icon(
+                                              Icons.calendar_month_rounded,
+                                              color: Colors.white,
+                                            ),
+                                            Text(
+                                              "${DateFormat("MMM d hh:mm a").format(viewModel.selectedDate ?? DateTime.now())} ",
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    hSpaceSmall,
-                                    const VerticalDivider(),
-                                    hSpaceSmall,
-                                    const Text(
-                                      "BOOK NOW",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                        ],
+                                      const Text(
+                                        " - BOOK NOW",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                          ],
+                        ),
                       ),
                     ),
                   );

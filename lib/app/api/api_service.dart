@@ -29,7 +29,6 @@ class ApiService {
     }
     if (error.contains("XMLHttpRequest error")) {
       //  x.signOut();
-
       return Future.error("Network request failed");
     }
     if (error.contains("Invalid Credentials")) {
@@ -44,6 +43,10 @@ class ApiService {
     if (error.contains("Unauthenticated")) {
       return Future.error("Session expired");
     }
+    if (error.contains("Connection closed before full header was received")) {
+      return Future.value();
+    }
+
     return Future.error(error);
   }
 
