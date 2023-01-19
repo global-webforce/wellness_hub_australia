@@ -251,11 +251,9 @@ class _BasicProfileForm extends StatelessWidget {
             ? user?.profile?.height.toString()
             : null,
         keyboardType: TextInputType.number,
-      
         decoration:
             const InputDecoration(labelText: "Height (cm.)", counterText: ""),
         validator: FormBuilderValidators.compose([
-          FormBuilderValidators.maxLength(3),
           FormBuilderValidators.numeric(),
         ]),
       );
@@ -269,11 +267,9 @@ class _BasicProfileForm extends StatelessWidget {
             : null,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.number,
-     
         decoration:
             const InputDecoration(labelText: "Weight (kg.)", counterText: ""),
         validator: FormBuilderValidators.compose([
-          FormBuilderValidators.maxLength(3),
           FormBuilderValidators.numeric(),
         ]),
       );

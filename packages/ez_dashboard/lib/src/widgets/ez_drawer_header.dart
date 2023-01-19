@@ -16,28 +16,34 @@ class EZDrawerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserAccountsDrawerHeader(
-      currentAccountPicture: currentAccountPicture,
-      accountEmail: Text(
-        userEmail,
-        style: const TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      accountName: Text(
-        userName,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-      otherAccountsPictures: null,
-      margin: const EdgeInsets.only(bottom: 0.0),
-      otherAccountsPicturesSize: const Size(0.0, 0.0),
-      decoration: BoxDecoration(
-          backgroundBlendMode: BlendMode.darken,
-          color: darken(const Color(0xff8A58B2))),
-    );
+    return Container(
+        color: darken(const Color(0xff8A58B2)),
+        padding: const EdgeInsets.all(15),
+        child: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              currentAccountPicture ?? const SizedBox.shrink(),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                userName,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                userEmail,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

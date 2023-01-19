@@ -37,9 +37,8 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
 
           Widget nextBackButton() {
             return !viewModel.isReadyForBooking()
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
+                ? SizedBox(
+                    height: 75,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -70,15 +69,14 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
                       ],
                     ),
                   )
-                : Material(
-                    color: Theme.of(context).primaryColor,
-                    child: InkWell(
-                      onTap: () {
-                        viewModel.create();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 16),
+                : SizedBox(
+                    height: 75,
+                    child: Material(
+                      color: Theme.of(context).primaryColor,
+                      child: InkWell(
+                        onTap: () {
+                          viewModel.create();
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,

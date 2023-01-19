@@ -20,8 +20,7 @@ class DrawerHeader extends ViewModelWidget<AppViewModel> {
         radius: 40,
       ),
       userEmail: "${viewModel.user?.email}",
-      userName:
-          "${viewModel.user?.firstName} ${viewModel.user?.lastName}  #${viewModel.user?.id}",
+      userName: "${viewModel.user?.firstName} ${viewModel.user?.lastName}",
     );
   }
 }
